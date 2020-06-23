@@ -1,2 +1,2 @@
 # PlatformFighter
-Platform Fighter Game
+Platform Fighter Game.
