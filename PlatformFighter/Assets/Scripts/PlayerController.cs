@@ -19,13 +19,16 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 12f;
     public float fallMaxSpeed = -12f;
     public Vector2 velocity;
+    public GameObject shieldObject;
 
     // private fields
+    Shield shield;
     Rigidbody2D rb;
     Vector3 localScale;
     bool isGrounded = false;
     int jumpCount = 1;
     bool hasControl = true;
+    bool holdShield = false;
 
 
     // Unity basic functions
@@ -35,6 +38,10 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         localScale = transform.localScale;
+        shieldObject = this.transform.Find("Shield").gameObject;
+        shieldObject.SetActive(true);
+        shield = shieldObject.GetComponent<Shield>();
+        
     }
 
     // Update is called once per frame
@@ -42,6 +49,8 @@ public class PlayerController : MonoBehaviour
     {
         velocity = rb.velocity;
         correctJumpCount();
+
+        computeShield();
 
         if (hasControl)
         {
@@ -61,7 +70,36 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    void computeShield()
+    {
+        bool isBroken = false;
+        if (isGrounded && hasControl && Input.GetKeyDown(KeyCode.K))  // perferrablely change this to get button instead of get key
+        {
+            holdShield = true;
+            hasControl = false;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        else if (holdShield && Input.GetKeyUp(KeyCode.K))
+        {
+            holdShield = false;
+            hasControl = true;
+        }
 
+        if (holdShield)
+        {
+            isBroken = shield.updateShield(Time.deltaTime, true);
+            shieldObject.SetActive(true);
+
+            // Add what happens when shield is broken
+        }
+        else
+        {
+            shield.updateShield(Time.deltaTime, false);
+            shieldObject.SetActive(false);
+
+        }
+
+    }
 
     // Movement computation
 
