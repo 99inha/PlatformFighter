@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     Vector3 scale;
-    const float SHIELDDURATION = 3f;
+    const float SHIELDDURATION = 2f;
     const float RECHARGETIME = 4f;
     float useToRechargeRatio = SHIELDDURATION / RECHARGETIME;
     float currentTime = SHIELDDURATION; 

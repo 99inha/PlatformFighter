@@ -73,13 +73,13 @@ public class PlayerController : MonoBehaviour
     void computeShield()
     {
         bool isBroken = false;
-        if (isGrounded && hasControl && Input.GetButton("Shield"))  // perferrablely change this to get button instead of get key
+        if (isGrounded && hasControl && Input.GetButtonDown("Shield"))  // perferrablely change this to get button instead of get key
         {
             holdShield = true;
             hasControl = false;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else if (holdShield)
+        else if (holdShield && Input.GetButtonUp("Shield"))
         {
             holdShield = false;
             hasControl = true;
@@ -90,7 +90,11 @@ public class PlayerController : MonoBehaviour
             isBroken = shield.updateShield(Time.deltaTime, true);
             shieldObject.SetActive(true);
 
-            // Add what happens when shield is broken
+            if (isBroken)
+            {           
+                // Add what happens when shield is broken
+                rb.velocity = new Vector2(-100, 100);
+            }
         }
         else
         {
