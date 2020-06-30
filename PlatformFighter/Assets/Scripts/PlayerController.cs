@@ -92,8 +92,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
+    // helper functions
 
     /* correctJumpCount:
      *    corrects the jump count and groundedness in case a player walks off stage
@@ -121,5 +120,69 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(lagTime);
 
         hasControl = true;
+    }
+
+
+
+    // attacks
+
+    protected virtual void jab()
+    {
+
+    }
+
+    protected virtual void fTilt()
+    {
+
+    }
+
+    protected virtual void upTilt()
+    {
+
+    }
+
+    protected virtual void downTilt()
+    {
+
+    }
+
+    protected virtual void nair()
+    {
+
+    }
+
+    protected virtual void fair()
+    {
+
+    }
+
+    protected virtual void bair()
+    {
+
+    }
+
+    protected virtual void upair()
+    {
+
+    }
+
+    protected virtual void downair()
+    {
+
+    }
+
+    protected virtual void sideB()
+    {
+
+    }
+
+    protected virtual void upB()
+    {
+
+    }
+
+    protected virtual void downB()
+    {
+
     }
 }
