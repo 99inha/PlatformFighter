@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     bool isGrounded = false;
     int jumpCount = 1;
     bool hasControl = true;
-    bool holdShield = false;
+    public bool holdShield = false;
 
 
     // Unity basic functions
@@ -73,13 +73,13 @@ public class PlayerController : MonoBehaviour
     void computeShield()
     {
         bool isBroken = false;
-        if (isGrounded && hasControl && Input.GetKeyDown(KeyCode.K))  // perferrablely change this to get button instead of get key
+        if (isGrounded && hasControl && Input.GetButton("Shield"))  // perferrablely change this to get button instead of get key
         {
             holdShield = true;
             hasControl = false;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else if (holdShield && Input.GetKeyUp(KeyCode.K))
+        else if (holdShield)
         {
             holdShield = false;
             hasControl = true;
