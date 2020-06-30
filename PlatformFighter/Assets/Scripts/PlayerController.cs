@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public PlayerHealth health;
     public AnimeState currState; // enum class AnimeState from UsefulConstants
     public float moveSpeed = 5f;
-    public float jumpSpeed = 12f;
+    public float jumpSpeed = 9f;
     public float fallMaxSpeed = -12f;
     public Vector2 velocity;
 
