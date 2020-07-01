@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    // Movement computation
+    // Computations
 
     void computeHorizontalMovement()
     {
@@ -90,6 +90,17 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, fallMaxSpeed);
         }
+    }
+
+    void computeAttacks()
+    {
+        //if (isGrounded)
+        //{
+        //    if (Input.GetButton("Attack"))
+        //    {
+
+        //    }
+        //}
     }
 
     // helper functions
