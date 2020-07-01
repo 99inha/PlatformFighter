@@ -20,12 +20,19 @@ public class PlayerController : MonoBehaviour
     public float fallMaxSpeed = -12f;
     public Vector2 velocity;
 
+    public float horizontalAxis;
+    public float verticalAxis;
+
+    // protected fields
+    protected bool hasControl = true;
+    protected bool isGrounded = false;
+
     // private fields
     Rigidbody2D rb;
     Vector3 localScale;
-    bool isGrounded = false;
     int jumpCount = 1;
-    bool hasControl = true;
+    bool isFacingRight = true; // this may need to be changed later on
+    
 
 
     // Unity basic functions
@@ -47,7 +54,12 @@ public class PlayerController : MonoBehaviour
         {
             computeHorizontalMovement();
             computeVerticalMovement();
+            computeAttacks();
         }
+
+        // only to check the exact input values
+        horizontalAxis = Input.GetAxisRaw("Horizontal");
+        verticalAxis = Input.GetAxisRaw("Vertical");
     }
 
     // OnCollisionEnter2D is called whenever another collider hits this object
@@ -63,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    // Movement computation
+    // Computations
 
     void computeHorizontalMovement()
     {
@@ -73,6 +85,8 @@ public class PlayerController : MonoBehaviour
         {
             localScale.x = inputDirection;
             transform.localScale = localScale;
+
+            isFacingRight = (localScale.x == 1);
         }
         rb.velocity = new Vector2(moveSpeed * inputDirection, rb.velocity.y);
     }
@@ -89,6 +103,59 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.y < fallMaxSpeed)
         {
             rb.velocity = new Vector2(rb.velocity.x, fallMaxSpeed);
+        }
+    }
+
+    void computeAttacks()
+    {
+        float vertInput = Input.GetAxisRaw("Vertical");
+        float horInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("A"))
+        {
+            if (isGrounded)
+            {
+                if (vertInput == 0 && horInput == 0)
+                {
+                    jab();
+                }
+                else if (horInput != 0)
+                {
+                    fTilt();
+                }
+                else if (vertInput > 0)
+                {
+                    upTilt();
+                }
+                else if (vertInput < 0)
+                {
+                    downTilt();
+                }
+            }
+
+            else
+            {
+                if (vertInput == 0 && horInput == 0)
+                {
+                    nair();
+                }
+                else if ((isFacingRight && horInput > 0) || (!isFacingRight && horInput < 0))
+                {
+                    fair();
+                }
+                else if ((isFacingRight && horInput < 0) || (!isFacingRight && horInput > 0))
+                {
+                    bair();
+                }
+                else if (vertInput > 0)
+                {
+                    upair();
+                }
+                else if (vertInput < 0)
+                {
+                    downair();
+                }
+            }
         }
     }
 
