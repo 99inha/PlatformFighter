@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         float inputDirection = Input.GetAxisRaw("Horizontal");
 
-        if (inputDirection != 0)
+        if (inputDirection != 0 && isGrounded)
         {
             localScale.x = inputDirection;
             transform.localScale = localScale;
