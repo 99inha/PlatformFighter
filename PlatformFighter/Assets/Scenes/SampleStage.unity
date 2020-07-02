@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 1509881442}
   - component: {fileID: 1509881443}
   - component: {fileID: 1509881441}
-  - component: {fileID: 1509881444}
+  - component: {fileID: 1537769195}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -883,26 +883,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1509881440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509881437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ce957cbff48c9419122bc5fd5015e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  currState: 0
-  moveSpeed: 5
-  jumpSpeed: 9
-  fallMaxSpeed: -12
-  velocity: {x: 0, y: 0}
-  shieldObject: {fileID: 1537769191}
-  holdShield: 0
 --- !u!61 &1509881441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -920,7 +900,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 3.125}
+    oldSize: {x: 1.625, y: 1.625}
     newSize: {x: 1.625, y: 1.625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -980,7 +960,7 @@ GameObject:
   - component: {fileID: 1537769192}
   - component: {fileID: 1537769193}
   - component: {fileID: 1537769194}
-  - component: {fileID: 1537769195}
+  - component: {fileID: 1537769196}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -1086,3 +1066,18 @@ MonoBehaviour:
   jumpSpeed: 9
   fallMaxSpeed: -12
   velocity: {x: 0, y: 0}
+  shieldObject: {fileID: 1537769191}
+  horizontalAxis: 0
+  verticalAxis: 0
+--- !u!114 &1537769196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537769191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ef528a4809463468f9871b574f0b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

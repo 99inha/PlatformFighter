@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 {
     // public fields
     public PlayerHealth health;
+    public PlayerAnime anime;
     public AnimeState currState; // enum class AnimeState from UsefulConstants
     public float moveSpeed = 5f;
     public float jumpSpeed = 9f;
@@ -21,21 +22,21 @@ public class PlayerController : MonoBehaviour
     public Vector2 velocity;
     public GameObject shieldObject;
 
+
     public float horizontalAxis;
     public float verticalAxis;
 
     // protected fields
     protected bool hasControl = true;
     protected bool isGrounded = false;
+    protected Animator anime;
 
     // private fields
     Shield shield;
     Rigidbody2D rb;
     Vector3 localScale;
     int jumpCount = 1;
-
-    bool hasControl = true;
-    public bool holdShield = false;
+    bool holdShield = false;
 
     bool isFacingRight = true; // this may need to be changed later on
 
@@ -48,10 +49,10 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         localScale = transform.localScale;
-        shieldObject = this.transform.Find("Shield").gameObject;
+        //shieldObject = this.transform.Find("Shield").gameObject;
         shieldObject.SetActive(true);
         shield = shieldObject.GetComponent<Shield>();
-        
+        anime = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (col.transform.tag == "Ground")
         {
+            anime.SetBool("IsGrounded", true);
             isGrounded = true;
             jumpCount = 2;
         }
@@ -141,6 +143,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            anime.SetBool("IsGrounded", false);
+
             isGrounded = false;
             jumpCount--;
         }
@@ -214,6 +218,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Mathf.Abs(rb.velocity.y) > 0.05f)
         {
+            anime.SetBool("IsGrounded", false);
             isGrounded = false;
             jumpCount = 1;
         }
