@@ -8,5 +8,5 @@ using UnityEngine;
 
 namespace UsefulConstants
 {
-    public enum AnimeState { IDLE };
+    public enum AnimeState { IDLE }; // add new states as necessary
 }
