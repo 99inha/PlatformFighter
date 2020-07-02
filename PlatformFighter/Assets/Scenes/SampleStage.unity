@@ -1074,6 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
+  anime: {fileID: 0}
   currState: 0
   moveSpeed: 5
   jumpSpeed: 9
