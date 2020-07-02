@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         if (col.transform.tag == "Ground")
         {
             anime.setAnimator(AnimeState.IDLE);
-            lagTime = 0f;
+            //lagTime = 0f;
             isGrounded = true;
             jumpCount = 2;
         }
@@ -258,14 +258,20 @@ public class PlayerController : MonoBehaviour
             hasControl = false;
         }
 
-        lagTime = 10f;  // big attack so players can't buffer an attack during the attack animation
+        lagTime = 3f;  // big attack so players can't buffer an attack during the attack animation
 
     }
 
     public void attackLag(float time)
     {
+        UnityEngine.Debug.Log("Ran");
         lagTime = time;
 
+        hasControl = true;
+    }
+
+    public void giveControl()
+    {
         hasControl = true;
     }
 
