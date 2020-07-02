@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 {
     // public fields
     public PlayerHealth health;
-    public PlayerAnime anime;
     public AnimeState currState; // enum class AnimeState from UsefulConstants
     public float moveSpeed = 5f;
     public float jumpSpeed = 9f;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour
     // protected fields
     protected bool hasControl = true;
     protected bool isGrounded = false;
-    protected Animator anime;
+    protected PlayerAnime anime;
 
     // private fields
     Shield shield;
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
         //shieldObject = this.transform.Find("Shield").gameObject;
         shieldObject.SetActive(true);
         shield = shieldObject.GetComponent<Shield>();
-        anime = GetComponent<Animator>();
+        anime = GetComponent<PlayerAnime>();
     }
 
     // Update is called once per frame
@@ -80,7 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         if (col.transform.tag == "Ground")
         {
-            anime.SetBool("IsGrounded", true);
+            anime.setAnimator(AnimeState.IDLE);
             isGrounded = true;
             jumpCount = 2;
         }
@@ -143,7 +142,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            anime.SetBool("IsGrounded", false);
+            anime.setAnimator(AnimeState.InAir);
 
             isGrounded = false;
             jumpCount--;
@@ -218,7 +217,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Mathf.Abs(rb.velocity.y) > 0.05f)
         {
-            anime.SetBool("IsGrounded", false);
+            anime.setAnimator(AnimeState.InAir);
             isGrounded = false;
             jumpCount = 1;
         }

@@ -811,6 +811,7 @@ GameObject:
   - component: {fileID: 1509881443}
   - component: {fileID: 1509881441}
   - component: {fileID: 1537769195}
+  - component: {fileID: 1509881440}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -883,6 +884,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1509881440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509881437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3aa943200e9e4418807f68385cdcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1509881441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1061,6 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
+  anime: {fileID: 0}
   currState: 0
   moveSpeed: 5
   jumpSpeed: 9
