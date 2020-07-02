@@ -6,18 +6,20 @@ using UsefulConstants;
 public class PlayerAnime : MonoBehaviour
 {
 
+    float transformRotateAngle = 0f;
     Animator anime;
-    // Start is called before the first frame update
 
+    
+    // Start is called before the first frame update
     void Start()
     {
         anime = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        transform.Rotate(0, 0, transformRotateAngle * transform.localScale.x);
     }
 
     /* setAnimator:
@@ -124,5 +126,13 @@ public class PlayerAnime : MonoBehaviour
     {
         // animation logic for down air here
         anime.SetTrigger("DAttack");
+    }
+
+
+    // animation helper functions
+    void transformRotate(float angle)
+    {
+        //UnityEngine.Debug.Log("Rotation happening by anlge: " + angle * transform.localScale.x);
+        transformRotateAngle = angle;
     }
 }
