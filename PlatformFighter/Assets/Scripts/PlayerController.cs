@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     protected bool hasControl = true;
     protected bool isGrounded = false;
     protected PlayerAnime anime;
+    public float lagTime = 0f;
 
     // private fields
     Shield shield;
@@ -61,12 +62,21 @@ public class PlayerController : MonoBehaviour
         correctJumpCount();
 
         computeShield();
+        
+
+        // update lagTime
+        lagTime -= Time.deltaTime;
+        if (lagTime < 0)
+            lagTime = 0f;
 
         if (hasControl)
         {
             computeHorizontalMovement();
             computeVerticalMovement();
-            computeAttacks();
+            if(lagTime == 0)
+            {
+                computeAttacks();
+            }
         }
 
         // only to check the exact input values
@@ -80,6 +90,7 @@ public class PlayerController : MonoBehaviour
         if (col.transform.tag == "Ground")
         {
             anime.setAnimator(AnimeState.IDLE);
+            lagTime = 0f;
             isGrounded = true;
             jumpCount = 2;
         }
@@ -231,7 +242,7 @@ public class PlayerController : MonoBehaviour
      */
     public IEnumerator lagForSeconds(float lagTime)
     {
-        hasControl = false;
+        //hasControl = false;
             
         yield return new WaitForSeconds(lagTime);
 
@@ -239,6 +250,24 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void startAttack()
+    {
+        if (isGrounded)
+        {
+            rb.velocity = new Vector2(0, 0);
+            hasControl = false;
+        }
+
+        lagTime = 10f;  // big attack so players can't buffer an attack during the attack animation
+
+    }
+
+    public void attackLag(float time)
+    {
+        lagTime = time;
+
+        hasControl = true;
+    }
 
     // attacks
 
