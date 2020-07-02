@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 9f;
     public float fallMaxSpeed = -12f;
     public Vector2 velocity;
+    public GameObject shieldObject;
+
 
     public float horizontalAxis;
     public float verticalAxis;
@@ -26,13 +28,17 @@ public class PlayerController : MonoBehaviour
     // protected fields
     protected bool hasControl = true;
     protected bool isGrounded = false;
+    protected PlayerAnime anime;
 
     // private fields
+    Shield shield;
     Rigidbody2D rb;
     Vector3 localScale;
     int jumpCount = 1;
+    bool holdShield = false;
+
     bool isFacingRight = true; // this may need to be changed later on
-    
+
 
 
     // Unity basic functions
@@ -42,6 +48,10 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         localScale = transform.localScale;
+        //shieldObject = this.transform.Find("Shield").gameObject;
+        shieldObject.SetActive(true);
+        shield = shieldObject.GetComponent<Shield>();
+        anime = GetComponent<PlayerAnime>();
     }
 
     // Update is called once per frame
@@ -49,6 +59,8 @@ public class PlayerController : MonoBehaviour
     {
         velocity = rb.velocity;
         correctJumpCount();
+
+        computeShield();
 
         if (hasControl)
         {
@@ -67,13 +79,47 @@ public class PlayerController : MonoBehaviour
     {
         if (col.transform.tag == "Ground")
         {
+            anime.setAnimator(AnimeState.IDLE);
             isGrounded = true;
             jumpCount = 2;
         }
     }
 
 
+    void computeShield()
+    {
+        bool isBroken = false;
+        if (isGrounded && hasControl && Input.GetButtonDown("Shield"))  // perferrablely change this to get button instead of get key
+        {
+            holdShield = true;
+            hasControl = false;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        else if (holdShield && Input.GetButtonUp("Shield"))
+        {
+            holdShield = false;
+            hasControl = true;
+        }
 
+        if (holdShield)
+        {
+            isBroken = shield.updateShield(Time.deltaTime, true);
+            shieldObject.SetActive(true);
+
+            if (isBroken)
+            {           
+                // Add what happens when shield is broken
+                rb.velocity = new Vector2(-100, 100);
+            }
+        }
+        else
+        {
+            shield.updateShield(Time.deltaTime, false);
+            shieldObject.SetActive(false);
+
+        }
+
+    }
 
     // Computations
 
@@ -96,6 +142,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            anime.setAnimator(AnimeState.InAir);
+
             isGrounded = false;
             jumpCount--;
         }
@@ -169,6 +217,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Mathf.Abs(rb.velocity.y) > 0.05f)
         {
+            anime.setAnimator(AnimeState.InAir);
             isGrounded = false;
             jumpCount = 1;
         }

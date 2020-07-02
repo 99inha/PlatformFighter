@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RectFAir
+  m_Name: RectIdle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,18 +20,12 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: ed749b2e738b03c4091829a96ef92cf6, type: 3}
-    - time: 0.20833333
-      value: {fileID: 21300000, guid: b56d16074c6868444b45393794ac2c53, type: 3}
-    - time: 0.29166666
-      value: {fileID: 21300000, guid: ed749b2e738b03c4091829a96ef92cf6, type: 3}
-    - time: 0.33333334
-      value: {fileID: 21300000, guid: ed749b2e738b03c4091829a96ef92cf6, type: 3}
+      value: {fileID: 21300000, guid: 0d8bba6ed5374bc4a9eb9ef1d8926ff7, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 24
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -46,16 +40,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ed749b2e738b03c4091829a96ef92cf6, type: 3}
-    - {fileID: 21300000, guid: b56d16074c6868444b45393794ac2c53, type: 3}
-    - {fileID: 21300000, guid: ed749b2e738b03c4091829a96ef92cf6, type: 3}
-    - {fileID: 21300000, guid: ed749b2e738b03c4091829a96ef92cf6, type: 3}
+    - {fileID: 21300000, guid: 0d8bba6ed5374bc4a9eb9ef1d8926ff7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.375
+    m_StopTime: 0.083333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -74,25 +65,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0
-    functionName: transformRotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 20
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.20833333
-    functionName: transformRotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: -60
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.375
-    functionName: transformRotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
