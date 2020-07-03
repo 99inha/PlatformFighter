@@ -12,12 +12,16 @@ using UsefulConstants;
 
 public class PlayerController : MonoBehaviour
 {
+    // const fields
+    const float MAXFALLSPEED = -12f;
+    const float MAXFASTFALLSPEED = -18F;
+
     // public fields
     public PlayerHealth health;
     public AnimeState currState; // enum class AnimeState from UsefulConstants
     public float moveSpeed = 5f;
     public float jumpSpeed = 9f;
-    public float fallMaxSpeed = -12f;
+    public float fallMaxSpeed = MAXFALLSPEED;
     public Vector2 velocity;
     public GameObject shieldObject;
 
@@ -91,7 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             anime.setAnimator(AnimeState.IDLE);
             lagTime = 0f;
-            fallMaxSpeed = -12f;
+            fallMaxSpeed = MAXFALLSPEED;
             isGrounded = true;
             jumpCount = 2;
         }
@@ -157,6 +161,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             anime.setAnimator(AnimeState.InAir);
             jumpCount--;
+        }
+        else if (Input.GetButtonDown("Fall") && (rb.velocity.y < 0.05))
+        {
+            fallMaxSpeed = MAXFASTFALLSPEED;
+            rb.velocity = new Vector2(rb.velocity.x, MAXFASTFALLSPEED);            
         }
 
         if (rb.velocity.y < fallMaxSpeed)
