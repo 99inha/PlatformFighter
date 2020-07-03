@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     Vector3 localScale;
     int jumpCount = 1;
     bool holdShield = false;
+    bool canAttack = true;
 
     bool isFacingRight = true; // this may need to be changed later on
 
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             computeHorizontalMovement();
             computeVerticalMovement();
-            if(lagTime == 0)
+            if(lagTime == 0 && canAttack)
             {
                 computeAttacks();
             }
@@ -98,17 +99,28 @@ public class PlayerController : MonoBehaviour
 
         else if (col.transform.tag == "Wall")
         {
-            anime.setAnimator(AnimeState.IDLE);
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(0f, 0f);
+
             isGrounded = false;
+            canAttack = false;
             jumpCount = 1;
         }
     }
 
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.transform.tag == "Wall")
+        {
+            rb.gravityScale = 2;
+            canAttack = true;
+        }
+    }
 
     void computeShield()
     {
         bool isBroken = false;
-        if (isGrounded && hasControl && Input.GetButtonDown("Shield"))  // perferrablely change this to get button instead of get key
+        if (isGrounded && hasControl && Input.GetButtonDown("Shield"))
         {
             holdShield = true;
             hasControl = false;

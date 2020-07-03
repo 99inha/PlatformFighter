@@ -52,7 +52,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.125
+    m_StopTime: 0.20833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,11 +79,11 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.041666668
+  - time: 0
     functionName: setVerticalVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: -24
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
@@ -91,5 +91,12 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.2
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.20833333
+    functionName: setVerticalVelocity
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -24
     intParameter: 0
     messageOptions: 0
