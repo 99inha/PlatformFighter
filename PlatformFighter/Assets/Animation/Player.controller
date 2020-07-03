@@ -38,6 +38,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: FAttack
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsGrounded
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7798461125157718798}
   m_Solo: 0
@@ -114,6 +117,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: NAttack
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsGrounded
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1947537916046467446}
@@ -501,6 +507,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: DAttack
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsGrounded
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 942703135783739677}
   m_Solo: 0
@@ -604,6 +613,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: UAttack
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsGrounded
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5662163041142431431}

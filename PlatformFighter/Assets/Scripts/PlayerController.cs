@@ -152,10 +152,9 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
+            isGrounded = false;
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             anime.setAnimator(AnimeState.InAir);
-
-            isGrounded = false;
             jumpCount--;
         }
 
@@ -174,6 +173,8 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
+                hasControl = false; 
+                rb.velocity = new Vector2(0, 0);
                 if (vertInput == 0 && horInput == 0)
                 {
                     jab();
@@ -252,19 +253,13 @@ public class PlayerController : MonoBehaviour
 
     public void startAttack()
     {
-        if (isGrounded)
-        {
-            rb.velocity = new Vector2(0, 0);
-            hasControl = false;
-        }
-
+        
         lagTime = 3f;  // big attack so players can't buffer an attack during the attack animation
 
     }
 
     public void attackLag(float time)
     {
-        UnityEngine.Debug.Log("Ran");
         lagTime = time;
 
         hasControl = true;
@@ -273,6 +268,11 @@ public class PlayerController : MonoBehaviour
     public void giveControl()
     {
         hasControl = true;
+    }
+    
+    public void setVerticalVelocity(float value)
+    {
+        rb.velocity = new Vector2(0, value);
     }
 
     // attacks
