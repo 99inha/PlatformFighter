@@ -791,7 +791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239530978}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -3.28, y: 1.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -913,7 +913,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 2.5}
+    oldSize: {x: 1.625, y: 1.625}
     newSize: {x: 1.625, y: 1.625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1074,7 +1074,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  anime: {fileID: 0}
   currState: 0
   moveSpeed: 5
   jumpSpeed: 9
@@ -1083,6 +1082,7 @@ MonoBehaviour:
   shieldObject: {fileID: 1537769191}
   horizontalAxis: 0
   verticalAxis: 0
+  lagTime: 0
 --- !u!114 &1537769196
 MonoBehaviour:
   m_ObjectHideFlags: 0

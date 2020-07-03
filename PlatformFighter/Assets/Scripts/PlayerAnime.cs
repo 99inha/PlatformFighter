@@ -35,6 +35,7 @@ public class PlayerAnime : MonoBehaviour
         {
             case AnimeState.IDLE:
                 anime.SetBool("IsGrounded", true);
+                anime.SetTrigger("TouchGround");
                 break;
             case AnimeState.InAir:
                 anime.SetBool("IsGrounded", false);
