@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         if (col.transform.tag == "Ground")
         {
             anime.setAnimator(AnimeState.IDLE);
-            //lagTime = 0f;
+            lagTime = 0f;
             isGrounded = true;
             jumpCount = 2;
         }
