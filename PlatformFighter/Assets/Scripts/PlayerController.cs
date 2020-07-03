@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
         {
             anime.setAnimator(AnimeState.IDLE);
             lagTime = 0f;
+            fallMaxSpeed = -12f;
             isGrounded = true;
             jumpCount = 2;
         }
@@ -273,6 +274,7 @@ public class PlayerController : MonoBehaviour
     public void setVerticalVelocity(float value)
     {
         rb.velocity = new Vector2(0, value);
+        fallMaxSpeed = value;
     }
 
     // attacks

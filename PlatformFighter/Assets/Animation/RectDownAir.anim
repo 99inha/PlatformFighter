@@ -79,6 +79,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.041666668
+    functionName: setVerticalVelocity
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -24
+    intParameter: 0
+    messageOptions: 0
   - time: 0.083333336
     functionName: attackLag
     data: 
