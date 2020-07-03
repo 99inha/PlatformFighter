@@ -83,6 +83,13 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             jumpCount = 2;
         }
+
+        else if (col.transform.tag == "Wall")
+        {
+            anime.setAnimator(AnimeState.IDLE);
+            isGrounded = false;
+            jumpCount = 1;
+        }
     }
 
 
