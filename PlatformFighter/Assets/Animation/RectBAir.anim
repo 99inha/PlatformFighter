@@ -88,6 +88,13 @@ AnimationClip:
     floatParameter: -30
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: startAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.041666668
     functionName: transformRotate
     data: 
@@ -114,5 +121,12 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5416667
+    functionName: attackLag
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.4
     intParameter: 0
     messageOptions: 0

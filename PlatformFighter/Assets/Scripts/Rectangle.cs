@@ -8,14 +8,15 @@ public class Rectangle : PlayerController
     protected override void jab()
     {
         UnityEngine.Debug.Log("rectangle is jabbing");
-        // logic for jab here
         anime.setAnimator(AnimeState.Jab);
+        lagTime = 0f;
     }
 
     protected override void fTilt()
     {
         UnityEngine.Debug.Log("rectangle is f tilting");
         anime.setAnimator(AnimeState.FTilt);
+        lagTime = 0f;
 
         // logic for f tilt here
     }
@@ -24,6 +25,7 @@ public class Rectangle : PlayerController
     {
         UnityEngine.Debug.Log("rectangle is up tilting");
         anime.setAnimator(AnimeState.UpTilt);
+        lagTime = 0.2f;
 
         // logic for up tilt here
     }
@@ -32,6 +34,7 @@ public class Rectangle : PlayerController
     {
         UnityEngine.Debug.Log("rectangle is down tilting");
         anime.setAnimator(AnimeState.DownTilt);
+        lagTime = 0.1f;
 
         // logic for down tilt here
     }
@@ -40,6 +43,7 @@ public class Rectangle : PlayerController
     {
         UnityEngine.Debug.Log("rectangle is nair-ing");
         anime.setAnimator(AnimeState.NAir);
+        lagTime = 0.2f;
 
         // logic for nair here
     }
@@ -48,6 +52,7 @@ public class Rectangle : PlayerController
     {
         UnityEngine.Debug.Log("rectangle is fair-ing");
         anime.setAnimator(AnimeState.FAir);
+        lagTime = 0.2f;
 
         // logic for fair here
     }
@@ -56,6 +61,7 @@ public class Rectangle : PlayerController
     {
         UnityEngine.Debug.Log("rectangle is bair-ing");
         anime.setAnimator(AnimeState.BackAir);
+        lagTime = 0.2f;
 
         // logic for bair here
     }
@@ -64,6 +70,7 @@ public class Rectangle : PlayerController
     {
         UnityEngine.Debug.Log("rectangle is up air-ing");
         anime.setAnimator(AnimeState.UpAir);
+        lagTime = 0.3f;
 
         // logic for up air here
     }
@@ -72,6 +79,7 @@ public class Rectangle : PlayerController
     {
         UnityEngine.Debug.Log("rectangle is down air-ing");
         anime.setAnimator(AnimeState.DownAir);
+        lagTime = 0.1f;
 
         // logic for down air here
     }
