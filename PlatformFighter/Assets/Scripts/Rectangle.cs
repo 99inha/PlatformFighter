@@ -83,4 +83,12 @@ public class Rectangle : PlayerController
 
         // logic for down air here
     }
+
+    protected override void upB()
+    {
+        UnityEngine.Debug.Log("rectangle is up b-ing");
+        anime.setAnimator(AnimeState.UpB);
+        rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y - 8));
+        lagTime = 0.5f;
+    }
 }

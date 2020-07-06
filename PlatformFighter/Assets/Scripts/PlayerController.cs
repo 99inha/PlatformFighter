@@ -30,14 +30,16 @@ public class PlayerController : MonoBehaviour
     protected bool isGrounded = false;
     protected PlayerAnime anime;
     public float lagTime = 0f;
+    protected Rigidbody2D rb;
 
     // private fields
     Shield shield;
-    Rigidbody2D rb;
+    
     Vector3 localScale;
     int jumpCount = 1;
     bool holdShield = false;
     bool canAttack = true;
+    int upBCount = 1;
 
     bool isFacingRight = true; // this may need to be changed later on
 
@@ -95,6 +97,7 @@ public class PlayerController : MonoBehaviour
             fallMaxSpeed = -12f;
             isGrounded = true;
             jumpCount = 2;
+            upBCount = 1;
         }
 
         else if (col.transform.tag == "Wall")
@@ -105,6 +108,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
             canAttack = false;
             jumpCount = 1;
+            upBCount = 1;
         }
     }
 
@@ -237,6 +241,33 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        else if (Input.GetButtonDown("B"))
+        {
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+
+            if (vertInput == 0 && horInput == 0)
+            {
+                neutralB();
+            }
+            else if (horInput != 0)
+            {
+                sideB();
+            }
+            else if (vertInput > 0 && upBCount > 0)
+            {
+                StartCoroutine("lagForSeconds", 0.1f);
+                upBCount--;
+                upB();
+            }
+            else if (vertInput < 0)
+            {
+                downB();
+            }
+        }
     }
 
     // helper functions
@@ -293,7 +324,7 @@ public class PlayerController : MonoBehaviour
     public void setVerticalVelocity(float value)
     {
         rb.velocity = new Vector2(0, value);
-        fallMaxSpeed = value;
+        fallMaxSpeed = Mathf.Min(value, fallMaxSpeed);
     }
 
     // attacks
@@ -339,6 +370,11 @@ public class PlayerController : MonoBehaviour
     }
 
     protected virtual void downair()
+    {
+
+    }
+
+    protected virtual void neutralB()
     {
 
     }
