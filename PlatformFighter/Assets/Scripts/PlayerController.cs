@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed = 9f;
     public float fallMaxSpeed = -12f;
-    public Vector2 velocity;
+    
     public GameObject shieldObject;
 
+    // only to check the values from Unity Engine
+    public Vector2 velocity;
     public Vector3 transformRotation;
     public float horizontalAxis;
     public float verticalAxis;
@@ -61,11 +63,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity = rb.velocity;
         correctJumpCount();
-
         computeShield();
-        
 
         // update lagTime
         lagTime -= Time.deltaTime;
@@ -82,10 +81,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // only to check the exact input values
+        // only to check the exact values on unity editor
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         verticalAxis = Input.GetAxisRaw("Vertical");
         transformRotation = transform.eulerAngles;
+        velocity = rb.velocity;
     }
 
     // OnCollisionEnter2D is called whenever another collider hits this object
@@ -163,7 +163,8 @@ public class PlayerController : MonoBehaviour
     {
         float inputDirection = Input.GetAxisRaw("Horizontal");
 
-        if (isGrounded && ((inputDirection == 1 && !isFacingRight) ||
+        // if input direction is the opposite side while the user is grounded, flip user
+        if (isGrounded && ((inputDirection == 1 && !isFacingRight) ||       // 1 is right and -1 is left
                            (inputDirection == -1 && isFacingRight)))
         {
             flip();

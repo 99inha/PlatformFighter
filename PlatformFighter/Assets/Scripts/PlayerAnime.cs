@@ -19,6 +19,7 @@ public class PlayerAnime : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        //only to check its values from Unity Editor
         transformAngles = transform.eulerAngles;
     }
 
@@ -138,6 +139,20 @@ public class PlayerAnime : MonoBehaviour
 
 
     // animation helper functions
+    /* transformRotate:
+     *      rotates the transform by the given angle from the CURRENT angle
+     *      Args: float angle - angle to turn by in the z axis
+     *      Usage: call this function from an animation as an event.
+     *              -negative values rotate the transform FORWARD
+     *              -positive values rotate the transform BACKWARD
+     *              -0 will reset the transform to 0
+     *      ***NOTE: -when doing transform rotations in animations,
+     *               DO NOT USE THE TRANSFORM ROTATE PROPERTY
+     *               Animation engine will forbid any code from changing
+     *               the rotations, and will cause all rotations caused by code
+     *               to be WACK
+     *               
+     */
     void transformRotate(float angle)
     {
         //UnityEngine.Debug.Log("Rotation happening by anlge: " + angle * transform.localScale.x);
