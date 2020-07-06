@@ -99,21 +99,21 @@ AnimationClip:
     functionName: transformRotate
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: -60
+    floatParameter: -30
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
     functionName: transformRotate
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: -90
+    floatParameter: -30
     intParameter: 0
     messageOptions: 0
   - time: 0.5
     functionName: transformRotate
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: -45
+    floatParameter: 45
     intParameter: 0
     messageOptions: 0
   - time: 0.5416667
