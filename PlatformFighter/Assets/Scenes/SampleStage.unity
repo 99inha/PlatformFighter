@@ -1216,6 +1216,7 @@ MonoBehaviour:
   fallMaxSpeed: -12
   velocity: {x: 0, y: 0}
   shieldObject: {fileID: 1537769191}
+  transformRotation: {x: 0, y: 0, z: 0}
   horizontalAxis: 0
   verticalAxis: 0
   lagTime: 0

@@ -18,10 +18,12 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed = 9f;
     public float fallMaxSpeed = -12f;
-    public Vector2 velocity;
+    
     public GameObject shieldObject;
 
-
+    // only to check the values from Unity Engine
+    public Vector2 velocity;
+    public Vector3 transformRotation;
     public float horizontalAxis;
     public float verticalAxis;
 
@@ -61,11 +63,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity = rb.velocity;
         correctJumpCount();
-
         computeShield();
-        
 
         // update lagTime
         lagTime -= Time.deltaTime;
@@ -82,9 +81,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // only to check the exact input values
+        // only to check the exact values on unity editor
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         verticalAxis = Input.GetAxisRaw("Vertical");
+        transformRotation = transform.eulerAngles;
+        velocity = rb.velocity;
     }
 
     // OnCollisionEnter2D is called whenever another collider hits this object
@@ -121,6 +122,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Computations
+
     void computeShield()
     {
         bool isBroken = false;
@@ -156,19 +159,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Computations
-
     void computeHorizontalMovement()
     {
         float inputDirection = Input.GetAxisRaw("Horizontal");
 
-        if (inputDirection != 0 && isGrounded)
+        // if input direction is the opposite side while the user is grounded, flip user
+        if (isGrounded && ((inputDirection == 1 && !isFacingRight) ||       // 1 is right and -1 is left
+                           (inputDirection == -1 && isFacingRight)))
         {
-            localScale.x = inputDirection;
-            transform.localScale = localScale;
-
-            isFacingRight = (localScale.x == 1);
+            flip();
         }
+
         rb.velocity = new Vector2(moveSpeed * inputDirection, rb.velocity.y);
     }
 
@@ -286,7 +287,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /* lagForSeconds
+    /* lagForSeconds:
      *     strips the control over the character for a given amount of seconds
      *     Args: float lagTime: how long the character lags
      *     Returns: IEnumerator for StartCoroutine
@@ -299,6 +300,16 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(lagTime);
 
         hasControl = true;
+    }
+
+    /* flip:
+     *      flips the transform
+     */
+    void flip()
+    {
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0, 180, 0);
+        //UnityEngine.Debug.Log("Transform flipped");
     }
 
 

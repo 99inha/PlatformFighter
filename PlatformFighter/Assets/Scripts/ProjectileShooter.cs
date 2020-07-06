@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
 {
+    public Transform firePoint;
+
+
     // Start is called before the first frame update
     void Start()
     {
