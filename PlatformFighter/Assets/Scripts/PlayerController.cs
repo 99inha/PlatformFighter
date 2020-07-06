@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
             anime.setAnimator(AnimeState.InAir);
             jumpCount--;
         }
-        else if (Input.GetButtonDown("Fall") && (rb.velocity.y < 0.05))
+        else if (Input.GetButtonDown("Fall") && (rb.velocity.y < 0.05) && !isGrounded)
         {
             fallMaxSpeed = MAXFASTFALLSPEED;
             rb.velocity = new Vector2(rb.velocity.x, MAXFASTFALLSPEED);            
