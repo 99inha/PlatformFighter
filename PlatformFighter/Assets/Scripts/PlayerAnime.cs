@@ -6,8 +6,8 @@ using UsefulConstants;
 public class PlayerAnime : MonoBehaviour
 {
 
-    float transformRotateAngle = 0f;
     Animator anime;
+    public Vector3 transformAngles;
 
     
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class PlayerAnime : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.Rotate(0, 0, transformRotateAngle * transform.localScale.x);
+        transformAngles = transform.eulerAngles;
     }
 
     /* setAnimator:
@@ -134,6 +134,11 @@ public class PlayerAnime : MonoBehaviour
     void transformRotate(float angle)
     {
         //UnityEngine.Debug.Log("Rotation happening by anlge: " + angle * transform.localScale.x);
-        transformRotateAngle = angle;
+        if (angle == 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, 0f)); 
+        }
+
+        transform.Rotate(0, 0, angle);
     }
 }
