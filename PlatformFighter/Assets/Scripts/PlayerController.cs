@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Security.Cryptography.X509Certificates;
+using TMPro;
 using UnityEngine;
 using UsefulConstants;
 
@@ -30,15 +31,15 @@ public class PlayerController : MonoBehaviour
     public float verticalAxis;
 
     // protected fields
-    protected bool hasControl = true;
-    protected bool isGrounded = false;
+    public bool hasControl = true;
+    public bool isGrounded = false;
     protected PlayerAnime anime;
     public float lagTime = 0f;
     protected Rigidbody2D rb;
 
     // private fields
     Shield shield;
-    
+
     Vector3 localScale;
     int jumpCount = 1;
     bool holdShield = false;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
         correctJumpCount();
 
         computeShield();
-        
+        stableizeVertical();
 
         // update lagTime
         lagTime -= Time.deltaTime;
@@ -80,12 +81,13 @@ public class PlayerController : MonoBehaviour
         {
             computeHorizontalMovement();
             computeVerticalMovement();
-            if(lagTime == 0 && canAttack)
+            if (lagTime == 0 && canAttack)
             {
                 computeAttacks();
             }
         }
 
+        updateAnimator();
         // only to check the exact input values
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         verticalAxis = Input.GetAxisRaw("Vertical");
@@ -108,7 +110,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = 0;
             rb.velocity = new Vector2(0f, 0f);
-
             isGrounded = false;
             canAttack = false;
             jumpCount = 1;
@@ -146,7 +147,7 @@ public class PlayerController : MonoBehaviour
             shieldObject.SetActive(true);
 
             if (isBroken)
-            {           
+            {
                 // Add what happens when shield is broken
                 rb.velocity = new Vector2(-100, 100);
             }
@@ -188,13 +189,10 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetButtonDown("Fall") && (rb.velocity.y < 0.05) && !isGrounded)
         {
             fallMaxSpeed = MAXFASTFALLSPEED;
-            rb.velocity = new Vector2(rb.velocity.x, MAXFASTFALLSPEED);            
+            rb.velocity = new Vector2(rb.velocity.x, MAXFASTFALLSPEED);
         }
 
-        if (rb.velocity.y < fallMaxSpeed)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, fallMaxSpeed);
-        }
+
     }
 
     void computeAttacks()
@@ -206,7 +204,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
-                hasControl = false; 
+                hasControl = false;
                 rb.velocity = new Vector2(0, 0);
                 if (vertInput == 0 && horInput == 0)
                 {
@@ -277,6 +275,8 @@ public class PlayerController : MonoBehaviour
                 downB();
             }
         }
+
+
     }
 
     // helper functions
@@ -304,7 +304,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator lagForSeconds(float lagTime)
     {
         //hasControl = false;
-            
+
         yield return new WaitForSeconds(lagTime);
 
         hasControl = true;
@@ -313,16 +313,23 @@ public class PlayerController : MonoBehaviour
 
     public void startAttack()
     {
-        
+        if (isGrounded)
+        {
+            hasControl = false;
+        }
         lagTime = 3f;  // big attack so players can't buffer an attack during the attack animation
 
     }
 
     public void attackLag(float time)
     {
-        lagTime = time;
+        if (time != 0)
+        {
+            lagTime = time;
 
-        hasControl = true;
+            hasControl = true;
+        }
+
     }
 
     public void giveControl()
@@ -334,6 +341,22 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(0, value);
         fallMaxSpeed = Mathf.Min(value, fallMaxSpeed);
+    }
+
+    public void updateAnimator()    // used to tell the animator that the B-button is released
+    {
+        if (Input.GetButtonUp("B"))
+        {
+            releaseDownB();
+        }
+    }
+
+    public void stableizeVertical()
+    {
+        if (rb.velocity.y < fallMaxSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, fallMaxSpeed);
+        }
     }
 
     // attacks
@@ -399,6 +422,11 @@ public class PlayerController : MonoBehaviour
     }
 
     protected virtual void downB()
+    {
+
+    }
+
+    protected virtual void releaseDownB()
     {
 
     }
