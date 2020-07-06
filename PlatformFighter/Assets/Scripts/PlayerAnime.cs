@@ -67,7 +67,9 @@ public class PlayerAnime : MonoBehaviour
             case AnimeState.FTilt:
                 setFTilt();
                 break;
-
+            case AnimeState.UpB:
+                setUpB();
+                break;
         }
     }
 
@@ -127,6 +129,11 @@ public class PlayerAnime : MonoBehaviour
     {
         // animation logic for down air here
         anime.SetTrigger("DAttack");
+    }
+
+    void setUpB()
+    {
+        anime.SetTrigger("UpB");
     }
 
 

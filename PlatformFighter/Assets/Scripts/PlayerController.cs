@@ -34,13 +34,16 @@ public class PlayerController : MonoBehaviour
     protected bool isGrounded = false;
     protected PlayerAnime anime;
     public float lagTime = 0f;
+    protected Rigidbody2D rb;
 
     // private fields
     Shield shield;
-    Rigidbody2D rb;
+    
     Vector3 localScale;
     int jumpCount = 1;
     bool holdShield = false;
+    bool canAttack = true;
+    int upBCount = 1;
 
     bool isFacingRight = true; // this may need to be changed later on
 
@@ -77,7 +80,7 @@ public class PlayerController : MonoBehaviour
         {
             computeHorizontalMovement();
             computeVerticalMovement();
-            if(lagTime == 0)
+            if(lagTime == 0 && canAttack)
             {
                 computeAttacks();
             }
@@ -98,14 +101,34 @@ public class PlayerController : MonoBehaviour
             fallMaxSpeed = MAXFALLSPEED;
             isGrounded = true;
             jumpCount = 2;
+            upBCount = 1;
+        }
+
+        else if (col.transform.tag == "Wall")
+        {
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(0f, 0f);
+
+            isGrounded = false;
+            canAttack = false;
+            jumpCount = 1;
+            upBCount = 1;
         }
     }
 
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.transform.tag == "Wall")
+        {
+            rb.gravityScale = 2;
+            canAttack = true;
+        }
+    }
 
     void computeShield()
     {
         bool isBroken = false;
-        if (isGrounded && hasControl && Input.GetButtonDown("Shield"))  // perferrablely change this to get button instead of get key
+        if (isGrounded && hasControl && Input.GetButtonDown("Shield"))
         {
             holdShield = true;
             hasControl = false;
@@ -227,6 +250,33 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        else if (Input.GetButtonDown("B"))
+        {
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+
+            if (vertInput == 0 && horInput == 0)
+            {
+                neutralB();
+            }
+            else if (horInput != 0)
+            {
+                sideB();
+            }
+            else if (vertInput > 0 && upBCount > 0)
+            {
+                StartCoroutine("lagForSeconds", 0.1f);
+                upBCount--;
+                upB();
+            }
+            else if (vertInput < 0)
+            {
+                downB();
+            }
+        }
     }
 
     // helper functions
@@ -283,7 +333,7 @@ public class PlayerController : MonoBehaviour
     public void setVerticalVelocity(float value)
     {
         rb.velocity = new Vector2(0, value);
-        fallMaxSpeed = value;
+        fallMaxSpeed = Mathf.Min(value, fallMaxSpeed);
     }
 
     // attacks
@@ -329,6 +379,11 @@ public class PlayerController : MonoBehaviour
     }
 
     protected virtual void downair()
+    {
+
+    }
+
+    protected virtual void neutralB()
     {
 
     }
