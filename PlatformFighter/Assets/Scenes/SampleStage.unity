@@ -1267,6 +1267,8 @@ MonoBehaviour:
   transformRotation: {x: 0, y: 0, z: 0}
   horizontalAxis: 0
   verticalAxis: 0
+  hasControl: 1
+  isGrounded: 0
   lagTime: 0
   shooterObject: {fileID: 209758751}
 --- !u!114 &1537769196

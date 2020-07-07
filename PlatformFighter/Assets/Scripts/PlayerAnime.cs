@@ -71,6 +71,15 @@ public class PlayerAnime : MonoBehaviour
             case AnimeState.UpB:
                 setUpB();
                 break;
+            case AnimeState.SideB:
+                setSideB();
+                break;
+            case AnimeState.DownB:
+                setDownB();
+                break;
+            case AnimeState.ReleaseB:
+                releaseDownB();
+                break;
             case AnimeState.NeutralB:
                 setNeutralB();
                 break;
@@ -146,6 +155,22 @@ public class PlayerAnime : MonoBehaviour
         anime.SetTrigger("UpB");
     }
 
+    void setSideB()
+    {
+        anime.SetTrigger("SideB");
+    }
+
+
+    void setDownB()
+    {
+        anime.SetBool("DownB", true);
+
+    }
+
+    void releaseDownB()
+    {
+        anime.SetBool("DownB", false) ;
+    }
 
     // animation helper functions
     /* transformRotate:
