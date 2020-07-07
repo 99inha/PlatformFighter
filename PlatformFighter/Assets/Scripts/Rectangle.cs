@@ -124,6 +124,7 @@ public class Rectangle : PlayerController
     {
         anime.setAnimator(AnimeState.ReleaseB);
         fallMaxSpeed = -12f;
+        
         hasControl = true;
         lagTime = 0.4f;
     }

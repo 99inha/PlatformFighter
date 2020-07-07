@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
+            fallMaxSpeed = MAXFALLSPEED;
             isGrounded = false;
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             anime.setAnimator(AnimeState.InAir);
@@ -251,7 +252,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
         else if (Input.GetButtonDown("B"))
         {
             if (isGrounded)
@@ -262,6 +262,7 @@ public class PlayerController : MonoBehaviour
 
             if (vertInput == 0 && horInput == 0)
             {
+
                 neutralB();
             }
             else if (horInput != 0)
@@ -271,7 +272,6 @@ public class PlayerController : MonoBehaviour
                 {
                     flip();
                 }
-
 
                 sideB();
             }
@@ -283,8 +283,8 @@ public class PlayerController : MonoBehaviour
             }
             else if (vertInput < 0)
             {
+                isDownB = true;
                 downB();
-                isDownB = true ;
             }
         }
 
@@ -333,6 +333,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+    // startAttack:
+    //      Ran when the attack animation starts, it will disable movement and 
+    //      add a long lagTime (so player can't buffer attack during attack animation)
     public void startAttack()
     {
         if (isGrounded)
@@ -344,6 +348,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    // attackLag:
+    //      Ran at the end of a attack animation to give the attack some end lag
+    //      if the input time is 0, the function will not give control back, it is 
+    //      used for attacks that doesn't end when the attack animation time is up
+    //      example: attack that can be held
     public void attackLag(float time)
     {
         if (time != 0)
@@ -370,6 +380,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonUp("B") && isDownB)
         {
+            isDownB = false;
             releaseDownB();
         }
     }
