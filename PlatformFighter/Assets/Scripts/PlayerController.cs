@@ -14,6 +14,9 @@ namespace Mechanics
 { 
     public class PlayerController : MonoBehaviour
     {
+        public const float MAXFALLSPEED = -12f;
+        public const float MAXFASTFALLSPEED = -18F;
+
         // public fields
         public PlayerHealth health;
         public AnimeState currState; // enum class AnimeState from UsefulConstants
