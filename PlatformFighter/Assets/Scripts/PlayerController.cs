@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
     public float verticalAxis;
 
     // protected fields
-    public bool hasControl = true;
-    public bool isGrounded = false;
+    protected bool hasControl = true;
+    protected bool isGrounded = false;
     protected PlayerAnime anime;
     public float lagTime = 0f;
     protected Rigidbody2D rb;
