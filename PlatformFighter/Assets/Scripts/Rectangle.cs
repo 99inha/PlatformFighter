@@ -5,6 +5,16 @@ using UsefulConstants;
 
 public class Rectangle : PlayerController
 {
+    public GameObject shooterObject;
+
+    ProjectileShooter shooter;
+
+    void Start()
+    {
+        shooter = shooterObject.GetComponent<ProjectileShooter>();
+        base.Start();
+    }
+
     protected override void jab()
     {
         UnityEngine.Debug.Log("rectangle is jabbing");
@@ -82,6 +92,13 @@ public class Rectangle : PlayerController
         lagTime = 0.1f;
 
         // logic for down air here
+    }
+
+    protected override void neutralB()
+    {
+        anime.setAnimator(AnimeState.NeutralB);
+        shooter.shoot();
+        lagTime = 0.2f;
     }
 
     protected override void upB()
