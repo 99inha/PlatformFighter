@@ -8,6 +8,5 @@ using UnityEngine;
 
 namespace UsefulConstants
 {
-    public enum AnimeState { IDLE, InAir, DownAir, UpAir, FAir, BackAir, NAir, DownTilt, UpTilt, Jab, FTilt, UpB, NeutralB, SideB, DownB, ReleaseB}; // add new states as necessary
-
+    public enum AnimeState { IDLE, InAir, DownAir, UpAir, FAir, BackAir, NAir, DownTilt, UpTilt, Jab, FTilt, UpB, SideB, DownB, ReleaseB}; // add new states as necessary
 }
