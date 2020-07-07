@@ -71,6 +71,9 @@ public class PlayerAnime : MonoBehaviour
             case AnimeState.UpB:
                 setUpB();
                 break;
+            case AnimeState.NeutralB:
+                setNeutralB();
+                break;
         }
     }
 
@@ -130,6 +133,12 @@ public class PlayerAnime : MonoBehaviour
     {
         // animation logic for down air here
         anime.SetTrigger("DAttack");
+    }
+
+    void setNeutralB()
+    {
+
+        anime.SetTrigger("NeutralB");
     }
 
     void setUpB()
