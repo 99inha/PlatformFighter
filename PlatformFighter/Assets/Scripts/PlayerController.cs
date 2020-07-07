@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     // Unity basic functions
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         localScale = transform.localScale;

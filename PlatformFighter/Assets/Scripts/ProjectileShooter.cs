@@ -5,17 +5,10 @@ using UnityEngine;
 public class ProjectileShooter : MonoBehaviour
 {
     public Transform firePoint;
+    public GameObject projectilePrefab;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void shoot()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
     }
 }
