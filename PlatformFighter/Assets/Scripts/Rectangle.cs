@@ -80,6 +80,7 @@ public class Rectangle : PlayerController
     protected override void downair()
     {
         UnityEngine.Debug.Log("rectangle is down air-ing");
+        hasControl = false;
         anime.setAnimator(AnimeState.DownAir);
 
         // logic for down air here
@@ -88,7 +89,6 @@ public class Rectangle : PlayerController
     protected override void neutralB()
     {
         anime.setAnimator(AnimeState.NeutralB);
-        shooter.shoot();
         lagTime = 0.2f;
     }
 
@@ -127,5 +127,10 @@ public class Rectangle : PlayerController
         
         hasControl = true;
         lagTime = 0.4f;
+    }
+
+    void shootBullet()
+    {
+        shooter.shoot();
     }
 }
