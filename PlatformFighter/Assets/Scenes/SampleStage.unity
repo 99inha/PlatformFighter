@@ -165,52 +165,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &209758751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 209758752}
-  - component: {fileID: 209758753}
-  m_Layer: 0
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &209758752
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209758751}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.099999905, y: -0.060000002, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1509881439}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &209758753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209758751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6cb5650d6cd258439a8c3caddebbf1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 209758752}
-  projectilePrefab: {fileID: 1461911420088902776, guid: e018b73ff72a1844fb7dcede7b3f4a82,
-    type: 3}
 --- !u!1 &262732416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,7 +1017,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1537769192}
-  - {fileID: 209758752}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1079,7 +1032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3aa943200e9e4418807f68385cdcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transformAngles: {x: 0, y: 0, z: 0}
 --- !u!61 &1509881441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1262,13 +1214,12 @@ MonoBehaviour:
   moveSpeed: 5
   jumpSpeed: 9
   fallMaxSpeed: -12
-  shieldObject: {fileID: 1537769191}
   velocity: {x: 0, y: 0}
+  shieldObject: {fileID: 1537769191}
   transformRotation: {x: 0, y: 0, z: 0}
   horizontalAxis: 0
   verticalAxis: 0
   lagTime: 0
-  shooterObject: {fileID: 209758751}
 --- !u!114 &1537769196
 MonoBehaviour:
   m_ObjectHideFlags: 0
