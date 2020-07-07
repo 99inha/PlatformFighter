@@ -79,6 +79,7 @@ public class PlayerAnime : MonoBehaviour
                 break;
             case AnimeState.ReleaseB:
                 releaseDownB();
+                break;
             case AnimeState.NeutralB:
                 setNeutralB();
                 break;
