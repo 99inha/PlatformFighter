@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     Vector3 localScale;
     int jumpCount = 1;
     bool holdShield = false;
+    bool isDownB = false;
     bool canAttack = true;
     int upBCount = 1;
 
@@ -256,6 +257,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 rb.velocity = new Vector2(0, 0);
+
             }
 
             if (vertInput == 0 && horInput == 0)
@@ -264,6 +266,13 @@ public class PlayerController : MonoBehaviour
             }
             else if (horInput != 0)
             {
+                // if player is in air and want to side b the opposite direct that they are facing
+                if ((!isGrounded) && ((isFacingRight && horInput < 0) || (!isFacingRight && horInput > 0)))
+                {
+                    flip();
+                }
+
+
                 sideB();
             }
             else if (vertInput > 0 && upBCount > 0)
@@ -275,6 +284,7 @@ public class PlayerController : MonoBehaviour
             else if (vertInput < 0)
             {
                 downB();
+                isDownB = true ;
             }
         }
 
@@ -327,6 +337,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded)
         {
+            rb.velocity = new Vector2(0, 0);
             hasControl = false;
         }
         lagTime = 3f;  // big attack so players can't buffer an attack during the attack animation
@@ -357,7 +368,7 @@ public class PlayerController : MonoBehaviour
 
     public void updateAnimator()    // used to tell the animator that the B-button is released
     {
-        if (Input.GetButtonUp("B"))
+        if (Input.GetButtonUp("B") && isDownB)
         {
             releaseDownB();
         }
