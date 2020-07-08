@@ -21,7 +21,7 @@ namespace Mechanics
         void LateUpdate()
         {
             //only to check its values from Unity Editor
-            transformAngles = transform.eulerAngles;
+            //transformAngles = transform.eulerAngles;
         }
 
         /* setAnimator:
@@ -32,7 +32,6 @@ namespace Mechanics
         public void setAnimator(AnimeState state)
         {
             // switch case here for the states; call the methods below
-
             switch (state)
             {
                 case AnimeState.IDLE:
@@ -42,11 +41,22 @@ namespace Mechanics
                 case AnimeState.InAir:
                     anime.SetBool("IsGrounded", false);
                     break;
-                case AnimeState.DownAir:
-                    setDownair();
+
+                case AnimeState.Jab:
+                    setJab();
                     break;
-                case AnimeState.UpAir:
-                    setUpair();
+                case AnimeState.FTilt:
+                    setFTilt();
+                    break;
+                case AnimeState.UpTilt:
+                    setUpTilt();
+                    break;
+                case AnimeState.DownTilt:
+                    setDownTilt();
+                    break;
+
+                case AnimeState.NAir:
+                    setNair();
                     break;
                 case AnimeState.FAir:
                     setFair();
@@ -54,36 +64,42 @@ namespace Mechanics
                 case AnimeState.BackAir:
                     setBair();
                     break;
-                case AnimeState.NAir:
-                    setNair();
+                case AnimeState.UpAir:
+                    setUpair();
                     break;
-                case AnimeState.DownTilt:
-                    setDownTilt();
+                case AnimeState.DownAir:
+                    setDownair();
                     break;
-                case AnimeState.UpTilt:
-                    setUpTilt();
-                    break;
-                case AnimeState.Jab:
-                    setJab();
-                    break;
-                case AnimeState.FTilt:
-                    setFTilt();
-                    break;
-                case AnimeState.UpB:
-                    setUpB();
+
+                case AnimeState.NeutralB:
+                    setNeutralB();
                     break;
                 case AnimeState.SideB:
                     setSideB();
                     break;
+                case AnimeState.UpB:
+                    setUpB();
+                    break;
                 case AnimeState.DownB:
                     setDownB();
                     break;
-                case AnimeState.ReleaseB:
+
+                case AnimeState.ReleaseJab:
+                    releaseJab();
+                    break;
+                case AnimeState.ReleaseNeutralB:
+                    releaseNeutralB();
+                    break;
+                case AnimeState.ReleaseSideB:
+                    releaseSideB();
+                    break;
+                case AnimeState.ReleaseUpB:
+                    releaseUpB();
+                    break;
+                case AnimeState.ReleaseDownB:
                     releaseDownB();
                     break;
-                case AnimeState.NeutralB:
-                    setNeutralB();
-                    break;
+                
             }
         }
 
@@ -92,14 +108,11 @@ namespace Mechanics
 
         void setJab()
         {
-            // animation logic for jab here
-            anime.SetTrigger("NAttack");
-
+            anime.SetTrigger("Jab");
         }
 
         void setFTilt()
         {
-            // animation logic for f tilt here
             anime.SetTrigger("FAttack");
         }
 
@@ -111,43 +124,36 @@ namespace Mechanics
 
         void setDownTilt()
         {
-            // animation logic for down tilt here
             anime.SetTrigger("DAttack");
         }
 
         void setNair()
         {
-            // animation logic for nair here
             anime.SetTrigger("NAttack");
         }
 
         void setFair()
         {
-            // animation logic for fair here
             anime.SetTrigger("FAttack");
         }
 
         void setBair()
         {
-            // animation logic for bair here
             anime.SetTrigger("BAttack");
         }
 
         void setUpair()
         {
-            // animation logic for up air here
             anime.SetTrigger("UAttack");
         }
 
         void setDownair()
         {
-            // animation logic for down air here
             anime.SetTrigger("DAttack");
         }
 
         void setNeutralB()
         {
-
             anime.SetTrigger("NeutralB");
         }
 
@@ -164,13 +170,33 @@ namespace Mechanics
 
         void setDownB()
         {
-            anime.SetBool("DownB", true);
+            anime.SetTrigger("DownB");
 
+        }
+
+        void releaseJab()
+        {
+            anime.SetBool("Jab", false);
+        }
+
+        void releaseNeutralB()
+        {
+            anime.SetBool("NeutralB", false);
+        }
+
+        void releaseSideB()
+        {
+            anime.SetBool("SideB", false);
+        }
+
+        void releaseUpB()
+        {
+            anime.SetBool("UpB", false);
         }
 
         void releaseDownB()
         {
-            anime.SetBool("DownB", false) ;
+            anime.SetBool("DownB", false);
         }
 
         // animation helper functions

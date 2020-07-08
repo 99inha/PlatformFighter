@@ -114,15 +114,6 @@ namespace Mechanics
             fallMaxSpeed = Mathf.Min(value, fallMaxSpeed);
         }
 
-        public void updateAnimator()    // used to tell the animator that the B-button is released
-        {
-            if (Input.GetButtonUp("B") && isDownB)
-            {
-                isDownB = false;
-                releaseDownB();
-            }
-        }
-
         /* stablizeVertical:
          *      Once the player reaches maximum fall speed, make the player fall at
          *      uniform velocity

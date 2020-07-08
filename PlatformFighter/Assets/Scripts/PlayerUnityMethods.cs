@@ -49,7 +49,11 @@ namespace Mechanics
                 }
             }
 
-            updateAnimator();
+            computeAttackRelease();
+            stablizeVertical();
+
+
+            // updateAnimator();
             // only to check the exact input values
             horizontalAxis = Input.GetAxisRaw("Horizontal");
             verticalAxis = Input.GetAxisRaw("Vertical");

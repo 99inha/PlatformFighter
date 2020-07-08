@@ -90,7 +90,7 @@ namespace Mechanics
         protected override void neutralB()
         {
             anime.setAnimator(AnimeState.NeutralB);
-            lagTime = 0.2f;
+            hasControl = false;
         }
 
         protected override void upB()
@@ -114,22 +114,41 @@ namespace Mechanics
             if (!isGrounded)
             {
                 fallMaxSpeed = -2f;
-                rb.velocity = new Vector2(rb.velocity.x, -2);
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(-2f, rb.velocity.y));
             }
             hasControl = false;
 
 
         }
 
+        protected override void releaseJab()
+        {
+            anime.setAnimator(AnimeState.ReleaseJab);
+
+            hasControl = true;
+        }
+
+        protected override void releaseNeutralB()
+        {
+            anime.setAnimator(AnimeState.ReleaseNeutralB);
+
+            hasControl = true;
+        }
+
         protected override void releaseDownB()
         {
-            anime.setAnimator(AnimeState.ReleaseB);
+            anime.setAnimator(AnimeState.ReleaseDownB);
             fallMaxSpeed = -12f;
         
             hasControl = true;
             lagTime = 0.4f;
         }
 
+        /* shootBullet:
+         *      a function called by an animation to shoot a bullet From the Rectangle's mouth
+         *      Args:
+         *      Returns:
+         */
         void shootBullet()
         {
             shooter.shoot();
