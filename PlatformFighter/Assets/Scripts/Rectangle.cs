@@ -144,6 +144,11 @@ namespace Mechanics
             lagTime = 0.4f;
         }
 
+        /* shootBullet:
+         *      a function called by an animation to shoot a bullet From the Rectangle's mouth
+         *      Args:
+         *      Returns:
+         */
         void shootBullet()
         {
             shooter.shoot();
