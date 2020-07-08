@@ -121,6 +121,13 @@ namespace Mechanics
 
         }
 
+        protected override void releaseJab()
+        {
+            anime.setAnimator(AnimeState.ReleaseJab);
+
+            hasControl = true;
+        }
+
         protected override void releaseNeutralB()
         {
             anime.setAnimator(AnimeState.ReleaseNeutralB);

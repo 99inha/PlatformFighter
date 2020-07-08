@@ -86,6 +86,9 @@ namespace Mechanics
                 case AnimeState.DownB:
                     setDownB();
                     break;
+                case AnimeState.ReleaseJab:
+                    releaseJab();
+                    break;
                 case AnimeState.ReleaseNeutralB:
                     releaseNeutralB();
                     break;
@@ -104,7 +107,7 @@ namespace Mechanics
         void setJab()
         {
             // animation logic for jab here
-            anime.SetTrigger("NAttack");
+            anime.SetTrigger("Jab");
 
         }
 
@@ -158,7 +161,7 @@ namespace Mechanics
 
         void setNeutralB()
         {
-            anime.SetBool("NeutralB", true);
+            anime.SetTrigger("NeutralB");
         }
 
         void setUpB()
@@ -174,8 +177,13 @@ namespace Mechanics
 
         void setDownB()
         {
-            anime.SetBool("DownB", true);
+            anime.SetTrigger("DownB");
 
+        }
+
+        void releaseJab()
+        {
+            anime.SetBool("Jab", false);
         }
 
         void releaseNeutralB()
@@ -185,7 +193,7 @@ namespace Mechanics
 
         void releaseDownB()
         {
-            anime.SetBool("DownB", false) ;
+            anime.SetBool("DownB", false);
         }
 
         // animation helper functions
