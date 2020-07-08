@@ -43,7 +43,9 @@ namespace Mechanics
 
         // public fields
         public PlayerHealth health;
-        public AnimeState attackHeld;
+        public AnimeState attackHeld; // State tracker for what attack is being held currently
+                                      // needs to be updated by the child whenever a holdable attack
+                                      // is pressed or released
         public float moveSpeed = 5f;
         public float jumpSpeed = 9f;
         public float fallMaxSpeed = -12f;
@@ -70,8 +72,8 @@ namespace Mechanics
         int jumpCount = 1;
         bool holdShield = false;
         bool isDownB = false;
-        bool canMove = true;
-        bool canAttack = true;
+        public bool canMove = true;
+        public bool canAttack = true;
         int upBCount = 1;
 
         bool isFacingRight = true; // this may need to be changed later on

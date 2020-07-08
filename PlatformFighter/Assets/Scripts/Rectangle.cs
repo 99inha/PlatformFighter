@@ -81,7 +81,6 @@ namespace Mechanics
         protected override void downair()
         {
             UnityEngine.Debug.Log("rectangle is down air-ing");
-            hasControl = false;
             anime.setAnimator(AnimeState.DownAir);
 
             // logic for down air here
@@ -92,6 +91,8 @@ namespace Mechanics
             UnityEngine.Debug.Log("rectangle is neutral-b-ing");
             anime.setAnimator(AnimeState.NeutralB);
             hasControl = false;
+
+            attackHeld = AnimeState.NeutralB;
         }
 
         protected override void upB()
@@ -117,13 +118,13 @@ namespace Mechanics
                 fallMaxSpeed = -2f;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(-2f, rb.velocity.y));
             }
-            hasControl = false;
 
-
+            attackHeld = AnimeState.DownB;
         }
 
         protected override void releaseJab()
         {
+            attackHeld = AnimeState.IDLE;
             anime.setAnimator(AnimeState.ReleaseJab);
 
             hasControl = true;
@@ -131,6 +132,7 @@ namespace Mechanics
 
         protected override void releaseNeutralB()
         {
+            attackHeld = AnimeState.IDLE;
             anime.setAnimator(AnimeState.ReleaseNeutralB);
 
             hasControl = true;
@@ -138,11 +140,11 @@ namespace Mechanics
 
         protected override void releaseDownB()
         {
+            attackHeld = AnimeState.IDLE;
             anime.setAnimator(AnimeState.ReleaseDownB);
             fallMaxSpeed = -12f;
         
             hasControl = true;
-            lagTime = 0.4f;
         }
 
         /* shootBullet:
