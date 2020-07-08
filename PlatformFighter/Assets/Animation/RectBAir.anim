@@ -89,7 +89,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: startAttack
+    functionName: takeAwayAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -124,7 +124,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5416667
-    functionName: attackLag
+    functionName: giveControl
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.4

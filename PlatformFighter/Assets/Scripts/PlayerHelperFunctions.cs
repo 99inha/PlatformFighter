@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 
@@ -73,6 +74,60 @@ namespace Mechanics
 
         }
 
+        /* takeAwayControl:
+         *      disable the control for the player, player cannot attack or move
+         *      Args:
+         */
+        public void takeAwayControl()
+        {
+            hasControl = false;
+            canMove = false;
+            rb.velocity = new Vector2(0, 0);
+            canAttack = false;
+        }
+
+
+
+        /* takeAwayMovement:
+         *      disable the movement of the player the player, the player can still attack
+         *      Args:
+         */
+        public void takeAwayMovement()
+        {
+            canMove = false;
+            rb.velocity = new Vector2(0, 0);
+
+        }
+
+        /* takeAwayAttack:
+         *      disable the attack of the player, the player can still move
+         */
+        public void takeAwayAttack()
+        {
+            canAttack = false;
+        }
+
+
+        /* takeAwayControGround
+         *      disable the control if the player is on the ground. If the player
+         *      is in the air only disable attack
+         *      Args:
+         */
+        public void takeAwayControlGround()
+        {
+            if (isGrounded)
+            {
+                hasControl = false;
+                canMove = false;
+                rb.velocity = new Vector2(0, 0);
+            }
+            else
+            {
+                canAttack = false;
+
+            }
+        }
+
 
         /* attackLag:
          *      Ran at the end of a attack animation to give the attack some end lag
@@ -93,13 +148,21 @@ namespace Mechanics
         }
 
         /* giveControl:
-         *      returns control to the player
+         *      returns control to the player, the player can move and attack again, 
+         *      however, this function will not give control is the player is holding an attack
+         *      (meaning the attackHeld field is not IDLE or InAir)
          *      Args:
          *      Returns:
          */
         public void giveControl()
         {
-            hasControl = true;
+            if(attackHeld == AnimeState.IDLE || attackHeld == AnimeState.InAir)
+            {
+                hasControl = true;
+                canAttack = true;
+                canMove = true;
+
+            }
         }
 
         /* setVerticalVelocity:
