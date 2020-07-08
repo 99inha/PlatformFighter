@@ -81,7 +81,6 @@ namespace Mechanics
 
                 if (vertInput == 0 && horInput == 0)
                 {
-                    attackHeld = AnimeState.NeutralB;
                     neutralB();
                 }
                 else if (horInput != 0)
@@ -92,7 +91,6 @@ namespace Mechanics
                         flip();
                     }
 
-                    attackHeld = AnimeState.SideB;
                     sideB();
                 }
                 else if (vertInput > 0 && upBCount > 0)
@@ -104,7 +102,6 @@ namespace Mechanics
                 }
                 else if (vertInput < 0)
                 {
-                    attackHeld = AnimeState.DownB;
                     downB();
                 }
             }
@@ -118,7 +115,6 @@ namespace Mechanics
             // release hold A
             if (Input.GetButtonUp("A") && attackHeld == AnimeState.Jab)
             {
-                attackHeld = AnimeState.IDLE;
                 releaseJab();
             }
 
@@ -127,23 +123,18 @@ namespace Mechanics
             {
                 if (attackHeld == AnimeState.NeutralB)
                 {
-                    
                     releaseNeutralB();
-                    attackHeld = AnimeState.IDLE;
                 }
                 else if (attackHeld == AnimeState.SideB)
                 {
-                    attackHeld = AnimeState.IDLE;
                     releaseSideB();
                 }
                 else if (attackHeld == AnimeState.UpB)
                 {
-                    attackHeld = AnimeState.IDLE;
                     releaseUpB();
                 }
                 else if (attackHeld == AnimeState.DownB)
                 {
-                    attackHeld = AnimeState.IDLE;
                     releaseDownB();
                 }
 
