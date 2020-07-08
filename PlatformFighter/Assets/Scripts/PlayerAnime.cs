@@ -10,8 +10,6 @@ namespace Mechanics
         Animator anime;
         public Vector3 transformAngles;
 
-        public AnimeState currState = AnimeState.IDLE;
-
     
         // Start is called before the first frame update
         void Start()
@@ -26,11 +24,6 @@ namespace Mechanics
             //transformAngles = transform.eulerAngles;
         }
 
-        public AnimeState getCurrState()
-        {
-            return currState;
-        }
-
         /* setAnimator:
          *   manipulates the animator parameters to best fit the current state
          *      Args: AnimeState state: state to transition the animator to
@@ -39,8 +32,6 @@ namespace Mechanics
         public void setAnimator(AnimeState state)
         {
             // switch case here for the states; call the methods below
-            currState = state;
-
             switch (state)
             {
                 case AnimeState.IDLE:

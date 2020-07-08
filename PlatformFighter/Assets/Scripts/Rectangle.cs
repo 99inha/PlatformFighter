@@ -90,7 +90,7 @@ namespace Mechanics
         protected override void neutralB()
         {
             anime.setAnimator(AnimeState.NeutralB);
-            lagTime = 0.2f;
+            hasControl = false;
         }
 
         protected override void upB()
