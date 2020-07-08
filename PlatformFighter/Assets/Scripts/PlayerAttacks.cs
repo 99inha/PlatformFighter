@@ -123,26 +123,31 @@ namespace Mechanics
             }
 
             // release hold B
-            if (Input.GetButtonUp("B"))
+            else if (Input.GetButtonUp("B"))
             {
                 if (attackHeld == AnimeState.NeutralB)
                 {
+                    
                     releaseNeutralB();
+                    attackHeld = AnimeState.IDLE;
                 }
                 else if (attackHeld == AnimeState.SideB)
                 {
+                    attackHeld = AnimeState.IDLE;
                     releaseSideB();
                 }
                 else if (attackHeld == AnimeState.UpB)
                 {
+                    attackHeld = AnimeState.IDLE;
                     releaseUpB();
                 }
                 else if (attackHeld == AnimeState.DownB)
                 {
+                    attackHeld = AnimeState.IDLE;
                     releaseDownB();
                 }
 
-                attackHeld = AnimeState.IDLE;
+                
             }
         }
 
