@@ -89,6 +89,7 @@ namespace Mechanics
 
         protected override void neutralB()
         {
+            UnityEngine.Debug.Log("rectangle is neutral-b-ing");
             anime.setAnimator(AnimeState.NeutralB);
             hasControl = false;
         }
