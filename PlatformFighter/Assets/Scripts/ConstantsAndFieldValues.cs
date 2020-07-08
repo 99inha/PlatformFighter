@@ -57,8 +57,8 @@ namespace Mechanics
         public float verticalAxis;
 
         // protected fields
-        protected bool hasControl = true;
-        protected bool isGrounded = false;
+        [SerializeField] protected bool hasControl = true;
+        [SerializeField] protected bool isGrounded = false;
         protected PlayerAnime anime;
         public float lagTime = 0f;
         protected Rigidbody2D rb;
