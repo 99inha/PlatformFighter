@@ -10,6 +10,8 @@ namespace Mechanics
         Animator anime;
         public Vector3 transformAngles;
 
+        public AnimeState currState = AnimeState.IDLE;
+
     
         // Start is called before the first frame update
         void Start()
@@ -21,7 +23,12 @@ namespace Mechanics
         void LateUpdate()
         {
             //only to check its values from Unity Editor
-            transformAngles = transform.eulerAngles;
+            //transformAngles = transform.eulerAngles;
+        }
+
+        public AnimeState getCurrState()
+        {
+            return currState;
         }
 
         /* setAnimator:
@@ -32,6 +39,7 @@ namespace Mechanics
         public void setAnimator(AnimeState state)
         {
             // switch case here for the states; call the methods below
+            currState = state;
 
             switch (state)
             {
@@ -78,7 +86,10 @@ namespace Mechanics
                 case AnimeState.DownB:
                     setDownB();
                     break;
-                case AnimeState.ReleaseB:
+                case AnimeState.ReleaseNeutralB:
+                    releaseNeutralB();
+                    break;
+                case AnimeState.ReleaseDownB:
                     releaseDownB();
                     break;
                 case AnimeState.NeutralB:
@@ -147,8 +158,7 @@ namespace Mechanics
 
         void setNeutralB()
         {
-
-            anime.SetTrigger("NeutralB");
+            anime.SetBool("NeutralB", true);
         }
 
         void setUpB()
@@ -166,6 +176,11 @@ namespace Mechanics
         {
             anime.SetBool("DownB", true);
 
+        }
+
+        void releaseNeutralB()
+        {
+            anime.SetBool("NeutralB", false);
         }
 
         void releaseDownB()

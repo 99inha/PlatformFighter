@@ -9,7 +9,32 @@ using UnityEngine;
 
 namespace Mechanics
 {
-    public enum AnimeState { IDLE, InAir, DownAir, UpAir, FAir, BackAir, NAir, DownTilt, UpTilt, Jab, FTilt, UpB, NeutralB, SideB, DownB, ReleaseB}; // add new states as necessary
+    public enum AnimeState { 
+        IDLE, 
+        InAir, 
+
+        NAir,
+        FAir,
+        BackAir, 
+        UpAir,
+        DownAir, 
+
+        Jab,
+        FTilt,
+        UpTilt, 
+        DownTilt,
+        
+        NeutralB, 
+        SideB, 
+        UpB, 
+        DownB, 
+        
+        ReleaseJab,
+        ReleaseNeutralB,
+        ReleaseSideB,
+        ReleaseUpB,
+        ReleaseDownB
+    }; // add new states as necessary
 
     public partial class PlayerController : MonoBehaviour
     {
@@ -18,7 +43,7 @@ namespace Mechanics
 
         // public fields
         public PlayerHealth health;
-        public AnimeState currState; // enum class AnimeState from UsefulConstants
+        public AnimeState attackHeld;
         public float moveSpeed = 5f;
         public float jumpSpeed = 9f;
         public float fallMaxSpeed = -12f;

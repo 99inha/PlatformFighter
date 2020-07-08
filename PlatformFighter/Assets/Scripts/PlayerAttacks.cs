@@ -26,6 +26,7 @@ namespace Mechanics
                     rb.velocity = new Vector2(0, 0);
                     if (vertInput == 0 && horInput == 0)
                     {
+                        attackHeld = AnimeState.Jab;
                         jab();
                     }
                     else if (horInput != 0) // no back tilts...either direction procs ftilt
@@ -80,7 +81,7 @@ namespace Mechanics
 
                 if (vertInput == 0 && horInput == 0)
                 {
-
+                    attackHeld = AnimeState.NeutralB;
                     neutralB();
                 }
                 else if (horInput != 0)
@@ -91,19 +92,57 @@ namespace Mechanics
                         flip();
                     }
 
+                    attackHeld = AnimeState.SideB;
                     sideB();
                 }
                 else if (vertInput > 0 && upBCount > 0)
                 {
+                    attackHeld = AnimeState.UpB;
                     StartCoroutine("lagForSeconds", 0.1f);
                     upBCount--;
                     upB();
                 }
                 else if (vertInput < 0)
                 {
-                    isDownB = true;
+                    attackHeld = AnimeState.DownB;
                     downB();
                 }
+            }
+
+            
+        }
+
+        void computeAttackRelease()
+        {
+
+            // release hold A
+            if (Input.GetButtonUp("A") && attackHeld == AnimeState.Jab)
+            {
+                attackHeld = AnimeState.IDLE;
+                releaseJab();
+            }
+
+            // release hold B
+            if (Input.GetButtonUp("B"))
+            {
+                if (attackHeld == AnimeState.NeutralB)
+                {
+                    releaseNeutralB();
+                }
+                else if (attackHeld == AnimeState.SideB)
+                {
+                    releaseSideB();
+                }
+                else if (attackHeld == AnimeState.UpB)
+                {
+                    releaseUpB();
+                }
+                else if (attackHeld == AnimeState.DownB)
+                {
+                    releaseDownB();
+                }
+
+                attackHeld = AnimeState.IDLE;
             }
         }
 
@@ -171,6 +210,29 @@ namespace Mechanics
         }
 
         protected virtual void downB()
+        {
+
+        }
+
+
+        // some of the abilities below can be held for elongated effect
+        // if holding does nothing for the character, just don't override the method
+        protected virtual void releaseJab()
+        {
+
+        }
+
+        protected virtual void releaseNeutralB()
+        {
+
+        }
+
+        protected virtual void releaseSideB()
+        {
+
+        }
+
+        protected virtual void releaseUpB()
         {
 
         }

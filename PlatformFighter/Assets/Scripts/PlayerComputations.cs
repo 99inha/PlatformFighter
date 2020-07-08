@@ -77,7 +77,7 @@ namespace Mechanics
                 rb.velocity = new Vector2(rb.velocity.x, MAXFASTFALLSPEED);
             }
 
-            stablizeVertical();
+            
         }
 
 

@@ -114,16 +114,23 @@ namespace Mechanics
             if (!isGrounded)
             {
                 fallMaxSpeed = -2f;
-                rb.velocity = new Vector2(rb.velocity.x, -2);
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(-2f, rb.velocity.y));
             }
             hasControl = false;
 
 
         }
 
+        protected override void releaseNeutralB()
+        {
+            anime.setAnimator(AnimeState.ReleaseNeutralB);
+
+            hasControl = true;
+        }
+
         protected override void releaseDownB()
         {
-            anime.setAnimator(AnimeState.ReleaseB);
+            anime.setAnimator(AnimeState.ReleaseDownB);
             fallMaxSpeed = -12f;
         
             hasControl = true;
