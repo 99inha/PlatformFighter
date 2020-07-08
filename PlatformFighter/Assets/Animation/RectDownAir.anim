@@ -73,13 +73,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: startAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: setVerticalVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -91,13 +84,6 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.083333336
-    functionName: attackLag
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.2
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
