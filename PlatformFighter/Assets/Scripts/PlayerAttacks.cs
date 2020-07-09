@@ -95,7 +95,6 @@ namespace Mechanics
                 }
                 else if (vertInput > 0 && upBCount > 0)
                 {
-                    attackHeld = AnimeState.UpB;
                     StartCoroutine("lagForSeconds", 0.1f);
                     upBCount--;
                     upB();
