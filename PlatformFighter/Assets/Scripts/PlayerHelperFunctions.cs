@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.AssetImporters;
 using UnityEngine;
 
 
@@ -189,6 +190,18 @@ namespace Mechanics
             {
                 rb.velocity = new Vector2(rb.velocity.x, fallMaxSpeed);
             }
+        }
+
+        protected bool hasCollided(string name)
+        {
+            foreach(string n in collided)
+            {
+                if(string.Compare(n, name) == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
 

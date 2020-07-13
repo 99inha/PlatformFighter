@@ -23,11 +23,15 @@ namespace Mechanics
             shieldObject.SetActive(true);
             shield = shieldObject.GetComponent<Shield>();
             anime = GetComponent<PlayerAnime>();
+            collided = new List<string>();
         }
 
         // Update is called once per frame
         void Update()
         {
+
+
+
             correctJumpCount();
             computeShield();
 
@@ -59,6 +63,39 @@ namespace Mechanics
             verticalAxis = Input.GetAxisRaw("Vertical");
             transformRotation = transform.eulerAngles;
             velocity = rb.velocity;
+        }
+
+        private void LateUpdate()
+        {   // updating hitbox
+            
+            if (animationStart && (animationTime == 0))
+            {
+                Debug.Log("Animation Timeloolololol:" + anime.anime.GetCurrentAnimatorStateInfo(0).length);
+                animationTime = anime.anime.GetCurrentAnimatorStateInfo(0).length;
+            }
+            else if (animationStart)
+            {
+                animationTime -= Time.deltaTime;
+                if(animationTime < 0)
+                {
+                    animationStart = false;
+                    animationTime = 0;
+                    collided.Clear();
+                    if (isGrounded)
+                    {
+                        attackUsed = AnimeState.IDLE;
+                    }
+                    else
+                    {
+                        attackUsed = AnimeState.InAir;
+                    }
+                }
+                else
+                {
+                    generateHitBox(attackUsed);
+                }
+            }
+
         }
 
         // OnCollisionEnter2D is called whenever another collider hits this object

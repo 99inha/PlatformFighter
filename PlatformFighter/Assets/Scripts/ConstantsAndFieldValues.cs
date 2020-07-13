@@ -64,6 +64,11 @@ namespace Mechanics
         protected PlayerAnime anime;
         public float lagTime = 0f;
         protected Rigidbody2D rb;
+        protected bool animationStart = false;
+        protected float animationTime = 0f;
+        protected AnimeState attackUsed;
+        protected List<string> collided;
+        protected bool isFacingRight = true; // this may need to be changed later on
 
         // private fields
         Shield shield;
@@ -76,6 +81,5 @@ namespace Mechanics
         public bool canAttack = true;
         int upBCount = 1;
 
-        bool isFacingRight = true; // this may need to be changed later on
     }
 }

@@ -7,7 +7,7 @@ namespace Mechanics
     public class PlayerAnime : MonoBehaviour
     {
 
-        Animator anime;
+        public Animator anime;
         public Vector3 transformAngles;
 
     
@@ -21,7 +21,10 @@ namespace Mechanics
         void LateUpdate()
         {
             //only to check its values from Unity Editor
-            //transformAngles = transform.eulerAngles;
+            //transformAngles = transform.eulerAngles;\
+            //float length = anime.GetCurrentAnimatorStateInfo(0).length;
+
+            //Debug.Log("The Current Animation is this long:"+ length);
         }
 
         /* setAnimator:
@@ -114,6 +117,7 @@ namespace Mechanics
         void setFTilt()
         {
             anime.SetTrigger("FAttack");
+
         }
 
         void setUpTilt()
