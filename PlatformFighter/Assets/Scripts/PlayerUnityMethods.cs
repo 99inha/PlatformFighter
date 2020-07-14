@@ -70,7 +70,7 @@ namespace Mechanics
             
             if (animationStart && (animationTime == 0))
             {
-                Debug.Log("Animation Timeloolololol:" + anime.anime.GetCurrentAnimatorStateInfo(0).length);
+                //Debug.Log("Animation:" + anime.anime.GetCurrentAnimatorStateInfo(0).length);
                 animationTime = anime.anime.GetCurrentAnimatorStateInfo(0).length;
             }
             else if (animationStart)
@@ -78,17 +78,31 @@ namespace Mechanics
                 animationTime -= Time.deltaTime;
                 if(animationTime < 0)
                 {
-                    animationStart = false;
-                    animationTime = 0;
-                    collided.Clear();
-                    if (isGrounded)
+                    if(attackHeld != AnimeState.IDLE && attackHeld != AnimeState.InAir)
                     {
-                        attackUsed = AnimeState.IDLE;
+
+                        animationStart = true;
+                        animationTime = 0;
+                        attackUsed = attackHeld;
+                        collided.Clear();
+                        generateHitBox(attackUsed);
+                        
                     }
                     else
                     {
-                        attackUsed = AnimeState.InAir;
+                        animationStart = false;
+                        animationTime = 0;
+                        collided.Clear();
+                        if (isGrounded)
+                        {
+                            attackUsed = AnimeState.IDLE;
+                        }
+                        else
+                        {
+                            attackUsed = AnimeState.InAir;
+                        }
                     }
+
                 }
                 else
                 {
