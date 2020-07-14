@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 209758753}
   m_Layer: 0
   m_Name: FirePoint
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1114,7 +1114,7 @@ GameObject:
   - component: {fileID: 1509881440}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1386,12 +1386,12 @@ MonoBehaviour:
   transformRotation: {x: 0, y: 0, z: 0}
   horizontalAxis: 0
   verticalAxis: 0
+  right: {x: 0, y: 0, z: 0}
   hasControl: 1
   isGrounded: 0
   lagTime: 0
   canMove: 1
   canAttack: 1
-  right: {x: 0, y: 0, z: 0}
   shooterObject: {fileID: 209758751}
   enemies:
     serializedVersion: 2

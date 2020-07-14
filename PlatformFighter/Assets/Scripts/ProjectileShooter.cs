@@ -9,6 +9,7 @@ public class ProjectileShooter : MonoBehaviour
 
     public void shoot()
     {
-        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject shot = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        shot.tag = transform.tag;
     }
 }
