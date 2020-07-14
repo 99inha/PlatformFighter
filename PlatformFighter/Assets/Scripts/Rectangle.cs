@@ -190,47 +190,38 @@ namespace Mechanics
             if (attack == AnimeState.Jab)
             {
                 damage = 0f;
-                hitDirection.x = 1.2f;
+                hitDirection.x = 1.2f * transform.right.x;
                 hitDirection.y = 0.9f;
 
 
-                Vector3 v = transform.TransformPoint(0.7f, -0.15f, transform.position.z);
-                colliders = Physics2D.OverlapBoxAll(new Vector2(v.x, v.y), transform.TransformVector(0.5f, 0.5f, 1), 0, enemies);
+                //Vector3 v = transform.TransformPoint(0.7f, -0.15f, transform.position.z);
+                colliders = Physics2D.OverlapBoxAll(
+                    new Vector2(transform.position.x + 0.7f * transform.right.x, transform.position.y),
+                    new Vector2(0.5f, 0.5f), 0, enemies);
 
-
-                if (!isFacingRight)
-                {
-                    hitDirection.x = hitDirection.x * -1;
-                }
 
             }
             else if (attack == AnimeState.FTilt)
             {
                 damage = 0f;
-                hitDirection.x = 7f;
+                hitDirection.x = 7f * transform.right.x;
                 hitDirection.y = 1f;
-                if (isFacingRight)
-                {
-                    colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 0.8f, transform.position.y + 0.1f), new Vector2(1, 0.9f), 0, enemies);
-                }
-                else
-                {
-                    hitDirection.x = hitDirection.x * -1;
-                    colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 0.8f, transform.position.y + 0.1f), new Vector2(1, 0.9f), 0, enemies);
-                }
+
+                colliders = Physics2D.OverlapBoxAll(
+                    new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y + 0.1f),
+                    new Vector2(1, 0.9f), 0, enemies);
+
             }
             else if (attack == AnimeState.UpTilt)
             {
                 damage = 0f;
-                hitDirection.x = -0.5f;
+                hitDirection.x = -0.5f * transform.right.x;
                 hitDirection.y = 8f;
 
-                if (!isFacingRight)
-                {
-                    hitDirection.x = -1 * hitDirection.x;
-                }
 
-                colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(2.3f, 1), 0, enemies);
+                colliders = Physics2D.OverlapBoxAll(
+                    new Vector2(transform.position.x, transform.position.y + 0.5f),
+                    new Vector2(2.3f, 1), 0, enemies);
 
             }
             else if (attack == AnimeState.DownTilt)
@@ -238,15 +229,11 @@ namespace Mechanics
                 damage = 0f;
                 hitDirection.x = 0.5f;
                 hitDirection.y = 8f;
-                if (isFacingRight)
-                {
-                    colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 0.8f, transform.position.y - 0.5f), new Vector2(0.9f, 0.4f), 0, enemies);
-                }
-                else
-                {
-                    hitDirection.x = hitDirection.x * -1;
-                    colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 0.8f, transform.position.y - 0.5f), new Vector2(0.9f, 0.4f), 0, enemies);
-                }
+
+                colliders = Physics2D.OverlapBoxAll(
+                    new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y - 0.5f),
+                    new Vector2(0.9f, 0.4f), 0, enemies);  
+
             }
             else if (attack == AnimeState.NAir)
             {
@@ -310,6 +297,10 @@ namespace Mechanics
                 damage = 0f;
                 hitDirection.x = 6f;
                 hitDirection.y = 1f;
+
+                colliders = Physics2D.OverlapBoxAll(
+                    new Vector2(transform.position.x + 1.1f * transform.right.x, transform.position.y + 0.1f),
+                    new Vector2(2.2f, 0.4f), 0, enemies);
                 if (isFacingRight)
                 {
                     colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.1f, transform.position.y + 0.1f), new Vector2(2.2f, 0.4f), 0, enemies);
@@ -383,21 +374,23 @@ namespace Mechanics
             Gizmos.color = new Color(0, 255, 0, 0.5f);
             // Jab
             //Gizmos.DrawCube(new Vector3(transform.position.x + 0.7f, transform.position.y - 0.15f, transform.position.z), new Vector3(0.5f, 0.5f, 1));
-            Gizmos.DrawCube(transform.TransformPoint(0.7f, -0.15f, transform.position.z), transform.TransformVector(0.5f, 0.5f, 1));
+            //Gizmos.DrawCube(transform.TransformPoint(0.7f, -0.15f, transform.position.z), transform.TransformVector(0.5f, 0.5f, 1));
 
             // FTilt
-            // Gizmos.DrawCube(new Vector3(transform.position.x + transform.right.x * 0.8f, transform.position.y + 0.1f, transform.position.z), new Vector3(1, 0.9f, 1));
-            // Gizmos.DrawCube(new Vector3(transform.position.x - 0.8f, transform.position.y + 0.1f, transform.position.z), new Vector3(1, 0.9f, 1));
+            //Gizmos.DrawCube(transform.TransformPoint(0.8f, 0.1f, transform.position.z), transform.TransformVector(1f, 0.9f, 1));
+
 
             // DownTilt
-            // Gizmos.DrawCube(new Vector3(transform.position.x + 0.8f, transform.position.y - 0.5f, transform.position.z), new Vector3(0.9f, 0.4f, 1));
-            // Gizmos.DrawCube(new Vector3(transform.position.x - 0.8f, transform.position.y - 0.5f, transform.position.z), new Vector3(0.9f, 0.4f, 1));
+            // Gizmos.DrawCube(transform.TransformPoint(0.8f, -0.5f, transform.position.z), transform.TransformVector(0.9f, 0.4f, 1));
+
+
 
             // UpTilt
             // Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(2.3f,1, 1));
 
             // SideB
             //Gizmos.DrawCube(new Vector3(transform.position.x + 1.1f, transform.position.y + 0.1f, transform.position.z), new Vector3(2.2f,0.4f, 1));
+            //Gizmos.DrawCube(transform.TransformPoint(1.1f, 0.1f, transform.position.z), transform.TransformVector(2.2f, 0.4f, 1));
 
         }
     }
