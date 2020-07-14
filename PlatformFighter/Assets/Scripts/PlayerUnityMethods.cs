@@ -76,7 +76,7 @@ namespace Mechanics
 
                 if (attackUsed == AnimeState.DownAir)
                 {
-                    animationTime = 0.0001f;
+                    animationTime = 1f;
                 }
             }
             else if (animationStart)
