@@ -63,6 +63,7 @@ namespace Mechanics
             verticalAxis = Input.GetAxisRaw("Vertical");
             transformRotation = transform.eulerAngles;
             velocity = rb.velocity;
+            right = transform.right;
         }
 
         private void LateUpdate()
@@ -70,12 +71,21 @@ namespace Mechanics
             
             if (animationStart && (animationTime == 0))
             {
-                Debug.Log("Animation Timeloolololol:" + anime.anime.GetCurrentAnimatorStateInfo(0).length);
+                //Debug.Log("Animation Timeloolololol:" + anime.anime.GetCurrentAnimatorStateInfo(0).length);
                 animationTime = anime.anime.GetCurrentAnimatorStateInfo(0).length;
+
+                if (attackUsed == AnimeState.DownAir)
+                {
+                    animationTime = 0.0001f;
+                }
             }
             else if (animationStart)
             {
-                animationTime -= Time.deltaTime;
+                if (attackUsed != AnimeState.DownAir)
+                {
+                    animationTime -= Time.deltaTime;
+                }
+                
                 if(animationTime < 0)
                 {
                     animationStart = false;
@@ -104,7 +114,10 @@ namespace Mechanics
             if (col.transform.tag == "Ground")
             {
                 anime.setAnimator(AnimeState.IDLE);
+                attackUsed = AnimeState.IDLE;
+
                 lagTime = 0f;
+                animationTime = 0f;
                 fallMaxSpeed = MAXFALLSPEED;
                 isGrounded = true;
                 jumpCount = 2;
@@ -113,6 +126,8 @@ namespace Mechanics
 
             else if (col.transform.tag == "Wall")
             {
+                attackUsed = AnimeState.InAir;
+
                 rb.gravityScale = 0;
                 rb.velocity = new Vector2(0f, 0f);
                 isGrounded = false;

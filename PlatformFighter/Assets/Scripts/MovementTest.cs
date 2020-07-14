@@ -62,7 +62,7 @@ public class MovementTest : MonoBehaviour
 
     public void takeDamage(float damage, Vector2 knockBack)
     {
-        rb.velocity = knockBack;
+        // rb.velocity = knockBack;
         Debug.Log("damage: "+ damage + ", knockBack: " + knockBack.x + "," + knockBack.y);
     }
 }
