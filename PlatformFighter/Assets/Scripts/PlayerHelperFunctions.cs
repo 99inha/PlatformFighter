@@ -208,6 +208,16 @@ namespace Mechanics
             return false;
         }
 
+        public void startHitbox()
+        {
+            hitboxGen = true;
+        }
+
+
+        public void stopHitbox()
+        {
+            hitboxGen = false;
+        }
 
     }
 }

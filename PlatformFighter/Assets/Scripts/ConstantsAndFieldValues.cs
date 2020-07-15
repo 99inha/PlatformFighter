@@ -74,6 +74,7 @@ namespace Mechanics
         // private fields
         Shield shield;
 
+        bool hitboxGen = false;
         Vector3 localScale;
         int jumpCount = 1;
         bool holdShield = false;

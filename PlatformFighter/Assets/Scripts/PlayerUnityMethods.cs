@@ -103,6 +103,7 @@ namespace Mechanics
                         animationStart = false;
                         animationTime = 0;
                         collided.Clear();
+                        hitboxGen = false;
                         if (isGrounded)
                         {
                             attackUsed = AnimeState.IDLE;
@@ -116,7 +117,10 @@ namespace Mechanics
                 }
                 else
                 {
-                    generateHitBox(attackUsed);
+                    if (hitboxGen)
+                    {
+                        generateHitBox(attackUsed);
+                    }
                 }
             }
 

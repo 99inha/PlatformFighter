@@ -142,6 +142,8 @@ namespace Mechanics
                 fallMaxSpeed = -2f;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(-2f, rb.velocity.y));
             }
+            animationStart = true;
+            attackUsed = AnimeState.DownB;
 
             attackHeld = AnimeState.DownB;
         }
@@ -295,25 +297,23 @@ namespace Mechanics
             else if (attack == AnimeState.SideB)
             {
                 damage = 0f;
-                hitDirection.x = 6f;
+                hitDirection.x = 6f * transform.right.x;
                 hitDirection.y = 1f;
 
                 colliders = Physics2D.OverlapBoxAll(
                     new Vector2(transform.position.x + 1.1f * transform.right.x, transform.position.y + 0.1f),
                     new Vector2(2.2f, 0.4f), 0, enemies);
-                if (isFacingRight)
-                {
-                    colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.1f, transform.position.y + 0.1f), new Vector2(2.2f, 0.4f), 0, enemies);
-                }
-                else
-                {
-                    hitDirection.x = hitDirection.x * -1;
-                    colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.1f, transform.position.y + 0.1f), new Vector2(2.2f, 0.4f), 0, enemies);
-                }
+
             }
             else if (attack == AnimeState.DownB)
             {
+                damage = 0f;
+                hitDirection.x = 0.1f * transform.right.x;
+                hitDirection.y = 1f;
 
+                colliders = Physics2D.OverlapBoxAll(
+                    new Vector2(transform.position.x - 0.035f * transform.right.x, transform.position.y + 0.05f),
+                    new Vector2(1.8f, 1.7f), 0, enemies);
             }
 
             string name;
@@ -364,6 +364,7 @@ namespace Mechanics
                 transform.TransformVector(0.5f, 1.2f, 1)); */
 
             // DownAir
+            /*
             Gizmos.DrawCube(
                 transform.TransformPoint(
                     -0.032f,
@@ -372,13 +373,20 @@ namespace Mechanics
                 transform.TransformVector(1.188f, 1.188f, 1f));
 
             Gizmos.color = new Color(0, 255, 0, 0.5f);
+            */
+
             // Jab
             //Gizmos.DrawCube(new Vector3(transform.position.x + 0.7f, transform.position.y - 0.15f, transform.position.z), new Vector3(0.5f, 0.5f, 1));
-            //Gizmos.DrawCube(transform.TransformPoint(0.7f, -0.15f, transform.position.z), transform.TransformVector(0.5f, 0.5f, 1));
+            /*Gizmos.DrawCube(
+                transform.TransformPoint(0.7f, -0.15f, transform.position.z), 
+                transform.TransformVector(0.5f, 0.5f, 1));
+            */
 
             // FTilt
-            //Gizmos.DrawCube(transform.TransformPoint(0.8f, 0.1f, transform.position.z), transform.TransformVector(1f, 0.9f, 1));
-
+            /*Gizmos.DrawCube(
+                transform.TransformPoint(0.8f, 0.1f, transform.position.z), 
+                transform.TransformVector(1f, 0.9f, 1));
+            */
 
             // DownTilt
             // Gizmos.DrawCube(transform.TransformPoint(0.8f, -0.5f, transform.position.z), transform.TransformVector(0.9f, 0.4f, 1));
@@ -391,6 +399,10 @@ namespace Mechanics
             // SideB
             //Gizmos.DrawCube(new Vector3(transform.position.x + 1.1f, transform.position.y + 0.1f, transform.position.z), new Vector3(2.2f,0.4f, 1));
             //Gizmos.DrawCube(transform.TransformPoint(1.1f, 0.1f, transform.position.z), transform.TransformVector(2.2f, 0.4f, 1));
+
+            // DownB
+            //Gizmos.DrawCube(new Vector3(transform.position.x - 0.035f, transform.position.y + 0.05f, transform.position.z), new Vector3(1.8f,1.7f, 1));
+
 
         }
     }
