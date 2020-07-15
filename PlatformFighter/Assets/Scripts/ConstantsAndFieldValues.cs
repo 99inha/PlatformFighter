@@ -57,6 +57,7 @@ namespace Mechanics
         public Vector3 transformRotation;
         public float horizontalAxis;
         public float verticalAxis;
+        public Vector3 right;
 
         // protected fields
         [SerializeField] protected bool hasControl = true;

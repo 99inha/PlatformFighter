@@ -146,3 +146,5 @@ MonoBehaviour:
   speed: 16
   lifeTime: 0.75
   rb: {fileID: 1461911420088902725}
+  knockback: {x: 2, y: 2}
+  damage: 0

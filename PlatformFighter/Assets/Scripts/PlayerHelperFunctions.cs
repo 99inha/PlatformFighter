@@ -83,7 +83,11 @@ namespace Mechanics
         {
             hasControl = false;
             canMove = false;
-            rb.velocity = new Vector2(0, 0);
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+            
             canAttack = false;
         }
 
