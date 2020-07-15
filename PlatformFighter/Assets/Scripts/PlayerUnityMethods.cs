@@ -24,6 +24,7 @@ namespace Mechanics
             shield = shieldObject.GetComponent<Shield>();
             anime = GetComponent<PlayerAnime>();
             collided = new List<string>();
+            hurtboxName = transform.GetChild(2).name;   // Hurtbox should be the 3rd on the player object's list
         }
 
         // Update is called once per frame

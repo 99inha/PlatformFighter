@@ -65,6 +65,7 @@ namespace Mechanics
         protected PlayerAnime anime;
         public float lagTime = 0f;
         protected Rigidbody2D rb;
+        protected string hurtboxName;
         protected bool animationStart = false;
         protected float animationTime = 0f;
         protected AnimeState attackUsed;

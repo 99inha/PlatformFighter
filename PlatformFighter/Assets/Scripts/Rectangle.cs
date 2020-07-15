@@ -322,7 +322,7 @@ namespace Mechanics
                 //Debug.Log(d.name);
                 name = d.name;
 
-                if (!hasCollided(name))
+                if (!hasCollided(name) && (string.Compare(name, hurtboxName) != 0))
                 {
                     d.GetComponentInParent<MovementTest>().takeDamage(damage, hitDirection);
                     collided.Add(name);
