@@ -189,10 +189,12 @@ namespace Mechanics
             float damage = 0f;
             Vector2 hitDirection = new Vector2(0,0);
 
+            // positive x values for away and negative for inwards
+            // positive y values for up and negative values for down
             if (attack == AnimeState.Jab)
             {
                 damage = 0f;
-                hitDirection.x = 1.2f * transform.right.x;
+                hitDirection.x = 1.2f;
                 hitDirection.y = 0.9f;
 
 
@@ -201,12 +203,11 @@ namespace Mechanics
                     new Vector2(transform.position.x + 0.7f * transform.right.x, transform.position.y),
                     new Vector2(0.5f, 0.5f), 0, enemies);
 
-
             }
             else if (attack == AnimeState.FTilt)
             {
                 damage = 0f;
-                hitDirection.x = 7f * transform.right.x;
+                hitDirection.x = 7f;
                 hitDirection.y = 1f;
 
                 colliders = Physics2D.OverlapBoxAll(
@@ -217,7 +218,7 @@ namespace Mechanics
             else if (attack == AnimeState.UpTilt)
             {
                 damage = 0f;
-                hitDirection.x = -0.5f * transform.right.x;
+                hitDirection.x = -0.5f;
                 hitDirection.y = 8f;
 
 
@@ -240,14 +241,14 @@ namespace Mechanics
             else if (attack == AnimeState.NAir)
             {
                 damage = 0f;
-                hitDirection.x = isFacingRight ? 5f : -5f;
+                hitDirection.x = 5f;
                 hitDirection.y = 5f;
                 colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 0.72f, enemies);
             }
             else if (attack == AnimeState.FAir)
             {
                 damage = 0f;
-                hitDirection.x = isFacingRight ? 0f : 0f;
+                hitDirection.x = 0f;
                 hitDirection.y = -20f;
                 colliders = Physics2D.OverlapCircleAll(
                     new Vector2(
@@ -259,7 +260,7 @@ namespace Mechanics
             else if (attack == AnimeState.BackAir)
             {
                 damage = 0f;
-                hitDirection.x = isFacingRight ? -7f : 7f;
+                hitDirection.x = 7f;
                 hitDirection.y = 1f;
 
                 Vector3 t = transform.TransformPoint(-0.025f, -0.6f, transform.position.z);
@@ -269,7 +270,7 @@ namespace Mechanics
             else if (attack == AnimeState.UpAir)
             {
                 damage = 0f;
-                hitDirection.x = isFacingRight ? 1f : -1f;
+                hitDirection.x = 1f;
                 hitDirection.y = 5f;
 
                 Vector3 t = transform.TransformPoint(0f, 0.9f, transform.position.z);
@@ -297,7 +298,7 @@ namespace Mechanics
             else if (attack == AnimeState.SideB)
             {
                 damage = 0f;
-                hitDirection.x = 6f * transform.right.x;
+                hitDirection.x = 6f;
                 hitDirection.y = 1f;
 
                 colliders = Physics2D.OverlapBoxAll(
@@ -308,7 +309,7 @@ namespace Mechanics
             else if (attack == AnimeState.DownB)
             {
                 damage = 0f;
-                hitDirection.x = 0.1f * transform.right.x;
+                hitDirection.x = 0.1f;
                 hitDirection.y = 1f;
 
                 colliders = Physics2D.OverlapBoxAll(
@@ -324,6 +325,10 @@ namespace Mechanics
 
                 if (!hasCollided(name) && (string.Compare(name, hurtboxName) != 0))
                 {
+                    // calculating the direction of the hit
+                    float directionX = d.transform.position.x - transform.position.x;
+                    hitDirection.x *= directionX / Mathf.Abs(directionX);
+
                     d.GetComponentInParent<MovementTest>().takeDamage(damage, hitDirection);
                     collided.Add(name);
                     Debug.Log(d.name);
@@ -394,7 +399,7 @@ namespace Mechanics
 
 
             // UpTilt
-            // Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(2.3f,1, 1));
+            Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(2.3f,1, 1));
 
             // SideB
             //Gizmos.DrawCube(new Vector3(transform.position.x + 1.1f, transform.position.y + 0.1f, transform.position.z), new Vector3(2.2f,0.4f, 1));

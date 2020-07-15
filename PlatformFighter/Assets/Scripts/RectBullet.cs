@@ -32,7 +32,14 @@ public class RectBullet : MonoBehaviour
         if (col.gameObject.layer == HURTBOXLAYER && col.tag != transform.tag)
         {
             UnityEngine.Debug.Log(col.name);
+
+            // calculating the direction of the knockback
+            float directionX = col.transform.position.x - transform.position.x;
+            knockback.x *= directionX / Mathf.Abs(directionX);
+
             col.GetComponentInParent<MovementTest>().takeDamage(damage, knockback);
+
+            Destroy(gameObject);
         }
         
     }
