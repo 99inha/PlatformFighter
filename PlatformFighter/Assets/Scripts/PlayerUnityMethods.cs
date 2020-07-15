@@ -30,8 +30,6 @@ namespace Mechanics
         void Update()
         {
 
-
-
             correctJumpCount();
             computeShield();
 
