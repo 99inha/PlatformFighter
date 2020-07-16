@@ -237,6 +237,11 @@ namespace Mechanics
 
         }
 
+        protected virtual void generateHitBox(AnimeState attack)
+        {
+
+        }
+
 
     }
 }

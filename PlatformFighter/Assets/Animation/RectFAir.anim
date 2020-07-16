@@ -96,6 +96,13 @@ AnimationClip:
     floatParameter: -60
     intParameter: 0
     messageOptions: 0
+  - time: 0.20833333
+    functionName: startHitbox
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.375
     functionName: transformRotate
     data: 
@@ -108,5 +115,12 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.2
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.375
+    functionName: stopHitbox
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0

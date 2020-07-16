@@ -23,6 +23,8 @@ public class MovementTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             localScale.x = LOCALSCALE_LEFT;
@@ -54,5 +56,13 @@ public class MovementTest : MonoBehaviour
             anime.ResetTrigger("attack");
 
         }
+        */
+    }
+
+
+    public void takeDamage(float damage, Vector2 knockBack)
+    {
+        rb.velocity = knockBack;
+        Debug.Log("damage: "+ damage + ", knockBack: " + knockBack.x + "," + knockBack.y);
     }
 }

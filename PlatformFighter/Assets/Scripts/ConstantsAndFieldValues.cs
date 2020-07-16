@@ -57,6 +57,7 @@ namespace Mechanics
         public Vector3 transformRotation;
         public float horizontalAxis;
         public float verticalAxis;
+        public Vector3 right;
 
         // protected fields
         [SerializeField] protected bool hasControl = true;
@@ -64,10 +65,17 @@ namespace Mechanics
         protected PlayerAnime anime;
         public float lagTime = 0f;
         protected Rigidbody2D rb;
+        protected string hurtboxName;
+        protected bool animationStart = false;
+        protected float animationTime = 0f;
+        protected AnimeState attackUsed;
+        protected List<string> collided;
+        protected bool isFacingRight = true; // this may need to be changed later on
 
         // private fields
         Shield shield;
 
+        bool hitboxGen = false;
         Vector3 localScale;
         int jumpCount = 1;
         bool holdShield = false;
@@ -76,6 +84,5 @@ namespace Mechanics
         public bool canAttack = true;
         int upBCount = 1;
 
-        bool isFacingRight = true; // this may need to be changed later on
     }
 }

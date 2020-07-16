@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.AssetImporters;
 using UnityEngine;
 
 
@@ -82,7 +83,11 @@ namespace Mechanics
         {
             hasControl = false;
             canMove = false;
-            rb.velocity = new Vector2(0, 0);
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+            
             canAttack = false;
         }
 
@@ -191,6 +196,28 @@ namespace Mechanics
             }
         }
 
+        protected bool hasCollided(string name)
+        {
+            foreach(string n in collided)
+            {
+                if(string.Compare(n, name) == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void startHitbox()
+        {
+            hitboxGen = true;
+        }
+
+
+        public void stopHitbox()
+        {
+            hitboxGen = false;
+        }
 
     }
 }

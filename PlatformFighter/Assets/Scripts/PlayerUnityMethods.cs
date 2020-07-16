@@ -23,11 +23,14 @@ namespace Mechanics
             shieldObject.SetActive(true);
             shield = shieldObject.GetComponent<Shield>();
             anime = GetComponent<PlayerAnime>();
+            collided = new List<string>();
+            hurtboxName = transform.GetChild(2).name;   // Hurtbox should be the 3rd on the player object's list
         }
 
         // Update is called once per frame
         void Update()
         {
+
             correctJumpCount();
             computeShield();
 
@@ -59,6 +62,67 @@ namespace Mechanics
             verticalAxis = Input.GetAxisRaw("Vertical");
             transformRotation = transform.eulerAngles;
             velocity = rb.velocity;
+            right = transform.right;
+        }
+
+        private void LateUpdate()
+        {   // updating hitbox
+            
+            if (animationStart && (animationTime == 0))
+            {
+                //Debug.Log("Animation:" + anime.anime.GetCurrentAnimatorStateInfo(0).length);
+                animationTime = anime.anime.GetCurrentAnimatorStateInfo(0).length;
+
+                if (attackUsed == AnimeState.DownAir)
+                {
+                    animationTime = 1f;
+                }
+            }
+            else if (animationStart)
+            {
+                if (attackUsed != AnimeState.DownAir)
+                {
+                    animationTime -= Time.deltaTime;
+                }
+                
+                if(animationTime < 0)
+                {
+                    if(attackHeld != AnimeState.IDLE && attackHeld != AnimeState.InAir)
+                    {
+
+                        animationStart = true;
+                        animationTime = 0;
+                        attackUsed = attackHeld;
+                        collided.Clear();
+                        generateHitBox(attackUsed);
+                        
+                    }
+                    else
+                    {
+                        animationStart = false;
+                        animationTime = 0;
+                        collided.Clear();
+                        hitboxGen = false;
+                        if (isGrounded)
+                        {
+                            attackUsed = AnimeState.IDLE;
+                        }
+                        else
+                        {
+                            attackUsed = AnimeState.InAir;
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (hitboxGen)
+                    {
+                        generateHitBox(attackUsed);
+                    }
+                }
+            }
+
         }
 
         // OnCollisionEnter2D is called whenever another collider hits this object
@@ -67,7 +131,10 @@ namespace Mechanics
             if (col.transform.tag == "Ground")
             {
                 anime.setAnimator(AnimeState.IDLE);
+                attackUsed = AnimeState.IDLE;
+
                 lagTime = 0f;
+                animationTime = 0f;
                 fallMaxSpeed = MAXFALLSPEED;
                 isGrounded = true;
                 jumpCount = 2;
@@ -76,6 +143,8 @@ namespace Mechanics
 
             else if (col.transform.tag == "Wall")
             {
+                attackUsed = AnimeState.InAir;
+
                 rb.gravityScale = 0;
                 rb.velocity = new Vector2(0f, 0f);
                 isGrounded = false;
