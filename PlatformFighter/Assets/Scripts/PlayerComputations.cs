@@ -31,6 +31,7 @@ namespace Mechanics
             {
                 isBroken = shield.updateShield(Time.deltaTime, true);
                 shieldObject.SetActive(true);
+                GameObject.Find(hurtboxName).layer = 9; // change hurtbox to unhittable
 
                 if (isBroken)
                 {
@@ -42,6 +43,8 @@ namespace Mechanics
             {
                 shield.updateShield(Time.deltaTime, false);
                 shieldObject.SetActive(false);
+                GameObject.Find(hurtboxName).layer = 10;    // change hurtbox back to hittable
+
 
             }
 
