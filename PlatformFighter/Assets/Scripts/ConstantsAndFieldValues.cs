@@ -36,6 +36,35 @@ namespace Mechanics
         ReleaseDownB
     }; // add new states as necessary
 
+    /* Attack struct:
+     *      a struct that carries the information of the attack 
+     *      from the user to the receiver
+     *      
+     *      fields:
+     *          -float damage = how much damage the attack does
+     *          -Vector2 knockback = the direction and the magnitude of
+     *                               the knockbakc of the attack
+     *          -bool hasUniformKnockback = whether or not the knockback is
+     *                                      uniform
+     */
+    public struct Attack
+    {
+        public float damage { get; }
+        public Vector2 knockback { get; }
+        public bool hasUniformKnockback { get; }
+
+        public Attack(float damage, Vector2 knockback, bool knockbackType)
+        {
+            this.damage = damage;
+            this.knockback = knockback;
+            this.hasUniformKnockback = knockbackType;
+        }
+
+        
+    }
+
+
+
     public partial class PlayerController : MonoBehaviour
     {
         public const float MAXFALLSPEED = -12f;
@@ -79,9 +108,8 @@ namespace Mechanics
         Vector3 localScale;
         int jumpCount = 1;
         bool holdShield = false;
-        bool isDownB = false;
-        public bool canMove = true;
-        public bool canAttack = true;
+        bool canMove = true;
+        bool canAttack = true;
         int upBCount = 1;
 
     }

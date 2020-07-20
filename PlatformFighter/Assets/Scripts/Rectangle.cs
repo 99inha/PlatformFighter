@@ -188,6 +188,7 @@ namespace Mechanics
             Collider2D[] colliders = { };
             float damage = 0f;
             Vector2 hitDirection = new Vector2(0,0);
+            bool hasUniformKnockback = false;
 
             // positive x values for away and negative for inwards
             // positive y values for up and negative values for down
@@ -196,6 +197,7 @@ namespace Mechanics
                 damage = 0f;
                 hitDirection.x = 1.2f;
                 hitDirection.y = 0.9f;
+                hasUniformKnockback = true;
 
 
                 //Vector3 v = transform.TransformPoint(0.7f, -0.15f, transform.position.z);
@@ -229,7 +231,7 @@ namespace Mechanics
             }
             else if (attack == AnimeState.DownTilt)
             {
-                damage = 0f;
+                damage = 5f;
                 hitDirection.x = 0.5f;
                 hitDirection.y = 8f;
 
@@ -240,9 +242,9 @@ namespace Mechanics
             }
             else if (attack == AnimeState.NAir)
             {
-                damage = 0f;
-                hitDirection.x = 5f;
-                hitDirection.y = 5f;
+                damage = 5f;
+                hitDirection.x = 3f;
+                hitDirection.y = 3f;
                 colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 0.72f, enemies);
             }
             else if (attack == AnimeState.FAir)
@@ -327,9 +329,11 @@ namespace Mechanics
                 {
                     // calculating the direction of the hit
                     float directionX = d.transform.position.x - transform.position.x;
-                    hitDirection.x *= directionX / Mathf.Abs(directionX);
+                    hitDirection.x *= directionX / Mathf.Abs(directionX); // away from the player
+                    Attack attackStruct = new Attack(damage, hitDirection, hasUniformKnockback);
 
-                    d.GetComponentInParent<MovementTest>().takeDamage(damage, hitDirection);
+
+                    d.GetComponentInParent<MovementTest>().takeDamage(attackStruct);
                     collided.Add(name);
                     Debug.Log(d.name);
 

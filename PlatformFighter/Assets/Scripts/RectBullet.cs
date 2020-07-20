@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mechanics;
 
 public class RectBullet : MonoBehaviour
 {
@@ -37,7 +38,9 @@ public class RectBullet : MonoBehaviour
             float directionX = col.transform.position.x - transform.position.x;
             knockback.x *= directionX / Mathf.Abs(directionX);
 
-            col.GetComponentInParent<MovementTest>().takeDamage(damage, knockback);
+            Attack attackStruct = new Attack(damage, knockback, true);
+
+            col.GetComponentInParent<MovementTest>().takeDamage(attackStruct);
 
             Destroy(gameObject);
         }

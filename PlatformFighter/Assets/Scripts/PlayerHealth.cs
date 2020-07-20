@@ -6,34 +6,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mechanics;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public const float ZERO_KNOCKBACK_SCALE = 1f;
+    public const float THIRTY_KNOCKBACK_SCALE = 1.25f;
+    public const float SIXTY_KNOCKBACK_SCALE = 1.5f;
+    public const float NINETY_KNOCKBACK_SCALE = 2f;
+    public const float ONE_TWENTY_KNOCKBACK_SCALE = 3f;
+
+
     // public fields; mutable through unity editor
     public int maxHealth;
 
     // private fields
-    private int currHealth;
+    public float currHealth;
 
     /* getHealth:
      *   getter for the current health of the player
      *      Args: none
      *      Returns: current health of the player
      */
-    public int getHealth()
+    public float getHealth()
     {
         return currHealth;
     }
 
     /* takeDamage:
      *   decrements the health of the player based on the move used
-     *      Args: a kind of data structure to carry the kind of move or
-     *            the amount of damage taken, to decrement the health by
-     *            (unimplemented yet! need to implement)
-     *      Returns: nothing
+     *      Args: Attack attack = carries the information regarding
+     *            the attack received
+     *      Returns: the knockback that the player will experience
      */
-    public void takeDamage()
+    public Vector2 takeDamage(Attack attack)
     {
+        currHealth += attack.damage;
+        Vector2 finalKnockback = attack.knockback;
 
+        if (!attack.hasUniformKnockback)
+        {
+            if (currHealth < 30f)
+            {
+                finalKnockback *= ZERO_KNOCKBACK_SCALE;
+            }
+            else if (currHealth < 60f)
+            {
+                finalKnockback *= THIRTY_KNOCKBACK_SCALE;
+            }
+            else if (currHealth < 90f)
+            {
+                finalKnockback *= SIXTY_KNOCKBACK_SCALE;
+            }
+            else if (currHealth < 120f)
+            {
+                finalKnockback *= NINETY_KNOCKBACK_SCALE;
+            }
+            else
+            {
+                finalKnockback *= ONE_TWENTY_KNOCKBACK_SCALE;
+            }
+        }
+
+        return finalKnockback;
     }
 }
