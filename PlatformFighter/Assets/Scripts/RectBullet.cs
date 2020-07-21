@@ -32,7 +32,7 @@ public class RectBullet : MonoBehaviour
     {
         if (col.gameObject.layer == HURTBOXLAYER && col.tag != transform.tag)
         {
-            UnityEngine.Debug.Log(col.name);
+            //UnityEngine.Debug.Log(col.name);
 
             // calculating the direction of the knockback
             float directionX = col.transform.position.x - transform.position.x;
@@ -40,7 +40,7 @@ public class RectBullet : MonoBehaviour
 
             Attack attackStruct = new Attack(damage, knockback, true);
 
-            col.GetComponentInParent<MovementTest>().takeDamage(attackStruct);
+            col.GetComponentInParent<PlayerController>().takeDamage(attackStruct);
 
             Destroy(gameObject);
         }

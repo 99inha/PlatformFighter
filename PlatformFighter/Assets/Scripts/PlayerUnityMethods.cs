@@ -25,6 +25,15 @@ namespace Mechanics
             anime = GetComponent<PlayerAnime>();
             collided = new List<string>();
             hurtboxName = transform.GetChild(2).name;   // Hurtbox should be the 3rd on the player object's list
+
+            // linking button inputs to player number
+            AxisHorizontal = "Horizontal" + playerNumber;
+            AxisVertical = "Vertical" + playerNumber;
+            ButtonA = "A" + playerNumber;
+            ButtonB = "B" + playerNumber;
+            ButtonJump = "Jump" + playerNumber;
+            ButtonFall = "Fall" + playerNumber;
+            ButtonShield = "Shield" + playerNumber;
         }
 
         // Update is called once per frame
@@ -58,8 +67,8 @@ namespace Mechanics
 
             // updateAnimator();
             // only to check the exact input values
-            horizontalAxis = Input.GetAxisRaw("Horizontal");
-            verticalAxis = Input.GetAxisRaw("Vertical");
+            horizontalAxis = Input.GetAxisRaw(AxisHorizontal);
+            verticalAxis = Input.GetAxisRaw(AxisVertical);
             transformRotation = transform.eulerAngles;
             velocity = rb.velocity;
             right = transform.right;
