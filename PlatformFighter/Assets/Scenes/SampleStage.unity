@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 264281712}
   - component: {fileID: 264281713}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Hurtbox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 1509881443}
   - component: {fileID: 1537769195}
   - component: {fileID: 1509881440}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player1
   m_Icon: {fileID: 0}
@@ -1323,7 +1323,7 @@ GameObject:
   - component: {fileID: 1537769193}
   - component: {fileID: 1537769194}
   - component: {fileID: 1537769196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}

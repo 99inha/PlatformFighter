@@ -108,6 +108,8 @@ namespace Mechanics
             
         }
 
+
+
         void computeAttackRelease()
         {
 
@@ -141,6 +143,23 @@ namespace Mechanics
             }
         }
 
+
+        public void takeDamage(Attack attack)
+        {
+            if (holdShield)
+            {   // Damage is applied on the shield
+                shield.takeDamage(attack);
+            }
+            else
+            {   // Damage is applied on the player
+                Vector2 finalKnockback = health.takeDamage(attack);
+                rb.velocity = finalKnockback;
+
+
+                // Apply damage to playerHealth
+
+            }
+        }
 
 
         // virtual methods for character specific attacks
