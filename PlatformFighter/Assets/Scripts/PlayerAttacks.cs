@@ -144,16 +144,18 @@ namespace Mechanics
         }
 
 
-        public void takeDamage(float damage, Vector2 knockBack)
+        public void takeDamage(Attack attack)
         {
             if (holdShield)
             {   // Damage is applied on the shield
-
+                shield.takeDamage(attack);
             }
             else
             {   // Damage is applied on the player
-                rb.velocity = knockBack;
-                
+                Vector2 finalKnockback = health.takeDamage(attack);
+                rb.velocity = finalKnockback;
+
+
                 // Apply damage to playerHealth
 
             }
