@@ -333,7 +333,7 @@ namespace Mechanics
                     Attack attackStruct = new Attack(damage, hitDirection, hasUniformKnockback);
 
 
-                    d.GetComponentInParent<MovementTest>().takeDamage(attackStruct);
+                    d.GetComponentInParent<PlayerController>().takeDamage(attackStruct);
                     collided.Add(name);
                     Debug.Log(d.name);
 
