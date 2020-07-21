@@ -60,8 +60,18 @@ namespace Mechanics
             {
                 flip();
             }
-
-            rb.velocity = new Vector2(moveSpeed * inputDirection, rb.velocity.y);
+             
+            if (inputDirection != 0)
+            {
+                rb.velocity = new Vector2(moveSpeed * inputDirection, rb.velocity.y);
+                horizontalAxisInUse = true;
+            }
+            else if (horizontalAxisInUse && inputDirection == 0)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                horizontalAxisInUse = false;
+            }
+            
         }
 
         void computeVerticalMovement()

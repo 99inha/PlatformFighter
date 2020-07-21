@@ -112,6 +112,7 @@ namespace Mechanics
         bool canMove = true;
         bool canAttack = true;
         int upBCount = 1;
+        bool horizontalAxisInUse = false;
 
         // Input buttons
         string AxisHorizontal;
