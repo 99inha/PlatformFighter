@@ -403,7 +403,7 @@ namespace Mechanics
 
 
             // UpTilt
-            Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(2.3f,1, 1));
+            // Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(2.3f,1, 1));
 
             // SideB
             //Gizmos.DrawCube(new Vector3(transform.position.x + 1.1f, transform.position.y + 0.1f, transform.position.z), new Vector3(2.2f,0.4f, 1));
