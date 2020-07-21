@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 568020480}
   - component: {fileID: 568020478}
   - component: {fileID: 568020479}
+  - component: {fileID: 568020482}
   m_Layer: 10
   m_Name: BoxBoi
   m_TagString: Untagged
@@ -439,6 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  health: {fileID: 568020482}
 --- !u!212 &568020480
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -504,6 +506,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568020482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568020477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86473cd00e7635541a9e694521fa13be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
 --- !u!1 &754729569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,8 +1436,6 @@ MonoBehaviour:
   hasControl: 1
   isGrounded: 0
   lagTime: 0
-  canMove: 1
-  canAttack: 1
   shooterObject: {fileID: 209758751}
   enemies:
     serializedVersion: 2

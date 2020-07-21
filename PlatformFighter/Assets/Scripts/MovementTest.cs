@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mechanics;
 
 public class MovementTest : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MovementTest : MonoBehaviour
     public float moveSpeed = 5f;
     Vector3 localScale; // for changing direction
     Animator anime;
+
+    public PlayerHealth health;
 
     Rigidbody2D rb;
 
@@ -60,9 +63,11 @@ public class MovementTest : MonoBehaviour
     }
 
 
-    public void takeDamage(float damage, Vector2 knockBack)
+    public void takeDamage(Attack attack)
     {
-        rb.velocity = knockBack;
-        Debug.Log("damage: "+ damage + ", knockBack: " + knockBack.x + "," + knockBack.y);
+        Vector2 finalKnockback = health.takeDamage(attack);
+        rb.velocity = finalKnockback;
+
+        Debug.Log("damage: "+ attack.damage + ", knockBack: " + finalKnockback.x + "," + finalKnockback.y);
     }
 }
