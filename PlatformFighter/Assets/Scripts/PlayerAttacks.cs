@@ -152,7 +152,7 @@ namespace Mechanics
             }
             else
             {   // Damage is applied on the player
-                StartCoroutine("lagForSeconds", 1f);
+                //StartCoroutine("lagForSeconds", 1f);
                 Vector2 finalKnockback = health.takeDamage(attack);
                 
                 rb.velocity = finalKnockback;
