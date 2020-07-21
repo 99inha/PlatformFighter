@@ -12,11 +12,11 @@ namespace Mechanics
     {
         void computeAttacks()
         {
-            float vertInput = Input.GetAxisRaw("Vertical");  // positive is up and negative is down
-            float horInput = Input.GetAxisRaw("Horizontal"); // positive is right and negative is left
+            float vertInput = Input.GetAxisRaw(AxisVertical);  // positive is up and negative is down
+            float horInput = Input.GetAxisRaw(AxisHorizontal); // positive is right and negative is left
 
             // A button attakcs
-            if (Input.GetButtonDown("A"))
+            if (Input.GetButtonDown(ButtonA))
             {
 
                 // On ground tilts are computed here
@@ -71,7 +71,7 @@ namespace Mechanics
 
 
             // Special attacks
-            else if (Input.GetButtonDown("B"))
+            else if (Input.GetButtonDown(ButtonB))
             {
                 if (isGrounded)
                 {
@@ -108,17 +108,19 @@ namespace Mechanics
             
         }
 
+
+
         void computeAttackRelease()
         {
 
             // release hold A
-            if (Input.GetButtonUp("A") && attackHeld == AnimeState.Jab)
+            if (Input.GetButtonUp(ButtonA) && attackHeld == AnimeState.Jab)
             {
                 releaseJab();
             }
 
             // release hold B
-            else if (Input.GetButtonUp("B"))
+            else if (Input.GetButtonUp(ButtonB))
             {
                 if (attackHeld == AnimeState.NeutralB)
                 {
@@ -141,6 +143,26 @@ namespace Mechanics
             }
         }
 
+
+        public void takeDamage(Attack attack)
+        {
+            if (holdShield)
+            {   // Damage is applied on the shield
+                shield.takeDamage(attack);
+            }
+            else
+            {   // Damage is applied on the player
+                //StartCoroutine("lagForSeconds", 1f);
+                Vector2 finalKnockback = health.takeDamage(attack);
+                
+                rb.velocity = finalKnockback;
+                UnityEngine.Debug.Log(rb.velocity.x);
+
+
+                // Apply damage to playerHealth
+
+            }
+        }
 
 
         // virtual methods for character specific attacks

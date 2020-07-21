@@ -37,7 +37,7 @@ namespace Mechanics
          */
         public IEnumerator lagForSeconds(float lagTime)
         {
-            //hasControl = false;
+            hasControl = false;
 
             yield return new WaitForSeconds(lagTime);
 

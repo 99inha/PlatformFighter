@@ -15,13 +15,13 @@ namespace Mechanics
         void computeShield()
         {
             bool isBroken = false;
-            if (isGrounded && hasControl && Input.GetButtonDown("Shield"))
+            if (isGrounded && hasControl && Input.GetButtonDown(ButtonShield))
             {
                 holdShield = true;
                 hasControl = false;
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
-            else if (holdShield && Input.GetButtonUp("Shield"))
+            else if (holdShield && Input.GetButtonUp(ButtonShield))
             {
                 holdShield = false;
                 hasControl = true;
@@ -31,6 +31,7 @@ namespace Mechanics
             {
                 isBroken = shield.updateShield(Time.deltaTime, true);
                 shieldObject.SetActive(true);
+                GameObject.Find(hurtboxName).layer = 9; // change hurtbox to unhittable
 
                 if (isBroken)
                 {
@@ -42,6 +43,8 @@ namespace Mechanics
             {
                 shield.updateShield(Time.deltaTime, false);
                 shieldObject.SetActive(false);
+                GameObject.Find(hurtboxName).layer = 10;    // change hurtbox back to hittable
+
 
             }
 
@@ -49,7 +52,7 @@ namespace Mechanics
 
         void computeHorizontalMovement()
         {
-            float inputDirection = Input.GetAxisRaw("Horizontal");
+            float inputDirection = Input.GetAxisRaw(AxisHorizontal);
 
             // if input direction is the opposite side while the user is grounded, flip user
             if (isGrounded && ((inputDirection == 1 && !isFacingRight) ||       // 1 is right and -1 is left
@@ -57,13 +60,23 @@ namespace Mechanics
             {
                 flip();
             }
-
-            rb.velocity = new Vector2(moveSpeed * inputDirection, rb.velocity.y);
+             
+            if (inputDirection != 0)
+            {
+                rb.velocity = new Vector2(moveSpeed * inputDirection, rb.velocity.y);
+                horizontalAxisInUse = true;
+            }
+            else if (horizontalAxisInUse && inputDirection == 0)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                horizontalAxisInUse = false;
+            }
+            
         }
 
         void computeVerticalMovement()
         {
-            if (Input.GetButtonDown("Jump") && jumpCount > 0)
+            if (Input.GetButtonDown(ButtonJump) && jumpCount > 0)
             {
                 fallMaxSpeed = MAXFALLSPEED;
                 isGrounded = false;
@@ -71,7 +84,7 @@ namespace Mechanics
                 anime.setAnimator(AnimeState.InAir);
                 jumpCount--;
             }
-            else if (Input.GetButtonDown("Fall") && (rb.velocity.y < 0.05) && !isGrounded)
+            else if (Input.GetButtonDown(ButtonFall) && (rb.velocity.y < 0.05) && !isGrounded)
             {
                 fallMaxSpeed = MAXFASTFALLSPEED;
                 rb.velocity = new Vector2(rb.velocity.x, MAXFASTFALLSPEED);

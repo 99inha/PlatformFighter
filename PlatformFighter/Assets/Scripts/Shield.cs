@@ -1,14 +1,16 @@
-﻿using System.Collections;
+﻿using Mechanics;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
     Vector3 scale;
+    const float SHIELDMAXHEALTH = 150f;
     const float SHIELDDURATION = 2f;
     const float RECHARGETIME = 4f;
     float useToRechargeRatio = SHIELDDURATION / RECHARGETIME;
-    float currentTime = SHIELDDURATION; 
+    float currentTime = SHIELDDURATION;     // the time represent the health of the shield 
     float ratio = 1f;   // determines the size of the shield
      
     // Start is called before the first frame update
@@ -50,6 +52,13 @@ public class Shield : MonoBehaviour
         return false;
     }
 
+
+    public void takeDamage(Attack attack)
+    {
+        float damageToTime = (attack.damage / SHIELDMAXHEALTH) * SHIELDDURATION;    // convert damage to time
+        updateShield(damageToTime, true);
+    }
+
     /* updateShieldSize:
     *    update size of shield base on the time ratio
     */
@@ -60,4 +69,7 @@ public class Shield : MonoBehaviour
         transform.localScale = new Vector3(scale.x * ratio, scale.y * ratio, scale.z * ratio);
         // updates shield size
     }
+
+
+
 }

@@ -71,6 +71,7 @@ namespace Mechanics
         public const float MAXFASTFALLSPEED = -18F;
 
         // public fields
+        public int playerNumber;
         public PlayerHealth health;
         public AnimeState attackHeld; // State tracker for what attack is being held currently
                                       // needs to be updated by the child whenever a holdable attack
@@ -111,6 +112,16 @@ namespace Mechanics
         bool canMove = true;
         bool canAttack = true;
         int upBCount = 1;
+        bool horizontalAxisInUse = false;
+
+        // Input buttons
+        string AxisHorizontal;
+        string AxisVertical;
+        string ButtonA;
+        string ButtonB;
+        string ButtonJump;
+        string ButtonFall;
+        string ButtonShield;
 
     }
 }
