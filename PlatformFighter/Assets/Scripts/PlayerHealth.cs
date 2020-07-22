@@ -19,9 +19,17 @@ public class PlayerHealth : MonoBehaviour
 
     // public fields; mutable through unity editor
     public int maxHealth;
+    public int maxStocks;
 
     // private fields
-    public float currHealth;
+    public float currHealth = 0f;  // set as public only to view it in unity
+    public int currStocks;
+
+
+    void Start()
+    {
+        currStocks = maxStocks;
+    }
 
     /* getHealth:
      *   getter for the current health of the player
@@ -69,5 +77,16 @@ public class PlayerHealth : MonoBehaviour
         }
 
         return finalKnockback;
+    }
+
+    /* die:
+     *      decrements a stock from the player's life
+     *      Args:
+     *      Returns: int - the remaining lives
+     */
+    public int die()
+    {
+        currStocks--;
+        return currStocks;
     }
 }
