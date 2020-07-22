@@ -1267,7 +1267,7 @@ GameObject:
   - component: {fileID: 1239530981}
   - component: {fileID: 1239530980}
   - component: {fileID: 1239530979}
-  - component: {fileID: 1239530982}
+  - component: {fileID: 1351773066}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1379,7 +1379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1351773065}
-  - component: {fileID: 1351773066}
+  - component: {fileID: 1351773067}
   m_Layer: 0
   m_Name: FirePoint
   m_TagString: Player2
@@ -1417,6 +1417,12 @@ MonoBehaviour:
   - {fileID: 568020477}
   - {fileID: 1509881437}
   - {fileID: 754729569}
+--- !u!114 &1351773067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351773064}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1834,7 +1840,7 @@ MonoBehaviour:
   fallMaxSpeed: -12
   lagTime: 0
   shieldObject: {fileID: 1537769191}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 1322521523}
   velocity: {x: 0, y: 0}
   horizontalAxis: 0
   verticalAxis: 0
