@@ -69,9 +69,7 @@ namespace Mechanics
             // only to check the exact input values
             horizontalAxis = Input.GetAxisRaw(AxisHorizontal);
             verticalAxis = Input.GetAxisRaw(AxisVertical);
-            transformRotation = transform.eulerAngles;
             velocity = rb.velocity;
-            right = transform.right;
         }
 
         private void LateUpdate()

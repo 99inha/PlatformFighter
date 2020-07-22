@@ -79,21 +79,20 @@ namespace Mechanics
         public float moveSpeed = 5f;
         public float jumpSpeed = 9f;
         public float fallMaxSpeed = -12f;
+        public float lagTime = 0f;
 
         public GameObject shieldObject;
+        public GameObject spawnPoint;
 
         // only to check the values from Unity Engine
         public Vector2 velocity;
-        public Vector3 transformRotation;
         public float horizontalAxis;
         public float verticalAxis;
-        public Vector3 right;
 
         // protected fields
         [SerializeField] protected bool hasControl = true;
         [SerializeField] protected bool isGrounded = false;
         protected PlayerAnime anime;
-        public float lagTime = 0f;
         protected Rigidbody2D rb;
         protected string hurtboxName;
         protected bool animationStart = false;

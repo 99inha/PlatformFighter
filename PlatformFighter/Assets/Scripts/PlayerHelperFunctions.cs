@@ -196,6 +196,11 @@ namespace Mechanics
             }
         }
 
+        /* hasCollided:
+         *      checks if this object has collided with the specified object already
+         *      Args: string name - name of the object that we want to check
+         *      Returns: bool - whether we have collided with the specified object
+         */
         protected bool hasCollided(string name)
         {
             foreach(string n in collided)
@@ -208,17 +213,35 @@ namespace Mechanics
             return false;
         }
 
+        /* startHitbox:
+         *      A setter for the hitboxGen boolean; hit box can now be generated
+         *      Args:
+         *      Returns:
+         */
         public void startHitbox()
         {
             hitboxGen = true;
         }
 
-
+        /* stopHitbox:
+         *      A setter for the hitboxGen boolean; hit box generation halts
+         *      Args:
+         *      Returns:
+         */
         public void stopHitbox()
         {
             hitboxGen = false;
         }
 
+        /* teleport:
+         *      Moves this object to the specified position
+         *      Args: Vector2 position - the position to teleport to
+         *      Returns:
+         */
+        public void teleport(Vector2 position)
+        {
+            transform.position = position;
+        }
     }
 }
 
