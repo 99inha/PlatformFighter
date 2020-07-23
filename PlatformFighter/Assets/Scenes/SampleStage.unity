@@ -1417,6 +1417,10 @@ MonoBehaviour:
   - {fileID: 568020477}
   - {fileID: 1509881437}
   - {fileID: 754729569}
+  upperLimit: 12.73
+  lowerLimit: -11.45
+  leftLimit: -18.9
+  rightLimit: 22.2
 --- !u!114 &1351773067
 MonoBehaviour:
   m_ObjectHideFlags: 0

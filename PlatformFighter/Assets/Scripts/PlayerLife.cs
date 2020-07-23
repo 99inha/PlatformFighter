@@ -20,6 +20,7 @@ namespace Mechanics
         {
             rb.velocity = new Vector2(0, 0);
             teleport(spawnPoint.transform.position);
+            shield.resetShield();
         }
     }
 }
