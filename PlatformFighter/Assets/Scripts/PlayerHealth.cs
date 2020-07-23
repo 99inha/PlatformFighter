@@ -6,29 +6,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Mechanics;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public const float ZERO_KNOCKBACK_SCALE = 1f;
-    public const float THIRTY_KNOCKBACK_SCALE = 1.25f;
-    public const float SIXTY_KNOCKBACK_SCALE = 1.5f;
-    public const float NINETY_KNOCKBACK_SCALE = 2f;
-    public const float ONE_TWENTY_KNOCKBACK_SCALE = 3f;
+    [SerializeField] const float ZERO_KNOCKBACK_SCALE = 1f;
+    [SerializeField] const float THIRTY_KNOCKBACK_SCALE = 1.25f;
+    [SerializeField] const float SIXTY_KNOCKBACK_SCALE = 1.5f;
+    [SerializeField] const float NINETY_KNOCKBACK_SCALE = 2f;
+    [SerializeField] const float ONE_TWENTY_KNOCKBACK_SCALE = 3f;
 
+    [SerializeField] int maxHealth;
+    [SerializeField] int maxStocks;
 
-    // public fields; mutable through unity editor
-    public int maxHealth;
-    public int maxStocks;
-
-    // private fields
-    public float currHealth = 0f;  // set as public only to view it in unity
-    public int currStocks;
-
+    [SerializeField] float currHealth = 0f;
+    [SerializeField] int currStocks;
+    [SerializeField] TextMeshProUGUI stockText;
 
     void Start()
     {
         currStocks = maxStocks;
+        stockText.text = currStocks.ToString();
     }
 
     /* getHealth:
@@ -39,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
     public float getHealth()
     {
         return currHealth;
+
     }
 
     /* takeDamage:
@@ -87,6 +87,7 @@ public class PlayerHealth : MonoBehaviour
     public int die()
     {
         currStocks--;
+        stockText.text = currStocks.ToString();
         return currStocks;
     }
 }
