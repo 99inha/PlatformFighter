@@ -22,11 +22,13 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] float currHealth = 0f;
     [SerializeField] int currStocks;
+    [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI stockText;
 
     void Start()
     {
         currStocks = maxStocks;
+        healthText.text = currHealth.ToString("N1");
         stockText.text = currStocks.ToString();
     }
 
@@ -76,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
+        healthText.text = currHealth.ToString("N1");
         return finalKnockback;
     }
 
@@ -89,5 +92,16 @@ public class PlayerHealth : MonoBehaviour
         currStocks--;
         stockText.text = currStocks.ToString();
         return currStocks;
+    }
+
+    /* respawn:
+     *      resets the health of the player
+     *      Args:
+     *      Returns:
+     */
+    public void respawn()
+    {
+        currHealth = 0f;
+        healthText.text = currHealth.ToString("N1");
     }
 }
