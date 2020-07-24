@@ -1416,7 +1416,6 @@ MonoBehaviour:
   players:
   - {fileID: 568020477}
   - {fileID: 1509881437}
-  - {fileID: 754729569}
   upperLimit: 12.73
   lowerLimit: -11.45
   leftLimit: -18.9

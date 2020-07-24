@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEditor;
 using UnityEngine;
@@ -18,25 +19,40 @@ public class CameraChange : MonoBehaviour
 
     // prviate
     private Camera camera;
-    private float sizeToDistanceRatio = 0.5f;
+    private float sizeToDistanceRatio = 0.6f;
+    private float height;
+    private float width;
+    [SerializeField] private float maxSize;
 
     [SerializeField] float upperLimit;
     [SerializeField] float lowerLimit;
     [SerializeField] float leftLimit;
     [SerializeField] float rightLimit;
 
+    
+
     void Start()
     {
-        camera = GetComponent<Camera>();    
-        
+        camera = GetComponent<Camera>();
+        height = 2f * camera.orthographicSize;
+        width = height * camera.aspect;
+        maxSize = getMaxSize();
     }
 
     // Update is called once per frame
     void Update()
     {
+        height = 2f * camera.orthographicSize;
+        width = height * camera.aspect;
         camera.transform.position = calculateLocation();
         camera.orthographicSize = getCameraSize();
         fixBounds();
+        if(camera.orthographicSize > maxSize)
+        {
+            camera.orthographicSize = maxSize;
+        }
+
+        Debug.Log(camera.aspect);
 
     }
 
@@ -45,8 +61,7 @@ public class CameraChange : MonoBehaviour
     //      the limits, use the drawGizmos function at the end to see the bounds
     void fixBounds()
     {
-        float height = 2f * camera.orthographicSize;
-        float width = height * camera.aspect;
+
         Vector3 vec = camera.transform.position;
 
         // left and right bounds
@@ -92,15 +107,27 @@ public class CameraChange : MonoBehaviour
     //      it's the mean value of all item's location in the players list
     Vector3 calculateLocation()
     {
+        float MaxX = 0;
+        float MaxY = 0;
         float x = 0;
         float y = 0;
-        foreach (GameObject game in players)
+        for (int i = 0; i < players.Count - 1; i++)
         {
-            x += game.transform.position.x;
-            y += game.transform.position.y;
+            for (int j = i + 1; j < players.Count; j++)
+            {
+                if(MaxX < findXDistance(players[i].transform.position, players[j].transform.position))
+                {
+                    MaxX = findXDistance(players[i].transform.position, players[j].transform.position);
+                    x = (players[i].transform.position.x + players[j].transform.position.x) / 2;
+                }
+
+                if (MaxY < findYDistance(players[i].transform.position, players[j].transform.position))
+                {
+                    MaxY = findYDistance(players[i].transform.position, players[j].transform.position);
+                    y = (players[i].transform.position.y + players[j].transform.position.y) / 2;
+                }
+            }
         }
-        x = x / players.Count;
-        y = y / players.Count;
 
         return new Vector3(x, y, -10);
     }
@@ -118,7 +145,7 @@ public class CameraChange : MonoBehaviour
         }
         else
         {
-            for(int i = 0; i < players.Count; i++)
+            for(int i = 0; i < players.Count - 1; i++)
             {
                 for(int j = i + 1; j < players.Count; j++)
                 {
@@ -151,6 +178,30 @@ public class CameraChange : MonoBehaviour
         return (float)ans;
     }
 
+    // findXDistance: finds the difference of the x value between two point
+    float findXDistance(Vector3 p1, Vector3 p2)
+    {
+        return Math.Abs(p1.x - p2.x);
+    }
+
+    // findYDistance: finds the difference of the y value between two point
+    float findYDistance(Vector3 p1, Vector3 p2)
+    {
+        return Math.Abs(p1.y - p2.y);
+
+    }
+
+    float getMaxSize()
+    {
+        float maxX = 0;
+        float maxY = 0;
+        // 2 * cameraSize * aspectRatio = the width of camera
+        maxX = (rightLimit - leftLimit) / (2 * camera.aspect);
+
+        // 2 * cameraSize = height of camera
+        maxY = (upperLimit - lowerLimit) / 2;
+        return Math.Min(maxX, maxY);
+    }
 
     // this unity function helps see where the camera bounds should be
     private void OnDrawGizmos()
@@ -162,4 +213,6 @@ public class CameraChange : MonoBehaviour
         Gizmos.DrawLine(new Vector2(leftLimit, lowerLimit), new Vector2(rightLimit, lowerLimit));
         Gizmos.DrawLine(new Vector2(rightLimit, upperLimit), new Vector2(rightLimit, lowerLimit));
     }
+
+
 }
