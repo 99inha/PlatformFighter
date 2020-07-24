@@ -52,7 +52,13 @@ public class Shield : MonoBehaviour
         return false;
     }
 
+    // resetShield: reset the health of the shield
+    public void resetShield()
+    {
+        currentTime = SHIELDDURATION;
+    }
 
+    // takeDamage: decrease the health of the shield based on the inputed damage
     public void takeDamage(Attack attack)
     {
         float damageToTime = (attack.damage / SHIELDMAXHEALTH) * SHIELDDURATION;    // convert damage to time
@@ -63,6 +69,9 @@ public class Shield : MonoBehaviour
     *    update size of shield base on the time ratio
     */
 
+
+    // updateShieldSize: updates the size of the shield based on how much health
+    //      the shield have
     void updateShieldSize()
     {
         ratio = currentTime / SHIELDDURATION;
@@ -70,6 +79,7 @@ public class Shield : MonoBehaviour
         // updates shield size
     }
 
+    
 
 
 }
