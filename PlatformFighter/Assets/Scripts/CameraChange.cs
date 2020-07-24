@@ -52,7 +52,7 @@ public class CameraChange : MonoBehaviour
             camera.orthographicSize = maxSize;
         }
 
-        Debug.Log(camera.aspect);
+        // Debug.Log(camera.aspect);
 
     }
 
