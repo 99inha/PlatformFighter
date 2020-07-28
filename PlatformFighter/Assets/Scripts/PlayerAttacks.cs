@@ -159,9 +159,10 @@ namespace Mechanics
                 UnityEngine.Debug.Log(rb.velocity.x);
 
                 // get the stunt timer from the attack object
+                
                 anime.setAnimator(AnimeState.InHitStunt);
                 hitStunt = 0.3f;
-
+                animationTime = 0f;
 
                 // Apply damage to playerHealth
 
