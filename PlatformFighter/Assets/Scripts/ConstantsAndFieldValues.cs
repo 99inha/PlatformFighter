@@ -33,7 +33,10 @@ namespace Mechanics
         ReleaseNeutralB,
         ReleaseSideB,
         ReleaseUpB,
-        ReleaseDownB
+        ReleaseDownB,
+
+        InHitStunt,
+        OutHitStunt
     }; // add new states as necessary
 
     /* Attack struct:
@@ -112,6 +115,7 @@ namespace Mechanics
         bool canAttack = true;
         int upBCount = 1;
         bool horizontalAxisInUse = false;
+        float hitStunt = 0;
 
         // Input buttons
         string AxisHorizontal;

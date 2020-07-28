@@ -102,6 +102,12 @@ namespace Mechanics
                 case AnimeState.ReleaseDownB:
                     releaseDownB();
                     break;
+                case AnimeState.InHitStunt:
+                    triggerStunt();
+                    break;
+                case AnimeState.OutHitStunt:
+                    releaseStunt();
+                    break;
                 
             }
         }
@@ -203,6 +209,15 @@ namespace Mechanics
             anime.SetBool("DownB", false);
         }
 
+        void triggerStunt()
+        {
+            anime.SetBool("InStunt", true);
+        }
+
+        void releaseStunt()
+        {
+            anime.SetBool("InStunt", false);
+        }
         // animation helper functions
         /* transformRotate:
          *      rotates the transform by the given angle from the CURRENT angle

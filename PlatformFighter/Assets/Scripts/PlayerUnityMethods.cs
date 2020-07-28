@@ -47,8 +47,14 @@ namespace Mechanics
             lagTime -= Time.deltaTime;
             if (lagTime < 0)
                 lagTime = 0f;
+            hitStunt -= Time.deltaTime;
+            if (hitStunt < 0)
+            {
+                hitStunt = 0f;
+                anime.setAnimator(AnimeState.OutHitStunt);
+            }
 
-            if (hasControl)
+            if (hasControl && hitStunt == 0)
             {
                 if (canMove)
                 {
@@ -141,11 +147,13 @@ namespace Mechanics
                 attackUsed = AnimeState.IDLE;
 
                 lagTime = 0f;
+                hitStunt = 0;
                 animationTime = 0f;
                 fallMaxSpeed = MAXFALLSPEED;
                 isGrounded = true;
                 jumpCount = 2;
                 upBCount = 1;
+
             }
 
             else if (col.transform.tag == "Wall")
