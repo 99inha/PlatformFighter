@@ -13,6 +13,9 @@ namespace Mechanics
         IDLE, 
         InAir, 
 
+        IsHurt,
+        ExitHurt,
+
         NAir,
         FAir,
         BackAir, 
@@ -73,9 +76,6 @@ namespace Mechanics
         // public fields
         public int playerNumber;
         public PlayerHealth health;
-        public AnimeState attackHeld; // State tracker for what attack is being held currently
-                                      // needs to be updated by the child whenever a holdable attack
-                                      // is pressed or released
         public float moveSpeed = 5f;
         public float jumpSpeed = 9f;
         public float fallMaxSpeed = -12f;
@@ -92,6 +92,9 @@ namespace Mechanics
         // protected fields
         [SerializeField] protected bool hasControl = true;
         [SerializeField] protected bool isGrounded = false;
+        [SerializeField] protected AnimeState attackHeld; // State tracker for what attack is being held currently
+                                                          // needs to be updated by the child whenever a holdable attack
+                                                          // is pressed or released
         protected PlayerAnime anime;
         protected Rigidbody2D rb;
         protected string hurtboxName;
@@ -100,6 +103,8 @@ namespace Mechanics
         protected AnimeState attackUsed;
         protected List<string> collided;
         protected bool isFacingRight = true; // this may need to be changed later on
+        protected float hitStunTime = 0.2f;
+        
 
         // private fields
         Shield shield;

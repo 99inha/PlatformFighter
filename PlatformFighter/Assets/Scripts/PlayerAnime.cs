@@ -45,6 +45,13 @@ namespace Mechanics
                     anime.SetBool("IsGrounded", false);
                     break;
 
+                case AnimeState.IsHurt:
+                    anime.SetBool("IsHurt", true);
+                    break;
+                case AnimeState.ExitHurt:
+                    anime.SetBool("IsHurt", false);
+                    break;
+
                 case AnimeState.Jab:
                     setJab();
                     break;
