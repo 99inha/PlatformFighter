@@ -115,6 +115,7 @@ namespace Mechanics
         bool horizontalAxisInUse = false;
         bool dead = false;
         float deathTimer = 0f;
+        
 
         // Input buttons
         string AxisHorizontal;

@@ -13,15 +13,19 @@ namespace Mechanics
             int remainingLives = health.die();
             if (remainingLives != 0)
             {
-                GameObject effect = Instantiate(ringOut, transform.position, transform.rotation);
-                effect.GetComponent<Ringout>().playRingout(deathZone);
+                if (!dead)
+                {
+                    GameObject effect = Instantiate(ringOut, transform.position, transform.rotation);
+                    effect.GetComponent<Ringout>().playRingout(deathZone);
+                }
+
                 deathTimer = 1f;
                 dead = true;
                 hasControl = false;
                 // make player "invisible"
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.transform.GetChild(2).gameObject.layer = 9;
-                Debug.Log(gameObject.transform.GetChild(2).gameObject.layer);
+                //Debug.Log(gameObject.transform.GetChild(2).gameObject.layer);
             }
         }
 

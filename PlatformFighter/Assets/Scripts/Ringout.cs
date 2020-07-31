@@ -31,6 +31,7 @@ public class Ringout : MonoBehaviour
             case 0:
                 // bottom deathZone
                 temp.y = lowerLimit + 3f;
+                
                 break;
             case 1:
                 // left deathZone
@@ -48,6 +49,27 @@ public class Ringout : MonoBehaviour
                 temp.x = rightLimit - 3f;
                 break;
         }
+
+        float boundsFix = 1.5f;
+
+        if(temp.x < leftLimit)
+        {
+            temp.x = leftLimit + boundsFix;
+        }
+        else if(temp.x > rightLimit)
+        {
+            temp.x = rightLimit - boundsFix;
+        }
+
+        if (temp.y < lowerLimit)
+        {
+            temp.y = lowerLimit + boundsFix;
+        }
+        else if (temp.y > upperLimit)
+        {
+            temp.y = upperLimit - boundsFix;
+        }
+
 
         gameObject.transform.position = temp;
 
