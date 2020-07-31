@@ -82,6 +82,7 @@ namespace Mechanics
         public float lagTime = 0f;
 
         public GameObject shieldObject;
+        public GameObject ringOut;
         public GameObject spawnPoint;
 
         // only to check the values from Unity Engine
@@ -112,6 +113,8 @@ namespace Mechanics
         bool canAttack = true;
         int upBCount = 1;
         bool horizontalAxisInUse = false;
+        bool dead = false;
+        float deathTimer = 0f;
 
         // Input buttons
         string AxisHorizontal;
