@@ -8,17 +8,13 @@ public class Ringout : MonoBehaviour
 
     Animator ringAnime;
 
+
+    // bounds for ring out 
     float upperLimit = 12.73f;
     float lowerLimit = -11.45f;
     float leftLimit = -18.9f;
     float rightLimit = 22.2f;
 
-
-
-    void getAnimator()
-    {
-        ringAnime = GetComponent<Animator>();
-    }
 
     private void destroy()
     {
@@ -26,18 +22,35 @@ public class Ringout : MonoBehaviour
     }
     
 
-    public void playRingout(float x, float y)
+    public void playRingout(int deathZone)
     {
-        Debug.Log(x + ":" + y);
-        if(ringAnime != null)
+        //Debug.Log(x + ":" + y);
+        Vector2 temp = gameObject.transform.position;
+        switch (deathZone)
         {
-            ringAnime.SetTrigger("playRingout");
+            case 0:
+                // bottom deathZone
+                temp.y = lowerLimit + 3f;
+                break;
+            case 1:
+                // left deathZone
+                gameObject.transform.Rotate(0, 0, 90);
+                temp.x = leftLimit + 3f;
+                break;
+            case 2:
+                // top deathZone
+                gameObject.transform.Rotate(0, 0, 180);
+                temp.y = upperLimit - 3f;
+                break;
+            case 3:
+                // right deathZone
+                gameObject.transform.Rotate(0, 0, -270);
+                temp.x = rightLimit - 3f;
+                break;
         }
-        else
-        {
-            getAnimator();  // for some reason the unity start function was not running at the start
-            ringAnime.SetTrigger("playRingout");
-        }
+
+        gameObject.transform.position = temp;
+
     }
 
     

@@ -14,6 +14,9 @@ namespace Mechanics
 
         void computeShield()
         {
+            if (dead)
+                return;
+
             bool isBroken = false;
             if (isGrounded && hasControl && Input.GetButtonDown(ButtonShield))
             {

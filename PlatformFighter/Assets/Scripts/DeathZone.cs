@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mechanics;
+using System;
 
 public class DeathZone : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class DeathZone : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        UnityEngine.Debug.Log("someone died: " + col.name);
-        col.GetComponentInParent<PlayerController>().playerDeath();
+        UnityEngine.Debug.Log("someone died: " + col.name + ":" + gameObject.name.Substring(9));
+        col.GetComponentInParent<PlayerController>().playerDeath(Convert.ToInt32(gameObject.name.Substring(9)));
     }
 }
