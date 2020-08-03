@@ -21,6 +21,8 @@ namespace Mechanics
         {
             shooter = shooterObject.GetComponent<ProjectileShooter>();
             base.Start();
+
+            // for rectangle to have a different lag time than default, change it here
         }
 
         protected override void jab()
@@ -194,7 +196,7 @@ namespace Mechanics
             // positive y values for up and negative values for down
             if (attack == AnimeState.Jab)
             {
-                damage = 0f;
+                damage = 5f;
                 hitDirection.x = 1.2f;
                 hitDirection.y = 0.9f;
                 hasUniformKnockback = true;
@@ -231,7 +233,7 @@ namespace Mechanics
             }
             else if (attack == AnimeState.DownTilt)
             {
-                damage = 5f;
+                damage = 10f;
                 hitDirection.x = 0.5f;
                 hitDirection.y = 8f;
 
@@ -242,7 +244,7 @@ namespace Mechanics
             }
             else if (attack == AnimeState.NAir)
             {
-                damage = 5f;
+                damage = 10f;
                 hitDirection.x = 3f;
                 hitDirection.y = 3f;
                 colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 0.72f, enemies);

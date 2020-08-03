@@ -144,27 +144,6 @@ namespace Mechanics
         }
 
 
-        public void takeDamage(Attack attack)
-        {
-            if (holdShield)
-            {   // Damage is applied on the shield
-                shield.takeDamage(attack);
-            }
-            else
-            {   // Damage is applied on the player
-                //StartCoroutine("lagForSeconds", 1f);
-                Vector2 finalKnockback = health.takeDamage(attack);
-                
-                rb.velocity = finalKnockback;
-                UnityEngine.Debug.Log(rb.velocity.x);
-
-
-                // Apply damage to playerHealth
-
-            }
-        }
-
-
         // virtual methods for character specific attacks
         protected virtual void jab()
         {
@@ -258,13 +237,6 @@ namespace Mechanics
         {
 
         }
-
-        protected virtual void generateHitBox(AnimeState attack)
-        {
-
-        }
-
-
     }
 }
 

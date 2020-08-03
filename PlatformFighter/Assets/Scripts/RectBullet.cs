@@ -9,7 +9,7 @@ public class RectBullet : MonoBehaviour
     public float lifeTime = 1f;
     public Rigidbody2D rb;
     public Vector2 knockback;
-    public float damage;
+    public float damage = 5f;
 
     const int HURTBOXLAYER = 10;
 
