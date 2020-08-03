@@ -25,6 +25,24 @@ namespace Mechanics
 
         }
 
+        /* hurtLag:
+         *     strips the control over the character for a given amount of seconds
+         *     and enters the hurt state
+         *     Args: float lagTime - how long the character lags
+         *     Returns: IEnumerator - for StartCoroutine
+         *     Usage: StartCoroutine("lagForSeconds", lagTime);
+         */
+        public IEnumerator hurtLag(float lagTime)
+        {
+            hasControl = false;
+            anime.setAnimator(AnimeState.IsHurt);
+
+            yield return new WaitForSeconds(lagTime);
+
+            anime.setAnimator(AnimeState.ExitHurt);
+            hasControl = true;
+        }
+
         public void takeDamage(Attack attack)
         {
             if (holdShield)
@@ -35,10 +53,9 @@ namespace Mechanics
             {   // Damage is applied on the player
                 //StartCoroutine("lagForSeconds", 1f);
                 Vector2 finalKnockback = health.takeDamage(attack);
-                anime.setAnimator(AnimeState.IsHurt);
 
                 float lagTime = computeLagTime(attack.hasUniformKnockback);
-                StartCoroutine("lagForSeconds", lagTime);
+                StartCoroutine("hurtLag", lagTime);
 
                 rb.velocity = finalKnockback;
                 UnityEngine.Debug.Log(rb.velocity.x);
