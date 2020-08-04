@@ -15,7 +15,8 @@ namespace Mechanics
             {
                 if (!dead)
                 {
-                    GameObject effect = Instantiate(ringOut, transform.position, transform.rotation);
+                    GameObject effect = Instantiate(ringOut, transform.position, new Quaternion(0,0,0,0));
+                    Debug.Log(transform.rotation);
                     effect.GetComponent<Ringout>().playRingout(deathZone);
                 }
 

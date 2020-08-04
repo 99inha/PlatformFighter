@@ -35,7 +35,7 @@ public class Ringout : MonoBehaviour
                 break;
             case 1:
                 // left deathZone
-                gameObject.transform.Rotate(0, 0, 90);
+                gameObject.transform.Rotate(0, 0, -90);
                 temp.x = leftLimit + 3f;
                 break;
             case 2:
