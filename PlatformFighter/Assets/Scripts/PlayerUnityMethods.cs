@@ -48,6 +48,17 @@ namespace Mechanics
             if (lagTime < 0)
                 lagTime = 0f;
 
+
+            if (dead)
+            {
+                deathTimer -= Time.deltaTime;
+                if(deathTimer <= 0)
+                {
+                    respawn();
+                    dead = false;
+                }
+            }
+
             if (hasControl)
             {
                 if (canMove)

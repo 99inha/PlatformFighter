@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 112614308}
   - component: {fileID: 112614309}
   m_Layer: 0
-  m_Name: DeathZone
+  m_Name: DeathZone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 8.286291, y: 0}
+  m_Offset: {x: 8.369545, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -287,7 +287,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 45.208237, y: 1}
+  m_Size: {x: 45.041733, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &112614309
 MonoBehaviour:
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 25.5
+  m_fontSize: 20.5
   m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -944,18 +944,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 2
   health: {fileID: 568020482}
-  attackHeld: 0
   moveSpeed: 5
   jumpSpeed: 9
   fallMaxSpeed: -12
   lagTime: 0
   shieldObject: {fileID: 1685187550}
+  ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
   spawnPoint: {fileID: 1322521523}
   velocity: {x: 0, y: 0}
   horizontalAxis: 0
   verticalAxis: 0
   hasControl: 1
   isGrounded: 0
+  attackHeld: 0
   shooterObject: {fileID: 1351773064}
   enemies:
     serializedVersion: 2
@@ -1640,7 +1641,7 @@ GameObject:
   - component: {fileID: 775912009}
   - component: {fileID: 775912010}
   m_Layer: 0
-  m_Name: DeathZone
+  m_Name: DeathZone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1673,7 +1674,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -18.131214, y: 1.1656408}
+  m_Offset: {x: -18.131214, y: 0.33564663}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1684,7 +1685,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7666473, y: 26.973852}
+  m_Size: {x: 1.7666473, y: 25.313864}
   m_EdgeRadius: 0
 --- !u!114 &775912010
 MonoBehaviour:
@@ -2131,7 +2132,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.15
+  m_fontSize: 24.7
   m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2376,7 +2377,7 @@ GameObject:
   - component: {fileID: 1525394098}
   - component: {fileID: 1525394099}
   m_Layer: 0
-  m_Name: DeathZone
+  m_Name: DeathZone3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2409,7 +2410,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -18.131214, y: 1.1656408}
+  m_Offset: {x: -18.131214, y: 0.7222433}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2420,7 +2421,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7666473, y: 26.973852}
+  m_Size: {x: 1.7666473, y: 24.56684}
   m_EdgeRadius: 0
 --- !u!114 &1525394099
 MonoBehaviour:
@@ -2547,18 +2548,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   health: {fileID: 1509881441}
-  attackHeld: 0
   moveSpeed: 5
   jumpSpeed: 9
   fallMaxSpeed: -12
   lagTime: 0
   shieldObject: {fileID: 1537769191}
+  ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
   spawnPoint: {fileID: 1322521523}
   velocity: {x: 0, y: 0}
   horizontalAxis: 0
   verticalAxis: 0
   hasControl: 1
   isGrounded: 0
+  attackHeld: 0
   shooterObject: {fileID: 209758751}
   enemies:
     serializedVersion: 2
@@ -2717,7 +2719,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 62.4
+  m_fontSize: 50.2
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2972,7 +2974,7 @@ GameObject:
   - component: {fileID: 1808047870}
   - component: {fileID: 1808047871}
   m_Layer: 0
-  m_Name: DeathZone
+  m_Name: DeathZone0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3192,7 +3194,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 62.4
+  m_fontSize: 50.2
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
