@@ -36,10 +36,14 @@ namespace Mechanics
         {
             gameObject.transform.GetChild(2).gameObject.layer = 10;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            anime.setAnimator(AnimeState.IDLE);
+
             hasControl = true;
             holdShield = false;
+
             rb.velocity = new Vector2(0, 0);
             teleport(spawnPoint.transform.position);
+
             health.respawn();
             shield.resetShield();
 
