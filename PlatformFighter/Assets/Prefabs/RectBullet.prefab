@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1461911420088902725}
   - component: {fileID: 1461911420088902724}
   - component: {fileID: -2017012219344358627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RectBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
