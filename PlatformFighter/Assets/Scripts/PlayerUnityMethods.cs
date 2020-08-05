@@ -25,6 +25,8 @@ namespace Mechanics
             anime = GetComponent<PlayerAnime>();
             collided = new List<string>();
             hurtboxName = transform.GetChild(2).name;   // Hurtbox should be the 3rd on the player object's list
+            spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            hurtboxObject = gameObject.transform.GetChild(2).gameObject;
 
             // linking button inputs to player number
             AxisHorizontal = "Horizontal" + playerNumber;
@@ -42,6 +44,7 @@ namespace Mechanics
 
             correctJumpCount();
             computeShield();
+            computeVulnerStates();
 
             // update lagTime
             lagTime -= Time.deltaTime;
@@ -78,9 +81,9 @@ namespace Mechanics
 
             // updateAnimator();
             // only to check the exact input values
-            horizontalAxis = Input.GetAxisRaw(AxisHorizontal);
-            verticalAxis = Input.GetAxisRaw(AxisVertical);
-            velocity = rb.velocity;
+            //horizontalAxis = Input.GetAxisRaw(AxisHorizontal);
+            //verticalAxis = Input.GetAxisRaw(AxisVertical);
+            //velocity = rb.velocity;
         }
 
         private void LateUpdate()

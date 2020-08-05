@@ -163,77 +163,8 @@ Transform:
   m_Children:
   - {fileID: 754729570}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &31471585
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.088565
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.2815818
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014781, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2576446216467014782, guid: eacc6753b108b724eb56ef47c366309f,
-        type: 3}
-      propertyPath: m_Name
-      value: RespawnPlatform
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: eacc6753b108b724eb56ef47c366309f, type: 3}
 --- !u!1 &48217184
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +453,7 @@ Transform:
   - {fileID: 112614307}
   - {fileID: 1525394097}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262732416
 GameObject:
@@ -890,7 +821,7 @@ RectTransform:
   - {fileID: 761882458}
   - {fileID: 2047674294}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -971,7 +902,7 @@ GameObject:
   - component: {fileID: 568020479}
   - component: {fileID: 568020483}
   - component: {fileID: 568020482}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
   m_Icon: {fileID: 0}
@@ -997,7 +928,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &568020479
 MonoBehaviour:
@@ -1019,13 +950,13 @@ MonoBehaviour:
   lagTime: 0
   shieldObject: {fileID: 1685187550}
   ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
-  spawnPoint: {fileID: 1322521523}
-  velocity: {x: 0, y: 0}
-  horizontalAxis: 0
-  verticalAxis: 0
+  spawnPoint: {fileID: 1430135404}
+  respawnPlatformPrefab: {fileID: 2576446216467014782, guid: eacc6753b108b724eb56ef47c366309f,
+    type: 3}
   hasControl: 1
   isGrounded: 0
   attackHeld: 0
+  currVulnerState: 0
   shooterObject: {fileID: 1351773064}
   enemies:
     serializedVersion: 2
@@ -1095,7 +1026,7 @@ Transform:
   - {fileID: 1351773065}
   - {fileID: 1552946422}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &568020482
 MonoBehaviour:
@@ -1800,7 +1731,7 @@ Transform:
   - {fileID: 262732417}
   - {fileID: 1463721842}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025299884
 GameObject:
@@ -1988,7 +1919,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1351773064
 GameObject:
@@ -2084,7 +2015,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463721841
 GameObject:
@@ -2390,7 +2321,7 @@ Transform:
   - {fileID: 209758752}
   - {fileID: 264281712}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1509881440
 MonoBehaviour:
@@ -2735,12 +2666,12 @@ MonoBehaviour:
   shieldObject: {fileID: 1537769191}
   ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
   spawnPoint: {fileID: 1322521523}
-  velocity: {x: 0, y: 0}
-  horizontalAxis: 0
-  verticalAxis: 0
+  respawnPlatformPrefab: {fileID: 2576446216467014782, guid: eacc6753b108b724eb56ef47c366309f,
+    type: 3}
   hasControl: 1
   isGrounded: 0
   attackHeld: 0
+  currVulnerState: 0
   shooterObject: {fileID: 209758751}
   enemies:
     serializedVersion: 2
@@ -2983,7 +2914,7 @@ GameObject:
   - component: {fileID: 1685187554}
   - component: {fileID: 1685187553}
   - component: {fileID: 1685187552}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Player2
   m_Icon: {fileID: 0}
