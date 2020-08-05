@@ -9,12 +9,19 @@ using UnityEngine;
 
 namespace Mechanics
 {
-    public enum AnimeState { 
+    /* AnimeStates:
+     *      denotes the states that the character is currently in
+     *      (in terms of the animation)
+     */
+    public enum AnimeState 
+    { 
         IDLE, 
         InAir, 
 
         IsHurt,
         ExitHurt,
+
+        Dead,
 
         NAir,
         FAir,
@@ -38,6 +45,16 @@ namespace Mechanics
         ReleaseUpB,
         ReleaseDownB
     }; // add new states as necessary
+
+    /* VulnerState:
+     *      vulnerability states that determines if the player is hittable
+     */
+    public enum VulnerState
+    {
+        HITTABLE,
+        UNHITTABLE,
+        RESPAWN
+    };
 
     /* Attack struct:
      *      a struct that carries the information of the attack 
@@ -84,11 +101,12 @@ namespace Mechanics
         public GameObject shieldObject;
         public GameObject ringOut;
         public GameObject spawnPoint;
+        public GameObject respawnPlatformPrefab;
 
         // only to check the values from Unity Engine
-        public Vector2 velocity;
-        public float horizontalAxis;
-        public float verticalAxis;
+        //public Vector2 velocity;
+        //public float horizontalAxis;
+        //public float verticalAxis;
 
         // protected fields
         [SerializeField] protected bool hasControl = true;
@@ -109,6 +127,9 @@ namespace Mechanics
 
         // private fields
         Shield shield;
+        GameObject respawnPlatform;
+        SpriteRenderer spriteRenderer;
+        GameObject hurtboxObject;
 
         bool hitboxGen = false;
         Vector3 localScale;
@@ -120,7 +141,10 @@ namespace Mechanics
         bool horizontalAxisInUse = false;
         bool dead = false;
         float deathTimer = 0f;
-        
+        float vulnerStateTimer = 2f;
+        bool lostGame = false;
+
+        [SerializeField] VulnerState currVulnerState = VulnerState.HITTABLE;
 
         // Input buttons
         string AxisHorizontal;

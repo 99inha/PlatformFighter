@@ -229,7 +229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112614306
 GameObject:
@@ -453,7 +453,7 @@ Transform:
   - {fileID: 112614307}
   - {fileID: 1525394097}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262732416
 GameObject:
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20.5
+  m_fontSize: 25.5
   m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -821,7 +821,7 @@ RectTransform:
   - {fileID: 761882458}
   - {fileID: 2047674294}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 568020479}
   - component: {fileID: 568020483}
   - component: {fileID: 568020482}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &568020479
 MonoBehaviour:
@@ -950,13 +950,13 @@ MonoBehaviour:
   lagTime: 0
   shieldObject: {fileID: 1685187550}
   ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
-  spawnPoint: {fileID: 1322521523}
-  velocity: {x: 0, y: 0}
-  horizontalAxis: 0
-  verticalAxis: 0
+  spawnPoint: {fileID: 1430135404}
+  respawnPlatformPrefab: {fileID: 2576446216467014782, guid: eacc6753b108b724eb56ef47c366309f,
+    type: 3}
   hasControl: 1
   isGrounded: 0
   attackHeld: 0
+  currVulnerState: 0
   shooterObject: {fileID: 1351773064}
   enemies:
     serializedVersion: 2
@@ -1901,8 +1901,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1322521524}
   m_Layer: 0
-  m_Name: SpawnPoint
-  m_TagString: Untagged
+  m_Name: SpawnPoint1
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1915,7 +1915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322521523}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.15, y: 2.96, z: -42.07499}
+  m_LocalPosition: {x: -2.64, y: 3.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1987,6 +1987,36 @@ MonoBehaviour:
   firePoint: {fileID: 1351773065}
   projectilePrefab: {fileID: 1461911420088902776, guid: e018b73ff72a1844fb7dcede7b3f4a82,
     type: 3}
+--- !u!1 &1430135404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430135405}
+  m_Layer: 0
+  m_Name: SpawnPoint2
+  m_TagString: Player2
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1430135405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430135404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.82, y: 3.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463721841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,7 +2162,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.7
+  m_fontSize: 39.15
   m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2636,12 +2666,12 @@ MonoBehaviour:
   shieldObject: {fileID: 1537769191}
   ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
   spawnPoint: {fileID: 1322521523}
-  velocity: {x: 0, y: 0}
-  horizontalAxis: 0
-  verticalAxis: 0
+  respawnPlatformPrefab: {fileID: 2576446216467014782, guid: eacc6753b108b724eb56ef47c366309f,
+    type: 3}
   hasControl: 1
   isGrounded: 0
   attackHeld: 0
+  currVulnerState: 0
   shooterObject: {fileID: 209758751}
   enemies:
     serializedVersion: 2
@@ -2800,7 +2830,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50.2
+  m_fontSize: 62.4
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2884,7 +2914,7 @@ GameObject:
   - component: {fileID: 1685187554}
   - component: {fileID: 1685187553}
   - component: {fileID: 1685187552}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Player2
   m_Icon: {fileID: 0}
@@ -3275,7 +3305,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50.2
+  m_fontSize: 62.4
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1

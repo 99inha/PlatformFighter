@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Android;
 using UnityEngine;
@@ -23,35 +24,43 @@ namespace Mechanics
             dead = true;
             hasControl = false;
             // make player "invisible"
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.transform.GetChild(2).gameObject.layer = 9;
+            spriteRenderer.enabled = false;
+            hurtboxObject.layer = 9;
+
+            anime.setAnimator(AnimeState.Dead);
             //Debug.Log(gameObject.transform.GetChild(2).gameObject.layer);
 
 
             if(remainingLives == 0)
             {
-                dead = false; // so the player don't respawn
-                // add events that happens when player runs out of stocks
+                lostGame = true; // so the player don't respawn
             }
         }
 
-        
-
         void respawn()
         {
-            gameObject.transform.GetChild(2).gameObject.layer = 10;
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            anime.setAnimator(AnimeState.IDLE);
+            spriteRenderer.enabled = true;
 
-            hasControl = true;
-            holdShield = false;
+            // make character unhittable by changing layers
+            hurtboxObject.layer = 11;
+            currVulnerState = VulnerState.RESPAWN;
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
 
+            // spawn a respawn platform
+            respawnPlatform = Instantiate(
+                respawnPlatformPrefab,
+                spawnPoint.transform.position,
+                spawnPoint.transform.rotation
+            );
+
+            // respawn the character at spawn point
             rb.velocity = new Vector2(0, 0);
             teleport(spawnPoint.transform.position);
 
             health.respawn();
             shield.resetShield();
-
+            hasControl = true;
+            holdShield = false;
         }
 
         /* hurtLag:

@@ -53,6 +53,74 @@ namespace Mechanics
 
         }
 
+        /* computeVulnerStates:
+         *      computes the current vulnerability state and transitions from
+         *      it to others
+         *      Args:
+         *      Returns:
+         *      Usage: call in Update method
+         */
+        void computeVulnerStates()
+        {
+            float horInputAxis = Input.GetAxisRaw(AxisHorizontal);
+            float vertInputAxis = Input.GetAxisRaw(AxisVertical);
+            bool jumpInput = Input.GetButton(ButtonJump);
+            bool AInput = Input.GetButton(ButtonA);
+            bool BInput = Input.GetButton(ButtonB);
+
+            bool movementInputted = (horInputAxis != 0) || (vertInputAxis != 0) || jumpInput;
+            bool attackInputted = AInput || BInput;
+
+            if (currVulnerState == VulnerState.RESPAWN)
+            {
+                vulnerStateTimer -= Time.deltaTime;
+                if (vulnerStateTimer <= 0)
+                {
+                    hurtboxObject.layer = 9;
+                    vulnerStateTimer = 2f;
+                    currVulnerState = VulnerState.UNHITTABLE;
+                    Destroy(respawnPlatform);
+                }
+
+                if (movementInputted)
+                {
+                    hurtboxObject.layer = 9;
+                    vulnerStateTimer = 2f;
+                    currVulnerState = VulnerState.UNHITTABLE;
+                    Destroy(respawnPlatform);
+                }
+
+                if (attackInputted)
+                {
+                    hurtboxObject.layer = 10;
+                    currVulnerState = VulnerState.HITTABLE;
+                    vulnerStateTimer = 2f;
+                    Destroy(respawnPlatform);
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+                }
+            }
+
+            if (currVulnerState == VulnerState.UNHITTABLE)
+            {
+                vulnerStateTimer -= Time.deltaTime;
+                if (vulnerStateTimer <= 0)
+                {
+                    gameObject.transform.GetChild(2).gameObject.layer = 10;
+                    vulnerStateTimer = 2f;
+                    currVulnerState = VulnerState.HITTABLE;
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+                }
+
+                if (attackInputted)
+                {
+                    gameObject.transform.GetChild(2).gameObject.layer = 10;
+                    currVulnerState = VulnerState.HITTABLE;
+                    vulnerStateTimer = 2f;
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+                }
+            }
+        }
+
         void computeHorizontalMovement()
         {
             float inputDirection = Input.GetAxisRaw(AxisHorizontal);
