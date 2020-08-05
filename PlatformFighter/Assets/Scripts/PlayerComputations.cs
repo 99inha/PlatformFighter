@@ -23,18 +23,21 @@ namespace Mechanics
                 holdShield = true;
                 hasControl = false;
                 rb.velocity = new Vector2(0, rb.velocity.y);
+                GameObject.Find(hurtboxName).layer = 9; // change hurtbox to unhittable
+
             }
             else if (holdShield && Input.GetButtonUp(ButtonShield))
             {
                 holdShield = false;
                 hasControl = true;
+                GameObject.Find(hurtboxName).layer = 10;    // change hurtbox back to hittable
+
             }
 
             if (holdShield)
             {
                 isBroken = shield.updateShield(Time.deltaTime, true);
                 shieldObject.SetActive(true);
-                GameObject.Find(hurtboxName).layer = 9; // change hurtbox to unhittable
 
                 if (isBroken)
                 {
@@ -46,9 +49,6 @@ namespace Mechanics
             {
                 shield.updateShield(Time.deltaTime, false);
                 shieldObject.SetActive(false);
-                GameObject.Find(hurtboxName).layer = 10;    // change hurtbox back to hittable
-
-
             }
 
         }

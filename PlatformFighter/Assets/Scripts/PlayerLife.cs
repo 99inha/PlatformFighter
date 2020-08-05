@@ -11,22 +11,27 @@ namespace Mechanics
         public void playerDeath(int deathZone)
         {
             int remainingLives = health.die();
-            if (remainingLives != 0)
-            {
-                if (!dead)
-                {
-                    GameObject effect = Instantiate(ringOut, transform.position, new Quaternion(0,0,0,0));
-                    Debug.Log(transform.rotation);
-                    effect.GetComponent<Ringout>().playRingout(deathZone);
-                }
 
-                deathTimer = 1f;
-                dead = true;
-                hasControl = false;
-                // make player "invisible"
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                gameObject.transform.GetChild(2).gameObject.layer = 9;
-                //Debug.Log(gameObject.transform.GetChild(2).gameObject.layer);
+            if (!dead)
+            {
+                GameObject effect = Instantiate(ringOut, transform.position, new Quaternion(0,0,0,0));
+                Debug.Log(transform.rotation);
+                effect.GetComponent<Ringout>().playRingout(deathZone);
+            }
+
+            deathTimer = 1f;
+            dead = true;
+            hasControl = false;
+            // make player "invisible"
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.transform.GetChild(2).gameObject.layer = 9;
+            //Debug.Log(gameObject.transform.GetChild(2).gameObject.layer);
+
+
+            if(remainingLives == 0)
+            {
+                dead = false; // so the player don't respawn
+                // add events that happens when player runs out of stocks
             }
         }
 

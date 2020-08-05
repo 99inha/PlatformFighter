@@ -5,7 +5,7 @@ using Mechanics;
 
 public class RectBullet : MonoBehaviour
 {
-    public float speed = 16f;
+    public float speed = 12f;
     public float lifeTime = 1f;
     public Rigidbody2D rb;
     public Vector2 knockback;

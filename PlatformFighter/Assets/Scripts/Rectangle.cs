@@ -148,6 +148,8 @@ namespace Mechanics
             attackUsed = AnimeState.DownB;
 
             attackHeld = AnimeState.DownB;
+
+
         }
 
         protected override void releaseJab()
@@ -191,6 +193,7 @@ namespace Mechanics
             float damage = 0f;
             Vector2 hitDirection = new Vector2(0,0);
             bool hasUniformKnockback = false;
+            bool reflect = false;
 
             // positive x values for away and negative for inwards
             // positive y values for up and negative values for down
@@ -319,6 +322,7 @@ namespace Mechanics
                 colliders = Physics2D.OverlapBoxAll(
                     new Vector2(transform.position.x - 0.035f * transform.right.x, transform.position.y + 0.05f),
                     new Vector2(1.8f, 1.7f), 0, enemies);
+                reflect = true;
             }
 
             string name;
@@ -329,17 +333,36 @@ namespace Mechanics
 
                 if (!hasCollided(name) && (string.Compare(name, hurtboxName) != 0))
                 {
-                    // calculating the direction of the hit
-                    float directionX = d.transform.position.x - transform.position.x;
-                    hitDirection.x *= directionX / Mathf.Abs(directionX); // away from the player
-                    Attack attackStruct = new Attack(damage, hitDirection, hasUniformKnockback);
+                    if(d.gameObject.layer == 10)
+                    {   // if hit box hit another player
+
+                        // calculating the direction of the hit
+                        float directionX = d.transform.position.x - transform.position.x;
+                        hitDirection.x *= directionX / Mathf.Abs(directionX); // away from the player
+                        Attack attackStruct = new Attack(damage, hitDirection, hasUniformKnockback);
 
 
-                    d.GetComponentInParent<PlayerController>().takeDamage(attackStruct);
+                        d.GetComponentInParent<PlayerController>().takeDamage(attackStruct);
+
+                    }
+                    else if(d.gameObject.layer == 8 )
+                    {   // if hit box hit a bullet
+                        if (reflect && d.gameObject.tag != transform.tag)
+                        {   // if we used DownB and reflected the bullet
+                            Vector2 velo = d.gameObject.GetComponent<Rigidbody2D>().velocity;
+                            velo.x = velo.x * -1 * 1.1f;   // bullet gets faster when reflected
+                            d.gameObject.GetComponent<Rigidbody2D>().velocity = velo;
+                            d.gameObject.GetComponent<RectBullet>().lifeTime = 1f;
+                            d.gameObject.tag = transform.tag;
+
+                        }
+
+                    }
+
                     collided.Add(name);
-                    Debug.Log(d.name);
-
+                    Debug.Log(d.name + "asdfasdfasdf:" + collided[0]);
                 }
+                
             }
 
 
@@ -412,7 +435,7 @@ namespace Mechanics
             //Gizmos.DrawCube(transform.TransformPoint(1.1f, 0.1f, transform.position.z), transform.TransformVector(2.2f, 0.4f, 1));
 
             // DownB
-            //Gizmos.DrawCube(new Vector3(transform.position.x - 0.035f, transform.position.y + 0.05f, transform.position.z), new Vector3(1.8f,1.7f, 1));
+            // Gizmos.DrawCube(new Vector3(transform.position.x - 0.035f, transform.position.y + 0.05f, transform.position.z), new Vector3(2f,1.7f, 1));
 
 
         }
