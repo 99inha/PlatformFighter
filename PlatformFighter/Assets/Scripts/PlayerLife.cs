@@ -26,28 +26,25 @@ namespace Mechanics
             // make player "invisible"
             spriteRenderer.enabled = false;
             hurtboxObject.layer = 9;
+
+            anime.setAnimator(AnimeState.Dead);
             //Debug.Log(gameObject.transform.GetChild(2).gameObject.layer);
 
 
             if(remainingLives == 0)
             {
-                dead = false; // so the player don't respawn
-                // add events that happens when player runs out of stocks
+                lostGame = true; // so the player don't respawn
             }
         }
 
         void respawn()
         {
             spriteRenderer.enabled = true;
-            anime.setAnimator(AnimeState.InAir);
 
             // make character unhittable by changing layers
             hurtboxObject.layer = 11;
             currVulnerState = VulnerState.RESPAWN;
             spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
-
-            hasControl = true;
-            holdShield = false;
 
             // spawn a respawn platform
             respawnPlatform = Instantiate(
@@ -62,7 +59,8 @@ namespace Mechanics
 
             health.respawn();
             shield.resetShield();
-
+            hasControl = true;
+            holdShield = false;
         }
 
         /* hurtLag:

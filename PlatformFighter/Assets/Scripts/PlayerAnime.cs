@@ -52,6 +52,10 @@ namespace Mechanics
                     anime.SetBool("IsHurt", false);
                     break;
 
+                case AnimeState.Dead:
+                    anime.SetTrigger("Dead");
+                    break;
+
                 case AnimeState.Jab:
                     setJab();
                     break;

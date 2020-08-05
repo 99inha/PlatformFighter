@@ -41,6 +41,11 @@ namespace Mechanics
         // Update is called once per frame
         void Update()
         {
+            if (lostGame)
+            {
+                // game end behaviour here
+                return;
+            }
 
             correctJumpCount();
             computeShield();
@@ -160,6 +165,8 @@ namespace Mechanics
                 isGrounded = true;
                 jumpCount = 2;
                 upBCount = 1;
+
+                giveControl();
             }
 
             else if (col.transform.tag == "Wall")

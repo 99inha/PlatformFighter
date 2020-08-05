@@ -21,6 +21,8 @@ namespace Mechanics
         IsHurt,
         ExitHurt,
 
+        Dead,
+
         NAir,
         FAir,
         BackAir, 
@@ -140,6 +142,7 @@ namespace Mechanics
         bool dead = false;
         float deathTimer = 0f;
         float vulnerStateTimer = 2f;
+        bool lostGame = false;
 
         [SerializeField] VulnerState currVulnerState = VulnerState.HITTABLE;
 

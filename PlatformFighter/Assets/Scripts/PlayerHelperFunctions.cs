@@ -161,12 +161,15 @@ namespace Mechanics
          */
         public void giveControl()
         {
-            if(attackHeld == AnimeState.IDLE || attackHeld == AnimeState.InAir)
+            if (!dead)
             {
-                hasControl = true;
-                canAttack = true;
-                canMove = true;
+                if (attackHeld == AnimeState.IDLE || attackHeld == AnimeState.InAir)
+                {
+                    hasControl = true;
+                    canAttack = true;
+                    canMove = true;
 
+                }
             }
         }
 
