@@ -17,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Bullet
   - Unhittable
   - Hurtbox
   - 
@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: player
+  - name: player2
+    uniqueID: 3239756529
+    locked: 0
+  - name: player1
     uniqueID: 2272972325
     locked: 0
