@@ -44,6 +44,9 @@ namespace Mechanics
             if (lostGame)
             {
                 // game end behaviour here
+                
+                SceneChange.winner = playerNumber == 1 ? 2 : 1; // the winner is the other player 
+                change.loadScene();
                 return;
             }
 

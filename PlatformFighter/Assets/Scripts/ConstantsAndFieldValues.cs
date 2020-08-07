@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Mechanics
 {
@@ -93,6 +94,7 @@ namespace Mechanics
         // public fields
         public int playerNumber;
         public PlayerHealth health;
+        public SceneChange change;
         public float moveSpeed = 5f;
         public float jumpSpeed = 9f;
         public float fallMaxSpeed = -12f;
