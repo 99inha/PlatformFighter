@@ -50,6 +50,14 @@ namespace Mechanics
                 return;
             }
 
+            hurtLagTime -= Time.deltaTime;
+            if (hurtLagTime <= 0)
+            {
+                isHurt = false;
+                hasControl = true;
+                anime.setAnimator(AnimeState.ExitHurt);
+            }
+
             correctJumpCount();
             computeShield();
             computeVulnerStates();
@@ -58,7 +66,6 @@ namespace Mechanics
             lagTime -= Time.deltaTime;
             if (lagTime < 0)
                 lagTime = 0f;
-
 
             if (dead)
             {
@@ -162,14 +169,20 @@ namespace Mechanics
                 anime.setAnimator(AnimeState.IDLE);
                 attackUsed = AnimeState.IDLE;
 
-                lagTime = 0f;
-                animationTime = 0f;
-                fallMaxSpeed = MAXFALLSPEED;
                 isGrounded = true;
+
                 jumpCount = 2;
                 upBCount = 1;
 
-                giveControl();
+                lagTime = 0f;
+                animationTime = 0f;
+                fallMaxSpeed = MAXFALLSPEED;
+
+                if (!isHurt)
+                {
+                    giveControl();
+                }
+                
             }
 
             else if (col.transform.tag == "Wall")
