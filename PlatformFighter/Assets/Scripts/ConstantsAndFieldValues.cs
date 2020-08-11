@@ -102,6 +102,7 @@ namespace Mechanics
 
         public GameObject shieldObject;
         public GameObject ringOut;
+        public GameObject hitEffect;
         public GameObject spawnPoint;
         public GameObject respawnPlatformPrefab;
 

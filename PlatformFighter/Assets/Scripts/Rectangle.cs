@@ -342,7 +342,7 @@ namespace Mechanics
                         Attack attackStruct = new Attack(damage, hitDirection, hasUniformKnockback);
 
 
-                        d.GetComponentInParent<PlayerController>().takeDamage(attackStruct);
+                        d.GetComponentInParent<PlayerController>().takeDamage(attackStruct, transform.position);
 
                     }
                     else if(d.gameObject.layer == 8 )
