@@ -164,6 +164,28 @@ namespace Mechanics
             
         }
 
+        /* computeLagTimes:
+         *      computes the lag time from getting hurt or using an attack
+         *      Args:
+         *      Returns:
+         *      Usage: Use in update
+         */
+        void computeLagTimes()
+        {
+            // update hurt lag time
+            hurtLagTime -= Time.deltaTime;
+            if (hurtLagTime <= 0)
+            {
+                isHurt = false;
+                hasControl = true;
+                anime.setAnimator(AnimeState.ExitHurt);
+            }
+
+            // update attack lagTime
+            lagTime -= Time.deltaTime;
+            if (lagTime < 0)
+                lagTime = 0f;
+        }
 
     }
 }

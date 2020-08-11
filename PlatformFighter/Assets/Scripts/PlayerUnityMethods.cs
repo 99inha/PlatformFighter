@@ -50,22 +50,11 @@ namespace Mechanics
                 return;
             }
 
-            hurtLagTime -= Time.deltaTime;
-            if (hurtLagTime <= 0)
-            {
-                isHurt = false;
-                hasControl = true;
-                anime.setAnimator(AnimeState.ExitHurt);
-            }
-
+            computeLagTimes();
             correctJumpCount();
             computeShield();
             computeVulnerStates();
 
-            // update lagTime
-            lagTime -= Time.deltaTime;
-            if (lagTime < 0)
-                lagTime = 0f;
 
             if (dead)
             {
@@ -77,6 +66,7 @@ namespace Mechanics
                 }
             }
 
+            // control hierarchy
             if (hasControl)
             {
                 if (canMove)

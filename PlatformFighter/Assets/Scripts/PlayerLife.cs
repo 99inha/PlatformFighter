@@ -69,6 +69,7 @@ namespace Mechanics
          *     Args: float lagTime - how long the character lags
          *     Returns: IEnumerator - for StartCoroutine
          *     Usage: StartCoroutine("lagForSeconds", lagTime);
+         *     *** this function is outdated by a lag time computation that happens at update
          */
         public IEnumerator hurtLag(float lagTime)
         {
