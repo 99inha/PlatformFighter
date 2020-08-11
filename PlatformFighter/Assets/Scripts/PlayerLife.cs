@@ -69,14 +69,17 @@ namespace Mechanics
          *     Args: float lagTime - how long the character lags
          *     Returns: IEnumerator - for StartCoroutine
          *     Usage: StartCoroutine("lagForSeconds", lagTime);
+         *     *** this function is outdated by a lag time computation that happens at update
          */
         public IEnumerator hurtLag(float lagTime)
         {
             hasControl = false;
             anime.setAnimator(AnimeState.IsHurt);
+            isHurt = true;
 
             yield return new WaitForSeconds(lagTime);
 
+            isHurt = true;
             anime.setAnimator(AnimeState.ExitHurt);
             hasControl = true;
         }
@@ -92,9 +95,12 @@ namespace Mechanics
                 //StartCoroutine("lagForSeconds", 1f);
                 Vector2 finalKnockback = health.takeDamage(attack);
 
-                float lagTime = computeLagTime(attack.hasUniformKnockback);
-                StartCoroutine("hurtLag", lagTime);
+                hurtLagTime = computeLagTime(attack.hasUniformKnockback);
+                //StartCoroutine("hurtLag", hurtLagTime);
 
+                hasControl = false;
+                anime.setAnimator(AnimeState.IsHurt);
+                isHurt = true;
                 rb.velocity = finalKnockback;
                 UnityEngine.Debug.Log(rb.velocity.x);
 
