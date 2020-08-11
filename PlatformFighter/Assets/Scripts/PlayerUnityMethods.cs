@@ -50,14 +50,10 @@ namespace Mechanics
                 return;
             }
 
+            computeLagTimes();
             correctJumpCount();
             computeShield();
             computeVulnerStates();
-
-            // update lagTime
-            lagTime -= Time.deltaTime;
-            if (lagTime < 0)
-                lagTime = 0f;
 
 
             if (dead)
@@ -70,6 +66,7 @@ namespace Mechanics
                 }
             }
 
+            // control hierarchy
             if (hasControl)
             {
                 if (canMove)
@@ -162,14 +159,20 @@ namespace Mechanics
                 anime.setAnimator(AnimeState.IDLE);
                 attackUsed = AnimeState.IDLE;
 
-                lagTime = 0f;
-                animationTime = 0f;
-                fallMaxSpeed = MAXFALLSPEED;
                 isGrounded = true;
+
                 jumpCount = 2;
                 upBCount = 1;
 
-                giveControl();
+                lagTime = 0f;
+                animationTime = 0f;
+                fallMaxSpeed = MAXFALLSPEED;
+
+                if (!isHurt)
+                {
+                    giveControl();
+                }
+                
             }
 
             else if (col.transform.tag == "Wall")

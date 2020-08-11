@@ -124,7 +124,7 @@ namespace Mechanics
         protected AnimeState attackUsed;
         protected List<string> collided;
         protected bool isFacingRight = true; // this may need to be changed later on
-        protected float hitStunTime = 0.2f;
+        [SerializeField] protected float hitStunTime = 0.2f;
         
 
         // private fields
@@ -145,6 +145,8 @@ namespace Mechanics
         float deathTimer = 0f;
         float vulnerStateTimer = 2f;
         bool lostGame = false;
+        bool isHurt = false;
+        float hurtLagTime = 0f;
 
         [SerializeField] VulnerState currVulnerState = VulnerState.HITTABLE;
 
