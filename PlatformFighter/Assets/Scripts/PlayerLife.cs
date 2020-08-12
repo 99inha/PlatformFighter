@@ -107,7 +107,7 @@ namespace Mechanics
                 anime.setAnimator(AnimeState.IsHurt);
                 isHurt = true;
                 rb.velocity = finalKnockback;
-                UnityEngine.Debug.Log(rb.velocity.x);
+                //UnityEngine.Debug.Log(rb.velocity.x);
 
 
                 // Apply damage to playerHealth
