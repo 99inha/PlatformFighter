@@ -30,6 +30,7 @@ namespace Mechanics
             //UnityEngine.Debug.Log("rectangle is jabbing");
             anime.setAnimator(AnimeState.Jab);
             animationStart = true;
+            canContinueAttack = true;
             attackUsed = AnimeState.Jab;
         }
 
@@ -117,6 +118,7 @@ namespace Mechanics
             //UnityEngine.Debug.Log("rectangle is neutral-b-ing");
             anime.setAnimator(AnimeState.NeutralB);
             hasControl = false;
+            canContinueAttack = true;
             attackHeld = AnimeState.NeutralB;
         }
 
@@ -144,6 +146,7 @@ namespace Mechanics
                 fallMaxSpeed = -2f;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(-2f, rb.velocity.y));
             }
+            canContinueAttack = false;
             animationStart = true;
             attackUsed = AnimeState.DownB;
 

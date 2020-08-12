@@ -119,7 +119,10 @@ namespace Mechanics
                         animationStart = true;
                         animationTime = 0;
                         attackUsed = attackHeld;
-                        collided.Clear();
+                        if (canContinueAttack)
+                        {
+                            collided.Clear();
+                        }
                         generateHitBox(attackUsed);
                         
                     }
@@ -129,6 +132,7 @@ namespace Mechanics
                         animationTime = 0;
                         collided.Clear();
                         hitboxGen = false;
+                        canContinueAttack = false;
                         if (isGrounded)
                         {
                             attackUsed = AnimeState.IDLE;
