@@ -84,7 +84,7 @@ namespace Mechanics
             hasControl = true;
         }
 
-        public void takeDamage(Attack attack)
+        public void takeDamage(Attack attack, Vector3 location)
         {
             if (holdShield)
             {   // Damage is applied on the shield
@@ -93,6 +93,11 @@ namespace Mechanics
             else
             {   // Damage is applied on the player
                 //StartCoroutine("lagForSeconds", 1f);
+
+                // generate hit effect
+
+                Instantiate(hitEffect, findMidpoint(location, transform.position), new Quaternion(0, 0, 0, 0));
+
                 Vector2 finalKnockback = health.takeDamage(attack);
 
                 hurtLagTime = computeLagTime(attack.hasUniformKnockback);
@@ -102,7 +107,7 @@ namespace Mechanics
                 anime.setAnimator(AnimeState.IsHurt);
                 isHurt = true;
                 rb.velocity = finalKnockback;
-                UnityEngine.Debug.Log(rb.velocity.x);
+                //UnityEngine.Debug.Log(rb.velocity.x);
 
 
                 // Apply damage to playerHealth
@@ -140,6 +145,15 @@ namespace Mechanics
         protected virtual void generateHitBox(AnimeState attack)
         {
 
+        }
+
+
+        // findDistance: finds the 2d distance between 2 Vector3 points, the z coordinate is not used
+        Vector3 findMidpoint(Vector3 p1, Vector3 p2)
+        {
+            float xPos = (p1.x + p2.x) / 2;
+            float yPos = (p1.y + p2.y) / 2;
+            return new Vector3(xPos, yPos, 0);
         }
     }
 

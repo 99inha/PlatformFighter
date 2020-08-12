@@ -40,7 +40,7 @@ public class RectBullet : MonoBehaviour
 
             Attack attackStruct = new Attack(damage, knockback, true);
 
-            col.GetComponentInParent<PlayerController>().takeDamage(attackStruct);
+            col.GetComponentInParent<PlayerController>().takeDamage(attackStruct, transform.position);
 
             Destroy(gameObject);
         }

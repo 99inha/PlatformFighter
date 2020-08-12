@@ -30,6 +30,7 @@ namespace Mechanics
             //UnityEngine.Debug.Log("rectangle is jabbing");
             anime.setAnimator(AnimeState.Jab);
             animationStart = true;
+            canContinueAttack = true;
             attackUsed = AnimeState.Jab;
         }
 
@@ -117,6 +118,7 @@ namespace Mechanics
             //UnityEngine.Debug.Log("rectangle is neutral-b-ing");
             anime.setAnimator(AnimeState.NeutralB);
             hasControl = false;
+            canContinueAttack = true;
             attackHeld = AnimeState.NeutralB;
         }
 
@@ -144,6 +146,7 @@ namespace Mechanics
                 fallMaxSpeed = -2f;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(-2f, rb.velocity.y));
             }
+            canContinueAttack = false;
             animationStart = true;
             attackUsed = AnimeState.DownB;
 
@@ -194,6 +197,8 @@ namespace Mechanics
             Vector2 hitDirection = new Vector2(0,0);
             bool hasUniformKnockback = false;
             bool reflect = false;
+            Vector3 hitLocation = new Vector3(0, 0, 0);
+            
 
             // positive x values for away and negative for inwards
             // positive y values for up and negative values for down
@@ -203,11 +208,11 @@ namespace Mechanics
                 hitDirection.x = 1.2f;
                 hitDirection.y = 0.9f;
                 hasUniformKnockback = true;
-
+                hitLocation = new Vector2(transform.position.x + 0.7f * transform.right.x, transform.position.y);
 
                 //Vector3 v = transform.TransformPoint(0.7f, -0.15f, transform.position.z);
                 colliders = Physics2D.OverlapBoxAll(
-                    new Vector2(transform.position.x + 0.7f * transform.right.x, transform.position.y),
+                    (Vector2)hitLocation,
                     new Vector2(0.5f, 0.5f), 0, enemies);
 
             }
@@ -216,9 +221,10 @@ namespace Mechanics
                 damage = 0f;
                 hitDirection.x = 7f;
                 hitDirection.y = 1f;
+                hitLocation = new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y + 0.1f);
 
                 colliders = Physics2D.OverlapBoxAll(
-                    new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y + 0.1f),
+                    (Vector2)hitLocation,
                     new Vector2(1, 0.9f), 0, enemies);
 
             }
@@ -227,10 +233,10 @@ namespace Mechanics
                 damage = 0f;
                 hitDirection.x = -0.5f;
                 hitDirection.y = 8f;
-
+                hitLocation = new Vector2(transform.position.x, transform.position.y + 0.5f);
 
                 colliders = Physics2D.OverlapBoxAll(
-                    new Vector2(transform.position.x, transform.position.y + 0.5f),
+                    (Vector2)hitLocation,
                     new Vector2(2.3f, 1), 0, enemies);
 
             }
@@ -239,9 +245,10 @@ namespace Mechanics
                 damage = 10f;
                 hitDirection.x = 0.5f;
                 hitDirection.y = 8f;
+                hitLocation = new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y - 0.5f);
 
                 colliders = Physics2D.OverlapBoxAll(
-                    new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y - 0.5f),
+                    (Vector2)hitLocation,
                     new Vector2(0.9f, 0.4f), 0, enemies);  
 
             }
@@ -250,6 +257,7 @@ namespace Mechanics
                 damage = 10f;
                 hitDirection.x = 3f;
                 hitDirection.y = 3f;
+                hitLocation = transform.position;
                 colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 0.72f, enemies);
             }
             else if (attack == AnimeState.FAir)
@@ -257,10 +265,10 @@ namespace Mechanics
                 damage = 0f;
                 hitDirection.x = 0f;
                 hitDirection.y = -20f;
+                hitLocation = new Vector2(transform.position.x + transform.right.x * 0.3f,transform.position.y + 0.4f);
+
                 colliders = Physics2D.OverlapCircleAll(
-                    new Vector2(
-                        transform.position.x + transform.right.x * 0.3f, 
-                        transform.position.y + 0.4f), 
+                    (Vector2)hitLocation, 
                     0.6f, 
                     enemies);
             }
@@ -271,8 +279,10 @@ namespace Mechanics
                 hitDirection.y = 1f;
 
                 Vector3 t = transform.TransformPoint(-0.025f, -0.6f, transform.position.z);
+                hitLocation = new Vector2(t.x, t.y);
 
-                colliders = Physics2D.OverlapBoxAll(new Vector2(t.x, t.y), transform.TransformVector(0.9f, 0.7f, 1f), 0, enemies);
+
+                colliders = Physics2D.OverlapBoxAll((Vector2)hitLocation, transform.TransformVector(0.9f, 0.7f, 1f), 0, enemies);
             }
             else if (attack == AnimeState.UpAir)
             {
@@ -281,8 +291,9 @@ namespace Mechanics
                 hitDirection.y = 5f;
 
                 Vector3 t = transform.TransformPoint(0f, 0.9f, transform.position.z);
+                hitLocation = new Vector2(t.x, t.y);
 
-                colliders = Physics2D.OverlapBoxAll(new Vector2(t.x, t.y), transform.TransformVector(0.5f, 1.2f, 1f), 0, enemies);
+                colliders = Physics2D.OverlapBoxAll((Vector2)hitLocation, transform.TransformVector(0.5f, 1.2f, 1f), 0, enemies);
             }
             else if (attack == AnimeState.DownAir)
             {
@@ -291,8 +302,9 @@ namespace Mechanics
                 hitDirection.y = -10f;
 
                 Vector3 t = transform.TransformPoint(-0.032f, 0.032f, transform.position.z);
+                hitLocation = new Vector2(t.x, t.y);
 
-                colliders = Physics2D.OverlapBoxAll(new Vector2(t.x, t.y), new Vector2(1.188f, 1.188f), 0, enemies);
+                colliders = Physics2D.OverlapBoxAll((Vector2)hitLocation, new Vector2(1.188f, 1.188f), 0, enemies);
             }
             else if (attack == AnimeState.NeutralB)
             {
@@ -319,6 +331,7 @@ namespace Mechanics
                 hitDirection.x = 0.1f;
                 hitDirection.y = 1f;
 
+                hitLocation = transform.position;
                 colliders = Physics2D.OverlapBoxAll(
                     new Vector2(transform.position.x - 0.035f * transform.right.x, transform.position.y + 0.05f),
                     new Vector2(1.8f, 1.7f), 0, enemies);
@@ -342,7 +355,7 @@ namespace Mechanics
                         Attack attackStruct = new Attack(damage, hitDirection, hasUniformKnockback);
 
 
-                        d.GetComponentInParent<PlayerController>().takeDamage(attackStruct);
+                        d.GetComponentInParent<PlayerController>().takeDamage(attackStruct, hitLocation);
 
                     }
                     else if(d.gameObject.layer == 8 )

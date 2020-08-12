@@ -102,6 +102,7 @@ namespace Mechanics
 
         public GameObject shieldObject;
         public GameObject ringOut;
+        public GameObject hitEffect;
         public GameObject spawnPoint;
         public GameObject respawnPlatformPrefab;
 
@@ -124,6 +125,7 @@ namespace Mechanics
         protected AnimeState attackUsed;
         protected List<string> collided;
         protected bool isFacingRight = true; // this may need to be changed later on
+        protected bool canContinueAttack = false;  // deteremine if an attack can repeatly damage enemies
         [SerializeField] protected float hitStunTime = 0.2f;
         
 

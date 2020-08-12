@@ -763,7 +763,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 19.9
+  m_fontSize: 21.25
   m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1058,12 +1058,15 @@ MonoBehaviour:
   lagTime: 0
   shieldObject: {fileID: 1685187550}
   ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
+  hitEffect: {fileID: 8354952883842205778, guid: 1192b0e9a3d763845ac36b1cb0c4a2d6,
+    type: 3}
   spawnPoint: {fileID: 1430135404}
   respawnPlatformPrefab: {fileID: 2576446216467014782, guid: eacc6753b108b724eb56ef47c366309f,
     type: 3}
   hasControl: 1
   isGrounded: 0
   attackHeld: 0
+  hitStunTime: 0.2
   currVulnerState: 0
   shooterObject: {fileID: 1351773064}
   enemies:
@@ -2496,7 +2499,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 22.95
+  m_fontSize: 26.85
   m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2919,12 +2922,15 @@ MonoBehaviour:
   lagTime: 0
   shieldObject: {fileID: 1537769191}
   ringOut: {fileID: 2316616397038886052, guid: 870ec659a55399a43819a68893e4b93c, type: 3}
+  hitEffect: {fileID: 8354952883842205778, guid: 1192b0e9a3d763845ac36b1cb0c4a2d6,
+    type: 3}
   spawnPoint: {fileID: 1322521523}
   respawnPlatformPrefab: {fileID: 2576446216467014782, guid: eacc6753b108b724eb56ef47c366309f,
     type: 3}
   hasControl: 1
   isGrounded: 0
   attackHeld: 0
+  hitStunTime: 0.2
   currVulnerState: 0
   shooterObject: {fileID: 209758751}
   enemies:
@@ -3084,7 +3090,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48.75
+  m_fontSize: 52
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3559,7 +3565,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48.75
+  m_fontSize: 52
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
