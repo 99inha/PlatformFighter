@@ -124,7 +124,7 @@ namespace Mechanics
         protected float animationTime = 0f;
         protected AnimeState attackUsed;
         protected List<string> collided;
-        protected bool isFacingRight = true; // this may need to be changed later on
+        [SerializeField] protected bool isFacingRight = true;
         protected bool canContinueAttack = false;  // deteremine if an attack can repeatly damage enemies
         [SerializeField] protected float hitStunTime = 0.2f;
         
