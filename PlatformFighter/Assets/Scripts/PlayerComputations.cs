@@ -34,22 +34,26 @@ namespace Mechanics
 
             }
 
-            if (holdShield)
+            if (!gameIsPaused)
             {
-                isBroken = shield.updateShield(Time.deltaTime, true);
-                shieldObject.SetActive(true);
-
-                if (isBroken)
+                if (holdShield)
                 {
-                    // Add what happens when shield is broken
-                    rb.velocity = new Vector2(-100, 100);
+                    isBroken = shield.updateShield(Time.deltaTime, true);
+                    shieldObject.SetActive(true);
+
+                    if (isBroken)
+                    {
+                        // Add what happens when shield is broken
+                        rb.velocity = new Vector2(-100, 100);
+                    }
+                }
+                else
+                {
+                    shield.updateShield(Time.deltaTime, false);
+                    shieldObject.SetActive(false);
                 }
             }
-            else
-            {
-                shield.updateShield(Time.deltaTime, false);
-                shieldObject.SetActive(false);
-            }
+            
 
         }
 
