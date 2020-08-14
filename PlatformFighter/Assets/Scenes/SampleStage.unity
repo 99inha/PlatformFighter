@@ -438,7 +438,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1f73eb45fb281d74ca03c5edfacf673f, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1414,7 +1414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: MenuScreen
-  animator: {fileID: 0}
+  animator: {fileID: 201182154}
   winnerText: {fileID: 0}
 --- !u!4 &566917682
 Transform:
@@ -1712,6 +1712,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 566917681}
         m_MethodName: loadScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 232555323}
+        m_MethodName: togglePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2408,7 +2419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: EndingScene
-  animator: {fileID: 0}
+  animator: {fileID: 201182154}
   winnerText: {fileID: 0}
 --- !u!4 &898036925
 Transform:

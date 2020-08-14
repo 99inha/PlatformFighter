@@ -65,7 +65,6 @@ namespace Mechanics
             gameIsPaused = pauseFunction.isGamePaused();
             if (gameIsPaused)
             {
-                UnityEngine.Debug.Log(gameIsPaused);
                 hasControl = false;
             }
 
