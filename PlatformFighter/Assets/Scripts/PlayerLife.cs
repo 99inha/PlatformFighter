@@ -12,6 +12,7 @@ namespace Mechanics
         public void playerDeath(int deathZone)
         {
             int remainingLives = health.die();
+            soundEffect.playSound(2);
 
             if (!dead)
             {
@@ -97,7 +98,7 @@ namespace Mechanics
                 // generate hit effect
 
                 Instantiate(hitEffect, findMidpoint(location, transform.position), new Quaternion(0, 0, 0, 0));
-
+                soundEffect.playSound(1);
                 Vector2 finalKnockback = health.takeDamage(attack);
 
                 hurtLagTime = computeLagTime(attack.hasUniformKnockback);

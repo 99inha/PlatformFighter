@@ -11,7 +11,7 @@ public class StartSceneCheckInput : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            soundMana.playSound("start");
+            soundMana.playSound(0);
             sceneChanger.loadScene();
         }
     }
