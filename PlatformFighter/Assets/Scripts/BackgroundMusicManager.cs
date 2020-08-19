@@ -9,6 +9,8 @@ public class BackgroundMusicManager : MonoBehaviour
     float audioVolume;
     float currentVolume;
     bool fade = false;
+    [SerializeField] List<AudioClip> tracks;
+    
     AudioSource audio;
 
     // Start is called before the first frame update
@@ -18,6 +20,11 @@ public class BackgroundMusicManager : MonoBehaviour
         currentTime = fadeOutTime;
         audioVolume = audio.volume;
         currentVolume = audioVolume;
+        if(tracks.Count > 0)
+        {
+            audio.clip = tracks[Random.Range(0, tracks.Count-1)];
+            audio.Play();
+        }
     }
 
     // Update is called once per frame

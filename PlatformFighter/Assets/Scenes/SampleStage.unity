@@ -2777,7 +2777,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2021994971
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9327ace4eddfdb846a138b85ea99aede, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3019,7 +3019,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2021994971
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9a22d738c10aaf8418bcc53e9894cde4, type: 3}
   m_Color: {r: 0.6509434, g: 0.15602471, b: 0, a: 0.6117647}
   m_FlipX: 0
@@ -3322,7 +3322,7 @@ GameObject:
   - component: {fileID: 1685187554}
   - component: {fileID: 1685187553}
   - component: {fileID: 1685187552}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shield
   m_TagString: Player2
   m_Icon: {fileID: 0}
@@ -3581,6 +3581,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5b06eecae216348ac8ed1cd48d16a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tracks:
+  - {fileID: 8300000, guid: 86ff8a9eabb3d22428f476d5698f3555, type: 3}
+  - {fileID: 8300000, guid: 7a5ee41c0845c564b8719ea487ed3e29, type: 3}
+  - {fileID: 8300000, guid: 877e226160d7acc4ca538ff55575b06c, type: 3}
 --- !u!82 &2044953034
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3593,7 +3597,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
