@@ -5552,11 +5552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tracks:
-  - {fileID: 8300000, guid: 86ff8a9eabb3d22428f476d5698f3555, type: 3}
   - {fileID: 8300000, guid: 7a5ee41c0845c564b8719ea487ed3e29, type: 3}
   - {fileID: 8300000, guid: 877e226160d7acc4ca538ff55575b06c, type: 3}
   - {fileID: 8300000, guid: 5b0dc5f8a1b22cd429bad7c07a061ceb, type: 3}
-  - {fileID: 8300000, guid: 39d2c20d809899443ad4396c2f314efe, type: 3}
 --- !u!82 &2060662504
 AudioSource:
   m_ObjectHideFlags: 0
