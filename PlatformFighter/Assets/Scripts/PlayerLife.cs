@@ -110,9 +110,10 @@ namespace Mechanics
                 rb.velocity = finalKnockback;
                 //UnityEngine.Debug.Log(rb.velocity.x);
 
-
-                // Apply damage to playerHealth
-
+                if (finalKnockback.y < -4f)
+                {
+                    stageBounce = new StageBounce(true, finalKnockback.y * -0.25f);
+                }
             }
         }
 
