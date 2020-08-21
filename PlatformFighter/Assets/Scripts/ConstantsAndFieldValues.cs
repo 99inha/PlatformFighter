@@ -3,6 +3,7 @@
  * ex) animation states
  */
 
+using Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,6 +85,26 @@ namespace Mechanics
         
     }
 
+    /* StageBounce struct:
+     *      a struct that carries the information of the player bouncing
+     *      off the stage when getting hit
+     *      
+     *      fields:
+     *          -bool willStageBounce = whether or not the player bounces
+     *          -float bounceSpeed = how fast the player will bounce up
+     */
+    public struct StageBounce
+    {
+        public bool willStageBounce { get; set; }
+        public float bounceSpeed { get; set; }
+
+        public StageBounce(bool willStageBounce, float bounceSpeed)
+        {
+            this.willStageBounce = willStageBounce;
+            this.bounceSpeed = bounceSpeed;
+        }
+    }
+
 
 
     public partial class PlayerController : MonoBehaviour
@@ -109,7 +130,7 @@ namespace Mechanics
         public SoundManager soundEffect;
 
         // only to check the values from Unity Engine
-        //public Vector2 velocity;
+        public Vector2 velocity;
         //public float horizontalAxis;
         //public float verticalAxis;
 
@@ -152,6 +173,7 @@ namespace Mechanics
         bool isHurt = false;
         float hurtLagTime = 0f;
         bool gameIsPaused = false;
+        [SerializeField] StageBounce stageBounce;
 
         [SerializeField] VulnerState currVulnerState = VulnerState.HITTABLE;
 
