@@ -51,20 +51,27 @@ namespace Mechanics
             }
 
             computeLagTimes();
-            correctJumpCount();
-            computeShield();
-            computeVulnerStates();
-
 
             if (dead)
             {
                 deathTimer -= Time.deltaTime;
-                if(deathTimer <= 0)
+                if (deathTimer <= 0)
                 {
                     respawn();
                     dead = false;
                 }
             }
+
+            gameIsPaused = pauseFunction.isGamePaused();
+            if (gameIsPaused)
+            {
+                hasControl = false;
+            }
+
+            correctJumpCount();
+            computeVulnerStates();
+
+            computeShield();
 
             // control hierarchy
             if (hasControl)

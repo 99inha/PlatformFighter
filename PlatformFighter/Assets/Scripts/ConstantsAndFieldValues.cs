@@ -95,6 +95,7 @@ namespace Mechanics
         public int playerNumber;
         public PlayerHealth health;
         public SceneChange change;
+        public PauseFunction pauseFunction;
         public float moveSpeed = 5f;
         public float jumpSpeed = 9f;
         public float fallMaxSpeed = -12f;
@@ -150,6 +151,7 @@ namespace Mechanics
         bool lostGame = false;
         bool isHurt = false;
         float hurtLagTime = 0f;
+        bool gameIsPaused = false;
 
         [SerializeField] VulnerState currVulnerState = VulnerState.HITTABLE;
 
