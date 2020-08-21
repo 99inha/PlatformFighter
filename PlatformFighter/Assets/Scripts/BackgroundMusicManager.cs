@@ -22,7 +22,7 @@ public class BackgroundMusicManager : MonoBehaviour
         currentVolume = audioVolume;
         if(tracks.Count > 0)
         {
-            audio.clip = tracks[Random.Range(0, tracks.Count-1)];
+            audio.clip = tracks[Random.Range(0, tracks.Count)];
             audio.Play();
         }
     }
