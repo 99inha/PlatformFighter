@@ -319,9 +319,12 @@ namespace Mechanics
                 damage = 0f;
                 hitDirection.x = 6f;
                 hitDirection.y = 1f;
+                Vector3 t = new Vector3(transform.position.x + 1.1f * transform.right.x, transform.position.y + 0.1f, transform.position.z);
+                hitLocation = new Vector2(t.x, t.y);
+
 
                 colliders = Physics2D.OverlapBoxAll(
-                    new Vector2(transform.position.x + 1.1f * transform.right.x, transform.position.y + 0.1f),
+                    (Vector2)hitLocation,
                     new Vector2(2.2f, 0.4f), 0, enemies);
 
             }

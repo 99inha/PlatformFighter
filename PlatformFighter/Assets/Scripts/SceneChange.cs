@@ -9,6 +9,7 @@ public class SceneChange : MonoBehaviour
     [SerializeField] private string sceneName;
     public Animator animator;
     public TextMeshProUGUI winnerText;
+    public BackgroundMusicManager music;
     public static int winner = -1;
 
     private void Start()
@@ -39,6 +40,10 @@ public class SceneChange : MonoBehaviour
 
     IEnumerator loadNextLevel()
     {
+        if(music != null)
+        {
+            music.startFade();
+        }
         animator.SetTrigger("End");
 
         yield return new WaitForSeconds(1); // wait for 1 sceond

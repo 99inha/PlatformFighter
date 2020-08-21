@@ -106,6 +106,7 @@ namespace Mechanics
         public GameObject hitEffect;
         public GameObject spawnPoint;
         public GameObject respawnPlatformPrefab;
+        public SoundManager soundEffect;
 
         // only to check the values from Unity Engine
         //public Vector2 velocity;
