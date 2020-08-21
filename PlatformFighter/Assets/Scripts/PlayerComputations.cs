@@ -191,6 +191,23 @@ namespace Mechanics
                 lagTime = 0f;
         }
 
+        /* computeStageBounce:
+         *      computes the player bouncing off the stage
+         *      Args:
+         *      Returns:
+         *      Usage: Call in update
+         */
+        void computeStageBounce()
+        {
+            if (isGrounded && stageBounce.willStageBounce)
+            {
+                UnityEngine.Debug.Log("Player is bouncing");
+                rb.velocity = new Vector2(rb.velocity.x, stageBounce.bounceSpeed);
+                isGrounded = false;
+                stageBounce.willStageBounce = false;
+            }
+        }
+
     }
 }
 

@@ -36,6 +36,8 @@ namespace Mechanics
             ButtonJump = "Jump" + playerNumber;
             ButtonFall = "Fall" + playerNumber;
             ButtonShield = "Shield" + playerNumber;
+
+            stageBounce = new StageBounce(false, 0f);
         }
 
         // Update is called once per frame
@@ -50,6 +52,7 @@ namespace Mechanics
                 return;
             }
 
+            computeStageBounce();
             computeLagTimes();
 
             if (dead)
@@ -89,13 +92,14 @@ namespace Mechanics
 
             computeAttackRelease();
             stablizeVertical();
+            
 
 
             // updateAnimator();
             // only to check the exact input values
             //horizontalAxis = Input.GetAxisRaw(AxisHorizontal);
             //verticalAxis = Input.GetAxisRaw(AxisVertical);
-            //velocity = rb.velocity;
+            velocity = rb.velocity;
         }
 
         private void LateUpdate()
@@ -183,7 +187,6 @@ namespace Mechanics
                 {
                     giveControl();
                 }
-                
             }
 
             else if (col.transform.tag == "Wall")
