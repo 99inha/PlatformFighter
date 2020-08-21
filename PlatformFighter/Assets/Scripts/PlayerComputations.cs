@@ -199,11 +199,14 @@ namespace Mechanics
          */
         void computeStageBounce()
         {
-            if (isGrounded && stageBounce.willStageBounce)
+            if (isGrounded && isHurt && stageBounce.willStageBounce)
             {
                 UnityEngine.Debug.Log("Player is bouncing");
                 rb.velocity = new Vector2(rb.velocity.x, stageBounce.bounceSpeed);
                 isGrounded = false;
+                stageBounce.willStageBounce = false;
+            } else if (isGrounded && stageBounce.willStageBounce)
+            {
                 stageBounce.willStageBounce = false;
             }
         }

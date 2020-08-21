@@ -112,7 +112,7 @@ namespace Mechanics
 
                 if (finalKnockback.y < -4f)
                 {
-                    stageBounce = new StageBounce(true, finalKnockback.y * -0.5f);
+                    stageBounce = new StageBounce(true, finalKnockback.y * -0.25f);
                 }
             }
         }
