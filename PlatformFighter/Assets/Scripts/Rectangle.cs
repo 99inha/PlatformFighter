@@ -204,8 +204,8 @@ namespace Mechanics
             // positive y values for up and negative values for down
             if (attack == AnimeState.Jab)
             {
-                damage = 5f;
-                hitDirection.x = 1.2f;
+                damage = 1.2f;
+                hitDirection.x = 1.5f;
                 hitDirection.y = 0.9f;
                 hasUniformKnockback = true;
                 hitLocation = new Vector2(transform.position.x + 0.7f * transform.right.x, transform.position.y);
@@ -218,9 +218,9 @@ namespace Mechanics
             }
             else if (attack == AnimeState.FTilt)
             {
-                damage = 0f;
-                hitDirection.x = 7f;
-                hitDirection.y = 1f;
+                damage = 7f;
+                hitDirection.x = 6f;
+                hitDirection.y = 1.5f;
                 hitLocation = new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y + 0.1f);
 
                 colliders = Physics2D.OverlapBoxAll(
@@ -230,9 +230,9 @@ namespace Mechanics
             }
             else if (attack == AnimeState.UpTilt)
             {
-                damage = 0f;
+                damage = 4f;
                 hitDirection.x = -0.5f;
-                hitDirection.y = 8f;
+                hitDirection.y = 5f;
                 hitLocation = new Vector2(transform.position.x, transform.position.y + 0.5f);
 
                 colliders = Physics2D.OverlapBoxAll(
@@ -242,9 +242,9 @@ namespace Mechanics
             }
             else if (attack == AnimeState.DownTilt)
             {
-                damage = 10f;
+                damage = 5f;
                 hitDirection.x = 0.5f;
-                hitDirection.y = 8f;
+                hitDirection.y = 10f;
                 hitLocation = new Vector2(transform.position.x + 0.8f * transform.right.x, transform.position.y - 0.5f);
 
                 colliders = Physics2D.OverlapBoxAll(
@@ -254,7 +254,7 @@ namespace Mechanics
             }
             else if (attack == AnimeState.NAir)
             {
-                damage = 10f;
+                damage = 3f;
                 hitDirection.x = 3f;
                 hitDirection.y = 3f;
                 hitLocation = transform.position;
@@ -262,8 +262,8 @@ namespace Mechanics
             }
             else if (attack == AnimeState.FAir)
             {
-                damage = 0f;
-                hitDirection.x = 0f;
+                damage = 6.6f;
+                hitDirection.x = 0.7f;
                 hitDirection.y = -20f;
                 hitLocation = new Vector2(transform.position.x + transform.right.x * 0.3f,transform.position.y + 0.4f);
 
@@ -275,7 +275,7 @@ namespace Mechanics
             else if (attack == AnimeState.BackAir)
             {
                 damage = 0f;
-                hitDirection.x = 7f;
+                hitDirection.x = 8f;
                 hitDirection.y = 1f;
 
                 Vector3 t = transform.TransformPoint(-0.025f, -0.6f, transform.position.z);
@@ -286,7 +286,7 @@ namespace Mechanics
             }
             else if (attack == AnimeState.UpAir)
             {
-                damage = 0f;
+                damage = 3.2f;
                 hitDirection.x = 1f;
                 hitDirection.y = 5f;
 
@@ -297,9 +297,9 @@ namespace Mechanics
             }
             else if (attack == AnimeState.DownAir)
             {
-                damage = 0f;
-                hitDirection.x = 0f;
-                hitDirection.y = -10f;
+                damage = 9f;
+                hitDirection.x = 5f;
+                hitDirection.y = 3f;
 
                 Vector3 t = transform.TransformPoint(-0.032f, 0.032f, transform.position.z);
                 hitLocation = new Vector2(t.x, t.y);
@@ -316,7 +316,7 @@ namespace Mechanics
             }
             else if (attack == AnimeState.SideB)
             {
-                damage = 0f;
+                damage = 4f;
                 hitDirection.x = 6f;
                 hitDirection.y = 1f;
                 Vector3 t = new Vector3(transform.position.x + 1.1f * transform.right.x, transform.position.y + 0.1f, transform.position.z);
@@ -330,8 +330,8 @@ namespace Mechanics
             }
             else if (attack == AnimeState.DownB)
             {
-                damage = 0f;
-                hitDirection.x = 0.1f;
+                damage = 2f;
+                hitDirection.x = 3f;
                 hitDirection.y = 1f;
 
                 hitLocation = transform.position;
