@@ -157,7 +157,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.2495309
+  m_AspectRatio: 1.3333334
 --- !u!1 &1878209825
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +596,7 @@ MonoBehaviour:
   sceneName: MenuScreen
   animator: {fileID: 2127921814}
   winnerText: {fileID: 0}
+  music: {fileID: 0}
 --- !u!114 &1925694748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +642,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startGame: {fileID: 8300000, guid: 8f7d601954ffd4d469cc0854fe2ed6ae, type: 3}
+  hitEffect: {fileID: 0}
+  ringoutEffect: {fileID: 0}
 --- !u!82 &1993924514
 AudioSource:
   m_ObjectHideFlags: 0
